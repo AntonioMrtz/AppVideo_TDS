@@ -89,7 +89,7 @@ public class Prueba {
 		JButton btnNewButton_3 = new JButton("New button");
 		panel_2.add(btnNewButton_3);
 		
-		JButton btnNewButton_4 = new JButton("New button");
+		JButton btnNewButton_4 = new JButton(".");
 		panel_2.add(btnNewButton_4);
 		
 		JButton btnNewButton_5 = new JButton("New button");
