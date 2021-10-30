@@ -19,6 +19,8 @@ import java.awt.Label;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 
 public class LoginView {
 
@@ -150,30 +152,30 @@ public class LoginView {
 		panel_3.setBackground(Color.GRAY);
 		panel_1.add(panel_3, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gbl_panel_3.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gbl_panel_3.rowHeights = new int[]{0, 0, 0, 0, 0};
-		gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_3.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel_3.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel_3.setLayout(gbl_panel_3);
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
 		gbc_verticalStrut.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalStrut.gridx = 5;
+		gbc_verticalStrut.gridx = 6;
 		gbc_verticalStrut.gridy = 0;
 		panel_3.add(verticalStrut, gbc_verticalStrut);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
 		gbc_verticalStrut_1.insets = new Insets(0, 0, 5, 0);
-		gbc_verticalStrut_1.gridx = 6;
+		gbc_verticalStrut_1.gridx = 7;
 		gbc_verticalStrut_1.gridy = 0;
 		panel_3.add(verticalStrut_1, gbc_verticalStrut_1);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
 		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalStrut_2.gridx = 5;
+		gbc_verticalStrut_2.gridx = 6;
 		gbc_verticalStrut_2.gridy = 1;
 		panel_3.add(verticalStrut_2, gbc_verticalStrut_2);
 		
@@ -190,15 +192,15 @@ public class LoginView {
 		GridBagConstraints gbc_label = new GridBagConstraints();
 		gbc_label.anchor = GridBagConstraints.EAST;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
-		gbc_label.gridx = 5;
+		gbc_label.gridx = 4;
 		gbc_label.gridy = 2;
 		panel_3.add(label, gbc_label);
 		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.anchor = GridBagConstraints.WEST;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.gridx = 6;
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = 5;
 		gbc_textField.gridy = 2;
 		panel_3.add(textField, gbc_textField);
 		textField.setColumns(10);
@@ -231,28 +233,44 @@ public class LoginView {
 		gbc_horizontalStrut_4.gridy = 3;
 		panel_3.add(horizontalStrut_4, gbc_horizontalStrut_4);
 		
-		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_horizontalStrut_5 = new GridBagConstraints();
-		gbc_horizontalStrut_5.insets = new Insets(0, 0, 0, 5);
-		gbc_horizontalStrut_5.gridx = 4;
-		gbc_horizontalStrut_5.gridy = 3;
-		panel_3.add(horizontalStrut_5, gbc_horizontalStrut_5);
-		
-		Label label_1 = new Label("Password");
-		label_1.setForeground(Color.WHITE);
-		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.anchor = GridBagConstraints.EAST;
-		gbc_label_1.insets = new Insets(0, 0, 0, 5);
-		gbc_label_1.gridx = 5;
-		gbc_label_1.gridy = 3;
-		panel_3.add(label_1, gbc_label_1);
+		JLabel lblNewLabel_1 = new JLabel("Password");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBackground(Color.GRAY);
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 4;
+		gbc_lblNewLabel_1.gridy = 3;
+		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.anchor = GridBagConstraints.WEST;
-		gbc_textField_1.gridx = 6;
+		gbc_textField_1.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_1.gridx = 5;
 		gbc_textField_1.gridy = 3;
 		panel_3.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.GRAY);
+		panel_1.add(panel_4, BorderLayout.SOUTH);
+		
+		JButton btnNewButton = new JButton("Aceptar");
+		btnNewButton.setBackground(SystemColor.inactiveCaption);
+		panel_4.add(btnNewButton);
+		
+		JSeparator separator_7 = new JSeparator();
+		panel_4.add(separator_7);
+		
+		JSeparator separator_5 = new JSeparator();
+		panel_4.add(separator_5);
+		
+		JSeparator separator_6 = new JSeparator();
+		panel_4.add(separator_6);
+		
+		JButton btnNewButton_1 = new JButton("Cancelar");
+		btnNewButton_1.setBackground(SystemColor.inactiveCaption);
+		panel_4.add(btnNewButton_1);
 	}
 }
