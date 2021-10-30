@@ -20,7 +20,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Prueba {
+public class LoginView {
 
 	private JFrame frame;
 	private JTextField textField;
@@ -33,7 +33,7 @@ public class Prueba {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Prueba window = new Prueba();
+					LoginView window = new LoginView();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class Prueba {
 	/**
 	 * Create the application.
 	 */
-	public Prueba() {
+	public LoginView() {
 		initialize();
 	}
 
