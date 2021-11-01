@@ -204,13 +204,6 @@ public class LoginView {
 		gbc_verticalStrut_1.gridy = 0;
 		panel_3.add(verticalStrut_1, gbc_verticalStrut_1);
 		
-		Component verticalStrut_2 = Box.createVerticalStrut(20);
-		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
-		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
-		gbc_verticalStrut_2.gridx = 8;
-		gbc_verticalStrut_2.gridy = 1;
-		panel_3.add(verticalStrut_2, gbc_verticalStrut_2);
-		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
 		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 5);
