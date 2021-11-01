@@ -259,6 +259,22 @@ public class LoginView {
 		JButton btnNewButton = new JButton("Aceptar");
 		btnNewButton.setBackground(SystemColor.inactiveCaption);
 		panel_4.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			   public void actionPerformed(ActionEvent e) {
+				   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				   System.out.println("gola");
+				   
+				   Registro r = new Registro();
+				   r.setSize(400,400);
+				   r.setVisible(true);
+				   //r.dispose();
+				   //frame.dispose();
+				   frame.setVisible(false);
+				   
+				   
+			   }
+			});
 		
 		JSeparator separator_7 = new JSeparator();
 		panel_4.add(separator_7);
