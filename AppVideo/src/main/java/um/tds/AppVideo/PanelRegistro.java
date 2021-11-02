@@ -7,7 +7,7 @@ import java.awt.BorderLayout;
 public class PanelRegistro extends JPanel {
 
 
-	
+	// hola iwiwei 
 	
 	public PanelRegistro() {
 		setLayout(new BorderLayout(0, 0));
