@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.DimensionUIResource;
 import javax.swing.border.BevelBorder;
 
 public class LoginView {
@@ -62,6 +63,7 @@ public class LoginView {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setBackground(Color.WHITE);
 		frame.setResizable(false);
 		//frame.setBounds(100, 100, 450, 300);
 		frame.setBounds(100, 100, 600, 400);
@@ -266,6 +268,7 @@ public class LoginView {
 		panel_3.add(horizontalStrut_11, gbc_horizontalStrut_11);
 		
 		Label label = new Label("Login");
+		label.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label.setForeground(Color.WHITE);
 		label.setBackground(Color.GRAY);
 		GridBagConstraints gbc_label = new GridBagConstraints();
@@ -312,15 +315,13 @@ public class LoginView {
 		gbc_horizontalStrut_4.gridy = 4;
 		panel_3.add(horizontalStrut_4, gbc_horizontalStrut_4);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBackground(Color.GRAY);
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 8;
-		gbc_lblNewLabel_1.gridy = 4;
-		panel_3.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		Label label_1 = new Label("Password");
+		label_1.setForeground(Color.WHITE);
+		GridBagConstraints gbc_label_1 = new GridBagConstraints();
+		gbc_label_1.insets = new Insets(0, 0, 5, 5);
+		gbc_label_1.gridx = 8;
+		gbc_label_1.gridy = 4;
+		panel_3.add(label_1, gbc_label_1);
 		
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
@@ -387,12 +388,16 @@ public class LoginView {
 			
 			   public void actionPerformed(ActionEvent e) {
 
-				   JPanel j = new JPanel();
+				   
+				   //JPanel j = new JPanel();
 				   PanelRegistro bot= new PanelRegistro();
-				   j.add(bot);
+				   bot.setPreferredSize(panel_3.getSize(null));
+				   //j.add(bot);
 				   panel_3.setVisible(false);
-				   panel_1.add(j, BorderLayout.CENTER);
-				   j.setVisible(true);
+				   panel_1.add(bot, BorderLayout.CENTER);
+				   
+				   bot.setVisible(true);
+				   //j.setVisible(true);
 			   }
 			});
 		
