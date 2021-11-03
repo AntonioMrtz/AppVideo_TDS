@@ -18,6 +18,7 @@ public class PanelRegistro extends JPanel {
 
 
 	// hola iwiwei 
+	//hola 
 	
 	public PanelRegistro() {
 		setBackground(Color.GRAY);
