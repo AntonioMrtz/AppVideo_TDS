@@ -81,7 +81,7 @@ public class LoginView {
 		
 		//JLabel lblNewLabel = new JLabel("AppVideo");
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/um/tds/AppVideo/AppVideo (1).png")));
+		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/recursos/AppVideo (1).png")));
 		/*lblNewLabel.setIcon((Icon) new ImageIcon("AppVideo.png"));*/
 		
 		
