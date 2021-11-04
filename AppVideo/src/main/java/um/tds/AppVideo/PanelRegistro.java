@@ -15,6 +15,11 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+import com.toedter.components.JSpinField;
+import com.toedter.components.JLocaleChooser;
+
 public class PanelRegistro extends JPanel {
 	private JTextField textField_3;
 	private JTextField textField_2;
@@ -38,8 +43,8 @@ public class PanelRegistro extends JPanel {
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 108, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
@@ -139,6 +144,14 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_2.gridy = 4;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
+		JDateChooser dateChooser = new JDateChooser();
+		GridBagConstraints gbc_dateChooser = new GridBagConstraints();
+		gbc_dateChooser.insets = new Insets(0, 0, 5, 5);
+		gbc_dateChooser.fill = GridBagConstraints.BOTH;
+		gbc_dateChooser.gridx = 6;
+		gbc_dateChooser.gridy = 4;
+		panel.add(dateChooser, gbc_dateChooser);
+		
 		JLabel lblNewLabel_3 = new JLabel("email:");
 		lblNewLabel_3.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblNewLabel_3 = new GridBagConstraints();
@@ -237,7 +250,8 @@ public class PanelRegistro extends JPanel {
 			}
 		});
 		panel_1.add(btnNewButton_1);
-
 	}
+	
+	
 
 }

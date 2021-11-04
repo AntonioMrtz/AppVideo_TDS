@@ -81,7 +81,7 @@ public class LoginView {
 		
 		//JLabel lblNewLabel = new JLabel("AppVideo");
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/um/tds/AppVideo/AppVideo (1).png")));
+		lblNewLabel.setIcon(new ImageIcon(LoginView.class.getResource("/recursos/AppVideo (1).png")));
 		/*lblNewLabel.setIcon((Icon) new ImageIcon("AppVideo.png"));*/
 		
 		
@@ -400,8 +400,18 @@ public class LoginView {
 		btnNewButton.setBackground(Color.WHITE);
 		
 		
+		JButton btnNewButton_1_1 = new JButton("Cancelar");
+		btnNewButton_1_1.setBackground(Color.WHITE);
+		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
+		gbc_btnNewButton_1_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1_1.gridx = 10;
+		gbc_btnNewButton_1_1.gridy = 8;
+		panel_3.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		
+		/* action handlers */
+		
+		button.addActionListener(new ActionListener() {
 			
 			   public void actionPerformed(ActionEvent e) {
 
@@ -417,14 +427,6 @@ public class LoginView {
 				   
 			   }
 			});
-		
-		JButton btnNewButton_1_1 = new JButton("Cancelar");
-		btnNewButton_1_1.setBackground(Color.WHITE);
-		GridBagConstraints gbc_btnNewButton_1_1 = new GridBagConstraints();
-		gbc_btnNewButton_1_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_1_1.gridx = 10;
-		gbc_btnNewButton_1_1.gridy = 8;
-		panel_3.add(btnNewButton_1_1, gbc_btnNewButton_1_1);
 		
 	}
 }
