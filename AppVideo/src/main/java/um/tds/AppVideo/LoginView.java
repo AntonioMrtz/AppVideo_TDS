@@ -447,7 +447,22 @@ public class LoginView {
 			   }
 			});
 		
-		
+		button_4.addActionListener(new ActionListener() {
+			
+			   public void actionPerformed(ActionEvent e) {
+
+				   
+				   
+				   ExplorarView e1= new ExplorarView();
+				   //bot.setPreferredSize(panel_3.getSize(null));
+				  
+				   panel_3.setVisible(false);
+				   panel_1.add(e1, BorderLayout.CENTER);
+				   
+				   button_4.setVisible(true);
+				   
+			   }
+			});
 		
 	}
 }

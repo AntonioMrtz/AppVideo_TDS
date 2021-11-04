@@ -236,20 +236,42 @@ public class PanelRegistro extends JPanel {
 		panel_1.setBackground(Color.GRAY);
 		panel_1.setForeground(Color.WHITE);
 		add(panel_1, BorderLayout.SOUTH);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{146, 77, 75, 0, 0};
+		gbl_panel_1.rowHeights = new int[]{23, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnNewButton = new JButton("Registrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		panel_1.add(btnNewButton);
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 0;
+		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		panel_1.add(btnNewButton_1);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
+		gbc_horizontalStrut_2.insets = new Insets(0, 0, 0, 5);
+		gbc_horizontalStrut_2.gridx = 2;
+		gbc_horizontalStrut_2.gridy = 0;
+		panel_1.add(horizontalStrut_2, gbc_horizontalStrut_2);
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
+		gbc_btnNewButton_1.gridx = 3;
+		gbc_btnNewButton_1.gridy = 0;
+		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
 	}
 	
 	
