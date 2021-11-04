@@ -427,6 +427,27 @@ public class LoginView {
 				   
 			   }
 			});
+	
+		
+		
+		button_1.addActionListener(new ActionListener() {
+			
+			   public void actionPerformed(ActionEvent e) {
+
+				   
+				   
+				   //PanelRegistro bot= new PanelRegistro();
+				   //bot.setPreferredSize(panel_3.getSize(null));
+				  
+				   panel_3.setVisible(true);
+				   //panel_1.add(bot, BorderLayout.CENTER);
+				   
+				   //bot.setVisible(true);
+				   
+			   }
+			});
+		
+		
 		
 	}
 }
