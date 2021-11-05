@@ -29,7 +29,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField textField;
 
 
-	// hola iwiwei 
+	
 	
 	public PanelRegistro() {
 		setForeground(Color.WHITE);

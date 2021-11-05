@@ -17,13 +17,13 @@ import javax.swing.JTextPane;
 import java.awt.Panel;
 import java.awt.GridLayout;
 
-public class ExplorarView extends JPanel {
+public class PanelExplorar extends JPanel {
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public ExplorarView() {
+	public PanelExplorar() {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
