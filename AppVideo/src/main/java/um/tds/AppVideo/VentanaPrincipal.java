@@ -10,31 +10,17 @@ import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.JTextField;
 import java.awt.Color;
-import javax.swing.Box;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
-import java.awt.Component;
 import java.awt.Button;
-import java.awt.Label;
-import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import java.awt.SystemColor;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.DimensionUIResource;
-import javax.swing.border.BevelBorder;
 import java.awt.CardLayout;
 
 public class VentanaPrincipal {
 
 	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
 	
 	
 

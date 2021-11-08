@@ -11,13 +11,14 @@ import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Button;
-import java.awt.FlowLayout;
 import javax.swing.JTextPane;
-import java.awt.Panel;
-import java.awt.GridLayout;
+
 
 public class PanelExplorar extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 
 

@@ -11,16 +11,16 @@ import javax.swing.Box;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
-import com.toedter.components.JSpinField;
-import com.toedter.components.JLocaleChooser;
+
 
 public class PanelRegistro extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField textField_3;
 	private JTextField textField_2;
 	private JTextField textField_4;
