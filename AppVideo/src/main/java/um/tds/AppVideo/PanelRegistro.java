@@ -37,7 +37,7 @@ public class PanelRegistro extends JPanel {
 		setBackground(Color.GRAY);
 		setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
 		panel.setForeground(Color.WHITE);
 		add(panel, BorderLayout.NORTH);
@@ -233,7 +233,7 @@ public class PanelRegistro extends JPanel {
 		panel.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
+		final JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.GRAY);
 		panel_1.setForeground(Color.WHITE);
 		add(panel_1, BorderLayout.SOUTH);
@@ -246,11 +246,15 @@ public class PanelRegistro extends JPanel {
 		panel_1.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		panel_1.add(btnNewButton_1);
+		
+		/* action handlers */
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panel.setVisible(false);
+				panel_1.setVisible(false);
 			}
 		});
-		panel_1.add(btnNewButton_1);
 	}
 	
 	

@@ -410,19 +410,17 @@ public class LoginView {
 		
 		
 		/* action handlers */
+		final PanelRegistro bot= new PanelRegistro();
 		
 		button.addActionListener(new ActionListener() {
 			
 			   public void actionPerformed(ActionEvent e) {
 
 				   
-				   
-				   PanelRegistro bot= new PanelRegistro();
 				   //bot.setPreferredSize(panel_3.getSize(null));
 				  
 				   panel_3.setVisible(false);
 				   panel_1.add(bot, BorderLayout.CENTER);
-				   
 				   bot.setVisible(true);
 				   
 			   }
