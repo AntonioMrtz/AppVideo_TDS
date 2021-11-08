@@ -214,8 +214,11 @@ public class VentanaPrincipal {
 		PanelExplorar explorar= new PanelExplorar();
 		pantallaPrincipal.add(explorar,"explorar");
 		
-		
-		
+		//TODO descomentar esto para que vayan los botones
+		/*
+		PanelMisListas1 listas = new PanelMisListas();
+		pantallaPrincipal.add(listas,"mislitas");
+		*/
 		
 		
 		CardLayout cl = (CardLayout)(pantallaPrincipal.getLayout());
@@ -257,6 +260,19 @@ public class VentanaPrincipal {
 			   public void actionPerformed(ActionEvent e) {
 				   
 				   cl.show(pantallaPrincipal,"explorar");
+				   
+				   
+			   }
+			   
+	    });  
+	    
+	    
+	    
+	    button_5.addActionListener(new ActionListener() {   // BOTON EXPLORAR
+			
+			   public void actionPerformed(ActionEvent e) {
+				   
+				   cl.show(pantallaPrincipal,"mislistas");
 				   
 				   
 			   }

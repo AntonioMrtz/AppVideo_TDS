@@ -20,9 +20,12 @@ import java.awt.GridLayout;
 public class PanelExplorar extends JPanel {
 	private JTextField textField;
 
-	/**
-	 * Create the panel.
-	 */
+
+
+	//TODO mirar los box que cuando escribes se agranda la ventana
+	
+	
+	
 	public PanelExplorar() {
 		setLayout(new BorderLayout(0, 0));
 		
