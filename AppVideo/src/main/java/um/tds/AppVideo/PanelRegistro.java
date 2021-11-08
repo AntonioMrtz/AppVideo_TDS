@@ -29,19 +29,14 @@ public class PanelRegistro extends JPanel {
 	private JTextField textField;
 
 
-<<<<<<< HEAD
-	// hola iwiwei 
-	//hola 
-=======
 	
->>>>>>> branch 'main' of git@github.com:AntonioMrtz/AppVideo_TDS.git
 	
 	public PanelRegistro() {
 		setForeground(Color.WHITE);
 		setBackground(Color.GRAY);
 		setLayout(new BorderLayout(0, 0));
 		
-		final JPanel panel = new JPanel();
+		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
 		panel.setForeground(Color.WHITE);
 		add(panel, BorderLayout.NORTH);
@@ -237,7 +232,7 @@ public class PanelRegistro extends JPanel {
 		panel.add(textField_5, gbc_textField_5);
 		textField_5.setColumns(10);
 		
-		final JPanel panel_1 = new JPanel();
+		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.GRAY);
 		panel_1.setForeground(Color.WHITE);
 		add(panel_1, BorderLayout.SOUTH);
@@ -261,17 +256,10 @@ public class PanelRegistro extends JPanel {
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
-		panel_1.add(btnNewButton_1);
-		
-		/* action handlers */
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.setVisible(false);
-				panel_1.setVisible(false);
 			}
 		});
-<<<<<<< HEAD
-=======
 		
 		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
@@ -284,7 +272,6 @@ public class PanelRegistro extends JPanel {
 		gbc_btnNewButton_1.gridx = 3;
 		gbc_btnNewButton_1.gridy = 0;
 		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
->>>>>>> branch 'main' of git@github.com:AntonioMrtz/AppVideo_TDS.git
 	}
 	
 	
