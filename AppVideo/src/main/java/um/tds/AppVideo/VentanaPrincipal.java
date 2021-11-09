@@ -200,12 +200,14 @@ public class VentanaPrincipal {
 		PanelExplorar explorar= new PanelExplorar();
 		pantallaPrincipal.add(explorar,"explorar");
 		
-		//TODO descomentar esto para que vayan los botones
-		/*
-		PanelMisListas1 listas = new PanelMisListas();
-		pantallaPrincipal.add(listas,"mislitas");
-		*/
+		PanelMisListas mislistas = new PanelMisListas();
+		pantallaPrincipal.add(mislistas,"mislistas");
 		
+		PanelNuevaLista nuevalistas = new PanelNuevaLista();
+		pantallaPrincipal.add(nuevalistas,"nuevalista");
+		
+		PanelRecientes recientes = new PanelRecientes();
+		pantallaPrincipal.add(recientes,"recientes");		
 		
 		CardLayout cl = (CardLayout)(pantallaPrincipal.getLayout());
 	    cl.show(pantallaPrincipal,"login");
@@ -254,7 +256,19 @@ public class VentanaPrincipal {
 	    
 	    
 	    
-	    button_5.addActionListener(new ActionListener() {   // BOTON EXPLORAR
+	    button_7.addActionListener(new ActionListener() {   // BOTON NUEVA LISTA
+			
+			   public void actionPerformed(ActionEvent e) {
+				   
+				   cl.show(pantallaPrincipal,"nuevalista");
+				   
+				   
+			   }
+			   
+	    });  
+	    
+	    
+	    button_5.addActionListener(new ActionListener() {   // BOTON MIS LISTAS
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
@@ -263,8 +277,20 @@ public class VentanaPrincipal {
 				   
 			   }
 			   
-	    });  
+	    });
 		
+	    
+	    
+	    button_6.addActionListener(new ActionListener() {   // BOTON RECIENTES
+			
+			   public void actionPerformed(ActionEvent e) {
+				   
+				   cl.show(pantallaPrincipal,"recientes");
+				   
+				   
+			   }
+			   
+	    });
 		
 	}
 }
