@@ -11,10 +11,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EtchedBorder;
 import javax.swing.JScrollPane;
+import javax.swing.border.EtchedBorder;
 
-public class PanelRecientes extends JPanel {
+public class PanelMasVistos extends JPanel {
 
 	/**
 	 * 
@@ -24,8 +24,8 @@ public class PanelRecientes extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PanelRecientes() {
-
+	public PanelMasVistos() {
+		
 		setBackground(Color.GRAY);
 		setLayout(new BorderLayout(0, 0));
 
@@ -49,7 +49,7 @@ public class PanelRecientes extends JPanel {
 		gbl_panel_3.columnWeights = new double[] { 1.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_panel_3.rowWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
 		panel_3.setLayout(gbl_panel_3);
-		
+
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
 		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 0);
@@ -63,7 +63,7 @@ public class PanelRecientes extends JPanel {
 		gbc_verticalStrut.gridx = 0;
 		gbc_verticalStrut.gridy = 1;
 		panel_3.add(verticalStrut, gbc_verticalStrut);
-		
+
 		Component verticalStrut_3 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_3 = new GridBagConstraints();
 		gbc_verticalStrut_3.insets = new Insets(0, 0, 0, 5);
@@ -71,7 +71,7 @@ public class PanelRecientes extends JPanel {
 		gbc_verticalStrut_3.gridy = 1;
 		panel_3.add(verticalStrut_3, gbc_verticalStrut_3);
 
-		JLabel lblNewLabel = new JLabel("Reproducidos Recientes:");
+		JLabel lblNewLabel = new JLabel("Más Vistos: ");
 		lblNewLabel.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
@@ -93,11 +93,10 @@ public class PanelRecientes extends JPanel {
 
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_2.add(verticalStrut_1, BorderLayout.WEST);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		scrollPane.getViewport().setBackground(Color.GRAY);
-
 
 	}
 
