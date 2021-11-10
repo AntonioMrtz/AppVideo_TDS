@@ -96,6 +96,8 @@ public class PanelRecientes extends JPanel {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
+		scrollPane.getViewport().setBackground(Color.GRAY);
+
 
 	}
 
