@@ -71,6 +71,7 @@ public class PanelMasVistos extends JPanel {
 		gbc_verticalStrut_3.gridy = 1;
 		panel_3.add(verticalStrut_3, gbc_verticalStrut_3);
 
+		
 		JLabel lblNewLabel = new JLabel("Más Vistos: ");
 		lblNewLabel.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
