@@ -1,4 +1,4 @@
-package um.tds.AppVideo;
+package um.tds.gui;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
