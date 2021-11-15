@@ -1,4 +1,4 @@
-package um.tds.AppVideo;
+package um.tds.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
