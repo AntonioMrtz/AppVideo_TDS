@@ -11,5 +11,6 @@ public interface UsuarioDao {
 	public void modificarUsuario(Usuario us);
 	public Usuario findUsuario(int codigo);
 	public List<Usuario> recuperarTodosUsuarios();
+	
 
 }
