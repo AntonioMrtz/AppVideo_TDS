@@ -27,7 +27,7 @@ public abstract class FactoriaDAO {
 	
 	public abstract IAdaptadorUsuarioDAO getUsuarioDAO();
 	
-//TODO	public abstract IAdaptadorVideoDAO getVideoDAO();
+	public abstract IAdaptadorVideoDAO getVideoDAO();
 	
 	
 	//Es realmente necesario en etiqueta¿

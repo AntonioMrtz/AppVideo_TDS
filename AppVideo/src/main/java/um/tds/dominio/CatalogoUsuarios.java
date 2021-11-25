@@ -21,7 +21,7 @@ public class CatalogoUsuarios {
 	
 	
 	
-	private void CatalogoClientes() {
+	private CatalogoUsuarios() {
 		try {
   			dao = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
   			adaptadorUsuario = dao.getUsuarioDAO();
@@ -38,7 +38,7 @@ public class CatalogoUsuarios {
 	}
 	
 	
-	public List<Usuario> getClientes(){
+	public List<Usuario> getUsuarios(){
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		for (Usuario u:usuarios.values()) 
 			lista.add(u);
@@ -52,9 +52,7 @@ public class CatalogoUsuarios {
 		}
 		return null;
 	}
-	public Usuario getCliente(String dni) {
-		return usuarios.get(dni); 
-	}
+
 	
 	public void addUsuario(Usuario u) {
 		usuarios.put(u.getUsuario(),u);

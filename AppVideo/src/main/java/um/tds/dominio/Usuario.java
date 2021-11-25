@@ -1,5 +1,6 @@
 package um.tds.dominio;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -13,11 +14,11 @@ public class Usuario {
 	private boolean esPremium;
 	private String contraseña;
 	private String usuario;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	
 	//private List<Venta> ventas;
 
-	public Usuario(String nombre,String apellidos, String email,boolean premium,String contraseña,Date fecha) {  // se crean los usuarios como no premium , cambiar si necesario
+	public Usuario(String nombre,String apellidos, String email,boolean premium,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
 
 		this.nombre=nombre;
 		this.email=email;
@@ -46,7 +47,7 @@ public class Usuario {
 		return esPremium;
 	}
 	
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		
 		
 		return fechaNacimiento;
