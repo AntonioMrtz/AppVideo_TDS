@@ -25,7 +25,7 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 	}
 
 	@Override
-	public void findVideo(String url) {
+	public void findVideo(int id) {
 		// TODO Auto-generated method stub
 
 	}

@@ -11,6 +11,8 @@ public class Video {
 	//private int numRepro;     // posiblemente esto sea una calculada del servidor
 	private List<Etiqueta> etiquetas;
 	
+	private int id;
+	
 	
 	public Video(String url,String titulo) {  // no se meten en el constructor las etiquetas , cambiar si necesario
 		
@@ -35,7 +37,16 @@ public class Video {
 	}*/
 	
 	
-
+	private void setId(int i) {
+		
+		this.id=i;
+	}
+	
+	private int getId() {
+		
+		
+		return this.id;
+	}
 	
 	public boolean añadirEtiquetas(Etiqueta e) {
 		

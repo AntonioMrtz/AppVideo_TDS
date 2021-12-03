@@ -15,6 +15,7 @@ public class Usuario {
 	private String contraseña;
 	private String usuario;
 	private LocalDate fechaNacimiento;
+	private int id;
 	
 	//private List<Venta> ventas;
 
@@ -26,7 +27,6 @@ public class Usuario {
 		this.contraseña=contraseña;
 		this.apellidos=apellidos;
 		this.fechaNacimiento=fecha;
-		
 		
 		//ventas = new LinkedList<Venta>();
 	}
@@ -66,9 +66,16 @@ public class Usuario {
 		return contraseña;
 	}
 	
+	private void setId(int i) {
+		
+		this.id=i;
+	}
 	
-	
-	
+	private int getId() {
+		
+		
+		return this.id;
+	}
 	/*
 	public void addVideo(Video v) {
 		ventas.add(v);

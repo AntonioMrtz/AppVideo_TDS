@@ -25,7 +25,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 
 	@Override
-	public Usuario findUsuario(String usuario) {
+	public Usuario findUsuario(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
