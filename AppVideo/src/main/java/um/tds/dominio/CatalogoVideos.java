@@ -33,6 +33,10 @@ public class CatalogoVideos {
 	}
 	
 	
+	
+	//////////////
+	
+	
 	public static CatalogoVideos getUnicaInstancia(){
 		return unicaInstancia;
 	}
@@ -53,6 +57,10 @@ public class CatalogoVideos {
 		return null;
 	}
 
+	
+	
+	//////////////////
+	
 	
 	public void addVideo(Video v) {
 		videos.put(v.getUrl(),v);

@@ -8,7 +8,7 @@ public class Video {
 	
 	private String url;
 	private String titulo;
-	//private int numRepro;     // posiblemente esto sea una calculada del servidor
+	private int numRepro;     //TODO TRATAR
 	private List<Etiqueta> etiquetas;
 	
 	private int id;
@@ -21,6 +21,10 @@ public class Video {
 		
 	}
 	
+	
+	
+	//////////////////
+	
 	public String getUrl() {
 		return url;
 	}
@@ -31,10 +35,10 @@ public class Video {
 		return etiquetas;
 	}
 	
-	/*  Se obtiene del servidor
+	
 	public int getNumRepro() {
 		return numRepro;
-	}*/
+	}
 	
 	
 	private void setId(int i) {
@@ -48,14 +52,25 @@ public class Video {
 		return this.id;
 	}
 	
-	public boolean añadirEtiquetas(Etiqueta e) {
+	
+	
+	///////////////////
+	
+	
+	public void añadirEtiquetas(Etiqueta e) {
 		
-		// implementar añadir
-		return true;
+		
+		etiquetas.add(e);
 		
 	}
 	
 	
+	
+	public void incrementarRepro() {
+		
+		numRepro+=1;
+		
+	}
 	
 
 	

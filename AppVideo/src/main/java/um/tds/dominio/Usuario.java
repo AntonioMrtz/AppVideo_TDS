@@ -17,7 +17,7 @@ public class Usuario {
 	private LocalDate fechaNacimiento;
 	private int id;
 	
-	//private List<Venta> ventas;
+	//private List<Videos> listareproduccion;
 
 	public Usuario(String nombre,String apellidos, String email,boolean premium,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
 
@@ -28,8 +28,11 @@ public class Usuario {
 		this.apellidos=apellidos;
 		this.fechaNacimiento=fecha;
 		
-		//ventas = new LinkedList<Venta>();
+		//ventas = new LinkedList<Venta>(); listas repro
 	}
+	
+	
+	//////////////
 
 	public String getNombre() {
 		return nombre;
@@ -47,6 +50,10 @@ public class Usuario {
 		return esPremium;
 	}
 	
+	public void becomePremium(){
+		
+		esPremium=true;
+	}
 	public LocalDate getFechaNacimiento() {
 		
 		
@@ -76,6 +83,11 @@ public class Usuario {
 		
 		return this.id;
 	}
+	
+	
+	
+	//////////////////
+	
 	/*
 	public void addVideo(Video v) {
 		ventas.add(v);
@@ -86,8 +98,12 @@ public class Usuario {
 	}
 	*/
 
-	
+	// añadir lista , añadir videos a lista etc
 
+	
+	////////////////////////
+	
+	
 	@Override
 	public String toString() {
 		return getUsuario();

@@ -17,7 +17,7 @@ import um.tds.persistencia.IAdaptadorVideoDAO;
 
 public class Controlador {
 	
-	
+	//singleton
 	private static Controlador unicaInstancia;
 	
 
