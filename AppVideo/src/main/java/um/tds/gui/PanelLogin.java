@@ -7,10 +7,20 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTextField;
+
+import tds.driver.FactoriaServicioPersistencia; //TODO QUITAR
+import tds.driver.ServicioPersistencia;//TODO QUITAR
+import um.tds.dominio.Video;
+import beans.Entidad;//TODO QUITAR
+import beans.Propiedad;//TODO QUITAR
+
 import java.awt.Component;
 import javax.swing.Box;
 import java.awt.Button;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class PanelLogin extends JPanel{
@@ -260,7 +270,7 @@ public class PanelLogin extends JPanel{
 		
 		/* handlers */
 		
-		 button_1.addActionListener(new ActionListener() {   // BOTON EXPLORAR
+		 button_1.addActionListener(new ActionListener() {   // BOTON CANCELAR
 				
 			   public void actionPerformed(ActionEvent e) {
 				   
@@ -271,7 +281,15 @@ public class PanelLogin extends JPanel{
 			   
 	    });  
 		
-		
+		 button.addActionListener(new ActionListener() {   // BOTON ACEPTAR
+				
+			   public void actionPerformed(ActionEvent e) {
+				  
+		 
+			   
+			   }
+			   
+	    });  
 		
 		
 	}

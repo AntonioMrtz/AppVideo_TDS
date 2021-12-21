@@ -3,6 +3,7 @@ package um.tds.controlador;
 import java.time.LocalDate;
 import java.util.List;
 
+import um.tds.dominio.CatalogoEtiquetas;
 import um.tds.dominio.CatalogoUsuarios;
 import um.tds.dominio.CatalogoVideos;
 import um.tds.dominio.Usuario;
@@ -26,8 +27,22 @@ public class Controlador {
 	
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
+	private CatalogoEtiquetas catalogoEtiquetas;
 	
-	private Controlador() {
+	//private Usuario usuarioActual;
+	
+	
+	
+	private Controlador()  {
+		
+		try {
+			FactoriaDAO factoria = FactoriaDAO.getInstancia();
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 		inicialiarAdaptadores();
 		inicializarCatálogos();
@@ -35,7 +50,7 @@ public class Controlador {
 		
 	}
 	
-	public static Controlador getUnicaInstancia() {
+	public static Controlador getUnicaInstancia(){
 		
 		
 		if(unicaInstancia==null)
