@@ -8,4 +8,11 @@ public class Etiqueta {
 		
 		this.nombre=nombre;
 	}
+	
+	
+	public String getEtiqueta() {
+		
+		
+		return nombre;
+	}
 }

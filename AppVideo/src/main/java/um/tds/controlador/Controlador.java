@@ -123,7 +123,7 @@ public class Controlador {
 		
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
 		catalogoVideos= CatalogoVideos.getUnicaInstancia();
-		
+		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
 		
 	}
 	

@@ -51,6 +51,14 @@ public class VentanaPrincipal {
 	 * Initialize the contents of the frame.
 	 */
 	
+	public void mostrarVentana() {
+		
+		
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+	}
+	
+	
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBackground(Color.WHITE);
