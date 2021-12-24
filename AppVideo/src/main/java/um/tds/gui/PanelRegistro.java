@@ -41,9 +41,9 @@ public class PanelRegistro extends JPanel {
 		panel.setForeground(Color.WHITE);
 		add(panel, BorderLayout.NORTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 108, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 108, 0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
@@ -112,7 +112,7 @@ public class PanelRegistro extends JPanel {
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
 		gbc_horizontalStrut.insets = new Insets(0, 0, 5, 0);
-		gbc_horizontalStrut.gridx = 8;
+		gbc_horizontalStrut.gridx = 10;
 		gbc_horizontalStrut.gridy = 2;
 		panel.add(horizontalStrut, gbc_horizontalStrut);
 		
@@ -134,6 +134,27 @@ public class PanelRegistro extends JPanel {
 		gbc_textField_1.gridy = 3;
 		panel.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		
+		Component horizontalStrut_8 = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut_8 = new GridBagConstraints();
+		gbc_horizontalStrut_8.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalStrut_8.gridx = 8;
+		gbc_horizontalStrut_8.gridy = 3;
+		panel.add(horizontalStrut_8, gbc_horizontalStrut_8);
+		
+		Component horizontalStrut_7 = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut_7 = new GridBagConstraints();
+		gbc_horizontalStrut_7.insets = new Insets(0, 0, 5, 5);
+		gbc_horizontalStrut_7.gridx = 9;
+		gbc_horizontalStrut_7.gridy = 3;
+		panel.add(horizontalStrut_7, gbc_horizontalStrut_7);
+		
+		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut_6 = new GridBagConstraints();
+		gbc_horizontalStrut_6.insets = new Insets(0, 0, 5, 0);
+		gbc_horizontalStrut_6.gridx = 10;
+		gbc_horizontalStrut_6.gridy = 3;
+		panel.add(horizontalStrut_6, gbc_horizontalStrut_6);
 		
 		JLabel lblNewLabel_2 = new JLabel("*Fecha nacimiento:");
 		lblNewLabel_2.setForeground(Color.WHITE);
@@ -239,7 +260,7 @@ public class PanelRegistro extends JPanel {
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{146, 77, 75, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 23, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel_1.columnWeights = new double[]{0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
@@ -263,8 +284,12 @@ public class PanelRegistro extends JPanel {
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
+		
+		
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				
 			}
 		});
 		

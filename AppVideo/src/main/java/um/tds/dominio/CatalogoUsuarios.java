@@ -29,9 +29,6 @@ public class CatalogoUsuarios {
   			usuarios = new HashMap<String,Usuario>();
   			
   			
-  			Usuario use= new Usuario("e", "a", "a", false,"e", "e", null);
-  			
-  			addUsuario(use);
   			
   			for (Usuario u:usuarios.values()) {
   				
