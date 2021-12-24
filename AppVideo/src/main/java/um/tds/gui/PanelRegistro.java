@@ -235,12 +235,12 @@ public class PanelRegistro extends JPanel {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.GRAY);
 		panel_1.setForeground(Color.WHITE);
-		add(panel_1, BorderLayout.SOUTH);
+		add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{146, 77, 75, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{23, 0};
+		gbl_panel_1.rowHeights = new int[]{0, 23, 0};
 		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnNewButton = new JButton("Registrar");
@@ -248,11 +248,18 @@ public class PanelRegistro extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
+		Component verticalStrut_2 = Box.createVerticalStrut(20);
+		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
+		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalStrut_2.gridx = 1;
+		gbc_verticalStrut_2.gridy = 0;
+		panel_1.add(verticalStrut_2, gbc_verticalStrut_2);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 0;
+		gbc_btnNewButton.gridy = 1;
 		panel_1.add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Cancelar");
@@ -265,13 +272,17 @@ public class PanelRegistro extends JPanel {
 		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
 		gbc_horizontalStrut_2.insets = new Insets(0, 0, 0, 5);
 		gbc_horizontalStrut_2.gridx = 2;
-		gbc_horizontalStrut_2.gridy = 0;
+		gbc_horizontalStrut_2.gridy = 1;
 		panel_1.add(horizontalStrut_2, gbc_horizontalStrut_2);
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.anchor = GridBagConstraints.NORTHWEST;
 		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 0;
+		gbc_btnNewButton_1.gridy = 1;
 		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(Color.GRAY);
+		add(panel_2, BorderLayout.SOUTH);
 	}
 	
 	
