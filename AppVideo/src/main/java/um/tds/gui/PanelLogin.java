@@ -299,19 +299,30 @@ public class PanelLogin extends JPanel{
 			   public void actionPerformed(ActionEvent e) {
 				  
 				   
-				   String auxDni=nombre.getText().trim();	
-				   String auxNombre=password.getText().trim();
+				   String nomAux=nombre.getText().trim();	
+				   String passAux=password.getText().trim();
 				   
 				   
-				   if (auxDni.isEmpty()||auxNombre.isEmpty()) {
+				   if (nomAux.isEmpty()||passAux.isEmpty()) {
 					   
 					   alerta.setVisible(true);
 					   System.out.println("hola");
 					   
 				   }
 					else { alerta.setVisible(false);
-						   Controlador.getUnicaInstancia().loginUsuario(auxDni, auxNombre);
-						   JOptionPane.showMessageDialog(null,"Cliente dado de alta correctamente","Registrar cliente",JOptionPane.PLAIN_MESSAGE);
+					
+						   if(Controlador.getUnicaInstancia().loginUsuario(nomAux, passAux)){
+							   
+							   JOptionPane.showMessageDialog(null,"Cliente logeado correctamente","Login cliente",JOptionPane.PLAIN_MESSAGE);
+							   
+						   }
+						   
+						   else {
+							   
+							   JOptionPane.showMessageDialog(null,"Usuario no existe","Login cliente",JOptionPane.PLAIN_MESSAGE);
+							   
+						   }
+						   
 						   nombre.setText(""); password.setText(""); alerta.setVisible(false); 
 					}
 		 

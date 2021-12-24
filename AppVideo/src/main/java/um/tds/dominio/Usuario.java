@@ -12,14 +12,14 @@ public class Usuario {
 	private String apellidos;
 	private String email;
 	private boolean esPremium;
-	private String contraseña;
 	private String usuario;
+	private String contraseña;
 	private LocalDate fechaNacimiento;
 	private int id;
 	
 	//private List<Videos> listareproduccion;
 
-	public Usuario(String nombre,String apellidos, String email,boolean premium,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
+	public Usuario(String nombre,String apellidos, String email,boolean premium,String user,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
 
 		this.nombre=nombre;
 		this.email=email;
@@ -27,7 +27,7 @@ public class Usuario {
 		this.contraseña=contraseña;
 		this.apellidos=apellidos;
 		this.fechaNacimiento=fecha;
-		
+		this.usuario=user;
 		//ventas = new LinkedList<Venta>(); listas repro
 	}
 	

@@ -73,8 +73,8 @@ public class Controlador {
 		
 		Usuario us=CatalogoUsuarios.getUnicaInstancia().getUsuario(nombre);
 		
+		
 		if(us!=null && us.checkLogin(password)){
-			System.out.println("holka");
 			usuarioActual=us;
 			return true;
 			
@@ -92,7 +92,7 @@ public class Controlador {
 	public void registrarUsuario(String n,String apellidos,String email,boolean prem,String contra,String usu,LocalDate fecha) {
 		
 		
-		Usuario u = new Usuario(n, apellidos, email, prem, contra, fecha);
+		Usuario u = new Usuario(n, apellidos, email, prem, usu,contra, fecha);
 		adaptadorUsuario.addUsuario(u);
 		catalogoUsuarios.addUsuario(u);
 		

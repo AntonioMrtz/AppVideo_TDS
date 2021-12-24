@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import um.tds.persistencia.AdaptadorUsuario;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;
@@ -26,6 +27,17 @@ public class CatalogoUsuarios {
   			dao = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
   			adaptadorUsuario = dao.getUsuarioDAO();
   			usuarios = new HashMap<String,Usuario>();
+  			
+  			
+  			Usuario use= new Usuario("e", "a", "a", false,"e", "e", null);
+  			
+  			addUsuario(use);
+  			
+  			for (Usuario u:usuarios.values()) {
+  				
+  				System.out.println("user "+u.getNombre());
+  			}
+  			
   			//TODO this.cargarCatalogo();
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
@@ -47,8 +59,10 @@ public class CatalogoUsuarios {
 	
 	
 	public Usuario getUsuario(String us) {
+		System.out.println("us ="+us);
 		for (Usuario u:usuarios.values()) {
-			if (u.getUsuario()==us) return u;
+			//if (u.getUsuario()==us) return u;
+			if (u.getUsuario().equals(us)) return u;
 		}
 		return null;
 	}
