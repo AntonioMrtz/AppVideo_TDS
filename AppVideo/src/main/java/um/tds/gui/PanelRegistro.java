@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Component;
@@ -12,8 +13,13 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
+
+import um.tds.controlador.Controlador;
 
 
 public class PanelRegistro extends JPanel {
@@ -21,12 +27,13 @@ public class PanelRegistro extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField textField_3;
-	private JTextField textField_2;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_1;
-	private JTextField textField;
+	private JTextField email;
+	private JTextField usuario;
+	private JTextField pass;
+	private JTextField pass2;
+	private JTextField apellidos;
+	private JTextField nombre;
+	private LocalDate fecha;
 
 
 	
@@ -99,15 +106,15 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel.gridy = 2;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 		
-		textField = new JTextField();
+		nombre = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.gridwidth = 2;
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField.gridx = 6;
 		gbc_textField.gridy = 2;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		panel.add(nombre, gbc_textField);
+		nombre.setColumns(10);
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
@@ -125,15 +132,15 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_1.gridy = 3;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		textField_1 = new JTextField();
+		apellidos = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.gridwidth = 2;
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 6;
 		gbc_textField_1.gridy = 3;
-		panel.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		panel.add(apellidos, gbc_textField_1);
+		apellidos.setColumns(10);
 		
 		Component horizontalStrut_8 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_8 = new GridBagConstraints();
@@ -172,6 +179,7 @@ public class PanelRegistro extends JPanel {
 		gbc_dateChooser.gridx = 6;
 		gbc_dateChooser.gridy = 4;
 		panel.add(dateChooser, gbc_dateChooser);
+
 		
 		JLabel lblNewLabel_3 = new JLabel("email:");
 		lblNewLabel_3.setForeground(Color.WHITE);
@@ -182,15 +190,15 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_3.gridy = 5;
 		panel.add(lblNewLabel_3, gbc_lblNewLabel_3);
 		
-		textField_3 = new JTextField();
+		email = new JTextField();
 		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
 		gbc_textField_3.gridwidth = 2;
 		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_3.gridx = 6;
 		gbc_textField_3.gridy = 5;
-		panel.add(textField_3, gbc_textField_3);
-		textField_3.setColumns(10);
+		panel.add(email, gbc_textField_3);
+		email.setColumns(10);
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut = new GridBagConstraints();
@@ -208,14 +216,14 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_4.gridy = 7;
 		panel.add(lblNewLabel_4, gbc_lblNewLabel_4);
 		
-		textField_2 = new JTextField();
+		usuario = new JTextField();
 		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
 		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_2.gridx = 6;
 		gbc_textField_2.gridy = 7;
-		panel.add(textField_2, gbc_textField_2);
-		textField_2.setColumns(10);
+		panel.add(usuario, gbc_textField_2);
+		usuario.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("*Contraseña:");
 		lblNewLabel_5.setForeground(Color.WHITE);
@@ -226,14 +234,14 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_5.gridy = 8;
 		panel.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		textField_4 = new JTextField();
+		pass = new JTextField();
 		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
 		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_4.gridx = 6;
 		gbc_textField_4.gridy = 8;
-		panel.add(textField_4, gbc_textField_4);
-		textField_4.setColumns(10);
+		panel.add(pass, gbc_textField_4);
+		pass.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("*Repetir contraseña:");
 		lblNewLabel_6.setForeground(Color.WHITE);
@@ -244,14 +252,14 @@ public class PanelRegistro extends JPanel {
 		gbc_lblNewLabel_6.gridy = 9;
 		panel.add(lblNewLabel_6, gbc_lblNewLabel_6);
 		
-		textField_5 = new JTextField();
+		pass2 = new JTextField();
 		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
 		gbc_textField_5.insets = new Insets(0, 0, 0, 5);
 		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_5.gridx = 6;
 		gbc_textField_5.gridy = 9;
-		panel.add(textField_5, gbc_textField_5);
-		textField_5.setColumns(10);
+		panel.add(pass2, gbc_textField_5);
+		pass2.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.GRAY);
@@ -265,11 +273,6 @@ public class PanelRegistro extends JPanel {
 		panel_1.setLayout(gbl_panel_1);
 		
 		JButton btnNewButton = new JButton("Registrar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
 		gbc_verticalStrut_2.insets = new Insets(0, 0, 5, 5);
@@ -308,8 +311,60 @@ public class PanelRegistro extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GRAY);
 		add(panel_2, BorderLayout.SOUTH);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String passaux= pass.getText();
+				String pass2aux=pass2.getText();
+				String nomaux=nombre.getText();
+				String emailaux=email.getText();
+				String usuaux=usuario.getText();
+				String apellidosaux=apellidos.getText();
+				
+				fecha=dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
+				
+			if (passaux.isEmpty()||pass2aux.isEmpty()||nomaux.isEmpty()||usuaux.isEmpty()||emailaux.isEmpty()||fecha==null||!pass2aux.equals(passaux)) {
+				
+				JOptionPane.showMessageDialog(null,"Datos incorrectos o campos vacíos","Register cliente",JOptionPane.PLAIN_MESSAGE);
+				
+			}
+			
+			else {
+				
+				
+				if(Controlador.getUnicaInstancia().registrarUsuario(nomaux,apellidosaux,emailaux,false,passaux,usuaux,fecha)) {
+					
+					JOptionPane.showMessageDialog(null,"Registro correcto","Register cliente",JOptionPane.PLAIN_MESSAGE);
+					
+					dateChooser.setDate(null);		
+				}	
+				
+				else{
+					
+					JOptionPane.showMessageDialog(null,"Registro incorrecto","Register cliente",JOptionPane.PLAIN_MESSAGE);
+					
+				}
+				
+				pass.setText("");
+				pass2.setText("");
+				nombre.setText("");
+				email.setText("");
+				usuario.setText("");
+				apellidos.setText("");
+			
+			}
+							
+				
+				
+			}
+		});
+	
+	
 	}
 	
 	
 
 }
+

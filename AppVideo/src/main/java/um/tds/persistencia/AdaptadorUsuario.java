@@ -2,12 +2,30 @@ package um.tds.persistencia;
 
 import java.util.List;
 
+import tds.driver.FactoriaServicioPersistencia;
+import tds.driver.ServicioPersistencia;
 import um.tds.dominio.Usuario;
 
 public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 	
+	private static ServicioPersistencia servPersistencia = null;
+	private static AdaptadorUsuario unicaInstancia = null;
 	
+	
+	
+	private AdaptadorUsuario() {
+		
+		servPersistencia= FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+	}
+	
+	public static AdaptadorUsuario getUnicaInstancia() {
+		if (unicaInstancia == null)
+			return new AdaptadorUsuario();
+		else
+			return unicaInstancia;
+		
+	}
 	
 	@Override
 	public boolean addUsuario(Usuario us) {

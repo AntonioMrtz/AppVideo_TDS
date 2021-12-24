@@ -89,16 +89,25 @@ public class Controlador {
 	
 	/* REGISTER */
 
-	public void registrarUsuario(String n,String apellidos,String email,boolean prem,String contra,String usu,LocalDate fecha) {
+	
+	//TODO METER PARTE SERVIDOR
+	public boolean registrarUsuario(String n,String apellidos,String email,boolean prem,String contra,String usu,LocalDate fecha) {
+		
 		
 		
 		Usuario u = new Usuario(n, apellidos, email, prem, usu,contra, fecha);
-		adaptadorUsuario.addUsuario(u);
+		
+	
+	
+		if(!adaptadorUsuario.addUsuario(u))return false;
+		
+		
+		if(catalogoUsuarios.getUsuario(usu)!=null)return false;
+		
+		
 		catalogoUsuarios.addUsuario(u);
 		
-		// no estamos controlando si se registra el mismo usuario varias veces
-			
-		
+		return true;
 	}
 	
 	
