@@ -10,6 +10,8 @@ import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
+import um.tds.persistencia.IAdaptadorEtiquetasDAO;
+import um.tds.persistencia.IAdaptadorFiltroDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;
 import um.tds.persistencia.IAdaptadorVideoDAO;
 
@@ -20,29 +22,33 @@ public class Controlador {
 	//singleton
 	private static Controlador unicaInstancia;
 	
+	
 
 	private IAdaptadorUsuarioDAO adaptadorUsuario;
 	private IAdaptadorVideoDAO adaptadorVideo;
+	private IAdaptadorEtiquetasDAO adaptadorEtiqueta;
+	//TODO private IAdaptadorFiltroDAO adaptadorFiltro;
 	
 	
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
 	private CatalogoEtiquetas catalogoEtiquetas;
+	//TODO private CatalogoFiltros catalogoFiltros;
 	
-	//private Usuario usuarioActual;
+	private Usuario usuarioActual;
+	
 	
 	
 	
 	private Controlador()  {
 		
-		try {
+		/*try {
 			FactoriaDAO factoria = FactoriaDAO.getInstancia();
 		} catch (DAOException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
-		
-		
+
 		
 		inicialiarAdaptadores();
 		inicializarCatálogos();
@@ -58,6 +64,27 @@ public class Controlador {
 		
 		return unicaInstancia;
 	}
+	
+	
+	/* LOGIN */
+	
+	
+	public boolean loginUsuario(String nombre,String password) {
+		
+		Usuario us=CatalogoUsuarios.getUnicaInstancia().getUsuario(nombre);
+		
+		if(us!=null && us.checkLogin(password)){
+			System.out.println("holka");
+			usuarioActual=us;
+			return true;
+			
+		}
+		
+		return false;
+		
+	}
+	
+	
 	
 	
 	/* REGISTER */
@@ -112,7 +139,9 @@ public class Controlador {
 			e.printStackTrace();
 		}
 		adaptadorUsuario= factoria.getUsuarioDAO();
-		adaptadorVideo = factoria.getVideoDAO();
+		//adaptadorVideo = factoria.getVideoDAO();
+		//adaptadorFiltro = factoria.getFiltroDAO();
+		//adaptadorEtiqueta = factoria.getEtiquetaDAO();
 		
 		
 	}
@@ -122,8 +151,9 @@ public class Controlador {
 	private void inicializarCatálogos() {
 		
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
-		catalogoVideos= CatalogoVideos.getUnicaInstancia();
-		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
+		//catalogoVideos= CatalogoVideos.getUnicaInstancia();
+		//catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
+		//catalogoFiltros=CatalogoFiltros.getUnicaInstancia();
 		
 	}
 	

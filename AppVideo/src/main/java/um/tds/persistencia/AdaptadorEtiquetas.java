@@ -5,7 +5,7 @@ import java.util.List;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Filtro;
 
-public class AdaptadorEtiquetas implements IAdaptadorEtiquetas {
+public class AdaptadorEtiquetas implements IAdaptadorEtiquetasDAO {
 
 	@Override
 	public void registrarEtiqueta(Etiqueta e) {

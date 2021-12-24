@@ -66,11 +66,11 @@ public class Usuario {
 	}
 	
 	
-	//TODO Esto hay que ponerlo?¿¿¿
-	private String getContraseña() {
+
+	public boolean checkLogin(String password) {
 		
 		
-		return contraseña;
+		return password.equals(contraseña);
 	}
 	
 	private void setId(int i) {

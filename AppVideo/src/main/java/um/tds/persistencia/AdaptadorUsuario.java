@@ -6,6 +6,9 @@ import um.tds.dominio.Usuario;
 
 public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
+	
+	
+	
 	@Override
 	public boolean addUsuario(Usuario us) {
 		// TODO Auto-generated method stub

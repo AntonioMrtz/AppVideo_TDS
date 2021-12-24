@@ -4,7 +4,7 @@ import java.util.List;
 
 import um.tds.dominio.Filtro;
 
-public interface IAdaptadorFiltro {
+public interface IAdaptadorFiltroDAO {
 	
 	
 	public void registrarFiltro(Filtro f);

@@ -5,13 +5,14 @@ public abstract class FactoriaDAO {
 	private static FactoriaDAO unicaInstancia;
 
 	
-	public static final String DAO_TDS = "persistencia.TDSFactoriaDAO";
+	public static final String DAO_TDS = "um.tds.persistencia.TDSFactoriaDAO";
 	
 	public static FactoriaDAO getInstancia(String tipo) throws DAOException{
 		if (unicaInstancia == null)
 			try { unicaInstancia=(FactoriaDAO) Class.forName(tipo).newInstance();
 			} catch (Exception e) {	
-				throw new DAOException(e.getMessage());
+				//throw new DAOException(e.getMessage());
+				e.printStackTrace();
 			} 
 		return unicaInstancia;
 	}
@@ -29,9 +30,11 @@ public abstract class FactoriaDAO {
 	
 	public abstract IAdaptadorVideoDAO getVideoDAO();
 	
+	public abstract IAdaptadorEtiquetasDAO getEtiquetaDAO();
 	
-	//Es realmente necesario en etiqueta¿
-//TODO	public abstract IAdaptadorEtiquetaDAO getEtiquetaDAO();
+	public abstract IAdaptadorFiltroDAO getFiltroDAO();
+	
+	
 
 	
 	

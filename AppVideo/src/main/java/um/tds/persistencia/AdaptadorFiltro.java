@@ -4,7 +4,7 @@ import java.util.List;
 
 import um.tds.dominio.Filtro;
 
-public class AdaptadorFiltro implements IAdaptadorFiltro {
+public class AdaptadorFiltro implements IAdaptadorFiltroDAO {
 
 	@Override
 	public void registrarFiltro(Filtro f) {

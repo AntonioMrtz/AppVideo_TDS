@@ -26,7 +26,7 @@ public class CatalogoUsuarios {
   			dao = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
   			adaptadorUsuario = dao.getUsuarioDAO();
   			usuarios = new HashMap<String,Usuario>();
-  			this.cargarCatalogo();
+  			//TODO this.cargarCatalogo();
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
   		}

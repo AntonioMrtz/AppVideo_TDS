@@ -6,7 +6,7 @@ import java.util.Map;
 
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
-import um.tds.persistencia.IAdaptadorEtiquetas;
+import um.tds.persistencia.IAdaptadorEtiquetasDAO;
 
 
 public class CatalogoEtiquetas {
@@ -15,7 +15,7 @@ public class CatalogoEtiquetas {
 	private static CatalogoEtiquetas unicaInstancia = new CatalogoEtiquetas();
 	
 	private FactoriaDAO dao;
-	private IAdaptadorEtiquetas adaptadorEtiquetas;
+	private IAdaptadorEtiquetasDAO adaptadorEtiquetasDAO;
 	
 	private CatalogoEtiquetas() {
 		
@@ -55,7 +55,7 @@ public class CatalogoEtiquetas {
 	
 	private void cargarCatalogo() throws DAOException {
 		
-		 List<Etiqueta> etiquet = adaptadorEtiquetas.recuperarTodasEtiquetas();
+		 List<Etiqueta> etiquet = adaptadorEtiquetasDAO.recuperarTodasEtiquetas();
 		 for (Etiqueta e: etiquet) 
 			 etiquetas.put(e.getEtiqueta(),e);
 	}

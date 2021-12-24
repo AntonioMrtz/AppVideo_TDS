@@ -5,7 +5,7 @@ import java.util.List;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Filtro;
 
-public interface IAdaptadorEtiquetas {
+public interface IAdaptadorEtiquetasDAO {
 	
 	public void registrarEtiqueta(Etiqueta e);
 	public void borrarEtiqueta(Etiqueta e);
