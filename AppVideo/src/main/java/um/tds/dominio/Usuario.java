@@ -112,7 +112,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return getUsuario();
+		return getUsuario()+" "+getId();
 	}
 	
 }

@@ -117,8 +117,11 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		//TODO poner la fecha en null tras recuperarla
 		
-		Usuario u = new Usuario(nombre, apellidos, email, prem, user, premium, null);
+		Usuario u = new Usuario(nombre, apellidos, email, prem, user, password, null);
+
 		u.setId(e.getId());
+		
+		
 		
 		return u;
 		
@@ -157,8 +160,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		e=servPersistencia.registrarEntidad(e);
 		
-		//System.out.println(e.getPropiedades());
-		
 		us.setId(e.getId());
 		
 		
@@ -191,7 +192,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		List<Usuario> users = new ArrayList<>();
 		List<Entidad> ent = servPersistencia.recuperarEntidades(USUARIO);
 		
-		System.out.println(ent);
 		
 		for (Entidad e : ent) {
 			

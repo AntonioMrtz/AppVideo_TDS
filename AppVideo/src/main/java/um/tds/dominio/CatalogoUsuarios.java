@@ -30,6 +30,8 @@ public class CatalogoUsuarios {
   			
   			
   			this.cargarCatalogo();
+  			
+  			
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
   		}
@@ -60,7 +62,9 @@ public class CatalogoUsuarios {
 
 	
 	public void addUsuario(Usuario u) {
+		
 		usuarios.put(u.getUsuario(),u);
+
 	}
 	public void removeUsuario(Usuario u) {
 		usuarios.remove(u.getUsuario());
