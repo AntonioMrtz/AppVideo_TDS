@@ -97,14 +97,15 @@ public class Controlador {
 		Usuario u = new Usuario(n, apellidos, email, prem, usu,contra, fecha);
 		
 	
+		if(catalogoUsuarios.getUsuario(usu)!=null) {
+
+			return false;
+		}
 	
 		if(!adaptadorUsuario.addUsuario(u))return false;
 		
 		
-		//if(catalogoUsuarios.getUsuario(usu)!=null)return false;
-		
-		
-		//catalogoUsuarios.addUsuario(u);
+		catalogoUsuarios.addUsuario(u);
 		
 		return true;
 	}

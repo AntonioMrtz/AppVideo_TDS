@@ -100,6 +100,32 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 	
 	
+	public Usuario buildUser(Entidad e) {
+		
+		if(e==null) return null;
+		
+		
+		String nombre=servPersistencia.recuperarPropiedadEntidad(e, NOMBRE);
+		String apellidos=servPersistencia.recuperarPropiedadEntidad(e, APELLIDOS);
+		String email=servPersistencia.recuperarPropiedadEntidad(e, EMAIL);
+		String user=servPersistencia.recuperarPropiedadEntidad(e, USER);
+		String password=servPersistencia.recuperarPropiedadEntidad(e, PASSWORD);
+		String fechaNacimiento=servPersistencia.recuperarPropiedadEntidad(e, FECHA_NACIMIENTO);
+		String premium=servPersistencia.recuperarPropiedadEntidad(e, PREMIUM);
+		
+		boolean prem;
+		
+		if (premium.equals("T")) prem=true;
+		else prem=false;
+		
+		//TODO poner la fecha en null tras recuperarla
+		
+		Usuario u = new Usuario(nombre, apellidos, email, prem, user, premium, null);
+		u.setId(e.getId());
+		
+		return u;
+		
+	}
 	
 	
 	
@@ -162,8 +188,18 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 	@Override
 	public List<Usuario> recuperarTodosUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
+
+		List<Usuario> users = new ArrayList<>();
+		List<Entidad> ent = servPersistencia.recuperarEntidades(USUARIO);
+		
+		for (Entidad e : ent) {
+			
+			users.add(buildUser(e));
+			
+		}
+		
+		return users;
+		
 	}
 
 }
