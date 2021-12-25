@@ -89,10 +89,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		array.add(new Propiedad(PREMIUM,premium));
 		
 		
-		
-		
-		
-		
 		e.setPropiedades(array);
 		
 		return e;
@@ -113,7 +109,8 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		String fechaNacimiento=servPersistencia.recuperarPropiedadEntidad(e, FECHA_NACIMIENTO);
 		String premium=servPersistencia.recuperarPropiedadEntidad(e, PREMIUM);
 		
-		boolean prem;
+		
+		boolean prem=false;
 		
 		if (premium.equals("T")) prem=true;
 		else prem=false;
@@ -160,6 +157,8 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		e=servPersistencia.registrarEntidad(e);
 		
+		//System.out.println(e.getPropiedades());
+		
 		us.setId(e.getId());
 		
 		
@@ -192,11 +191,15 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		List<Usuario> users = new ArrayList<>();
 		List<Entidad> ent = servPersistencia.recuperarEntidades(USUARIO);
 		
+		System.out.println(ent);
+		
 		for (Entidad e : ent) {
 			
-			users.add(buildUser(e));
+			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
+			users.add(buildUser(eaux));
 			
 		}
+		
 		
 		return users;
 		

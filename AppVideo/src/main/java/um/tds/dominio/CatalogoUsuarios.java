@@ -28,8 +28,8 @@ public class CatalogoUsuarios {
   			adaptadorUsuario = dao.getUsuarioDAO();
   			usuarios = new HashMap<String,Usuario>();
   			
-  			System.out.println("hola");
-  			//this.cargarCatalogo();
+  			
+  			this.cargarCatalogo();
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
   		}
@@ -68,7 +68,9 @@ public class CatalogoUsuarios {
 	
 	/*Recupera todos los clientes para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {
+
 		 List<Usuario> usuarioBD = adaptadorUsuario.recuperarTodosUsuarios();
+	
 		 for (Usuario u: usuarioBD) 
 			 usuarios.put(u.getUsuario(),u);
 	}
