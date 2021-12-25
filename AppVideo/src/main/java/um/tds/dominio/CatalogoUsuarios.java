@@ -32,7 +32,6 @@ public class CatalogoUsuarios {
   			
   			for (Usuario u:usuarios.values()) {
   				
-  				System.out.println("user "+u.getNombre());
   			}
   			
   			//TODO this.cargarCatalogo();
@@ -56,7 +55,7 @@ public class CatalogoUsuarios {
 	
 	
 	public Usuario getUsuario(String us) {
-		System.out.println("us ="+us);
+
 		for (Usuario u:usuarios.values()) {
 			//if (u.getUsuario()==us) return u;
 			if (u.getUsuario().equals(us)) return u;

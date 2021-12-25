@@ -13,7 +13,7 @@ public class Usuario {
 	private String email;
 	private boolean esPremium;
 	private String usuario;
-	private String contraseña;
+	private String password;
 	private LocalDate fechaNacimiento;
 	private int id;
 	
@@ -24,10 +24,11 @@ public class Usuario {
 		this.nombre=nombre;
 		this.email=email;
 		this.esPremium=premium;
-		this.contraseña=contraseña;
+		this.password=contraseña;
 		this.apellidos=apellidos;
 		this.fechaNacimiento=fecha;
 		this.usuario=user;
+		this.id=0; // aun no sabemos cual tendra hasta que lo insertemos en la DB
 		//ventas = new LinkedList<Venta>(); listas repro
 	}
 	
@@ -65,20 +66,25 @@ public class Usuario {
 		return usuario;
 	}
 	
+	public String getPassword() {
+		
+		return password;
+	}
+	
 	
 
 	public boolean checkLogin(String password) {
 		
 		
-		return password.equals(contraseña);
+		return password.equals(password);
 	}
 	
-	private void setId(int i) {
+	public void setId(int i) {
 		
 		this.id=i;
 	}
 	
-	private int getId() {
+	public int getId() {
 		
 		
 		return this.id;

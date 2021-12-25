@@ -90,7 +90,6 @@ public class Controlador {
 	/* REGISTER */
 
 	
-	//TODO METER PARTE SERVIDOR
 	public boolean registrarUsuario(String n,String apellidos,String email,boolean prem,String contra,String usu,LocalDate fecha) {
 		
 		
@@ -102,10 +101,10 @@ public class Controlador {
 		if(!adaptadorUsuario.addUsuario(u))return false;
 		
 		
-		if(catalogoUsuarios.getUsuario(usu)!=null)return false;
+		//if(catalogoUsuarios.getUsuario(usu)!=null)return false;
 		
 		
-		catalogoUsuarios.addUsuario(u);
+		//catalogoUsuarios.addUsuario(u);
 		
 		return true;
 	}

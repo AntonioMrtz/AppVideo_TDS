@@ -1,7 +1,10 @@
 package um.tds.persistencia;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import beans.Entidad;
+import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import um.tds.dominio.Usuario;
@@ -12,6 +15,31 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	private static ServicioPersistencia servPersistencia = null;
 	private static AdaptadorUsuario unicaInstancia = null;
 	
+	
+	
+	// Campos usuario en servidor
+	
+	private static final String USUARIO = "Usuario";
+	private static final String NOMBRE = "nombre";
+	private static final String APELLIDOS = "apellidos";
+	private static final String EMAIL = "email";
+	private static final String USER = "USER";
+	private static final String PASSWORD = "password";
+	private static final String FECHA_NACIMIENTO = "fechaNacimiento";
+	private static final String PREMIUM = "premium";
+	
+	/*
+	private static final String HISTORIAL = "historial";
+	private static final String LISTAS_CANCIONES = "playlists";
+	*/
+	
+	//TODO AÑADIR LAS DEMAS PROPIEDADES DE UN USUARIO
+
+	
+	private enum Properties{
+		
+		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM
+	}
 	
 	
 	private AdaptadorUsuario() {
@@ -27,11 +55,92 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 	}
 	
+	
+	
+	///// AUXILIARES
+	
+	
+	
+	private Entidad buildEntity(Usuario u) {
+		
+		
+		Entidad e= new Entidad();
+		
+		e.setNombre(USUARIO);
+		
+		
+		ArrayList<Propiedad> array= new ArrayList<>();
+		
+		
+		array.add(new Propiedad(NOMBRE,u.getNombre()));
+		array.add(new Propiedad(APELLIDOS,u.getApellidos()));
+		array.add(new Propiedad(EMAIL,u.getEmail()));
+		array.add(new Propiedad(USER,u.getUsuario()));
+		array.add(new Propiedad(PASSWORD,u.getPassword()));
+		
+		String premium ;
+		if (u.isPremium()) {
+			premium="T";
+		}
+		else {
+			premium="F";
+		}
+		
+		array.add(new Propiedad(PREMIUM,premium));
+		
+		
+		
+		
+		
+		
+		e.setPropiedades(array);
+		
+		return e;
+		
+	}
+	
+	
+	
+	
+	
+	//// METODOS
+	
+	
+	
+	
 	@Override
 	public boolean addUsuario(Usuario us) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Entidad e=null;
+		
+
+		boolean existe = true; 
+		
+		try {
+			
+			e  = servPersistencia.recuperarEntidad(us.getId());
+		
+		} catch (NullPointerException ex) {
+		
+			existe=false;
+		}
+		
+		
+		//if(existe && e!=null) return false;// !no pilla la excepcion por algun motivo
+		
+		if(e!=null)return false;
+		
+		e=buildEntity(us);
+		
+		e=servPersistencia.registrarEntidad(e);
+		
+		us.setId(e.getId());
+		
+		
+		
+		return true;
 	}
+	
 
 	@Override
 	public boolean removeUsuario(Usuario us) {
