@@ -42,7 +42,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	
 	private enum Properties{
 		
-		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM
+		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM;
 	}
 	
 	
@@ -183,7 +183,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		/////////////////////////////////
 		
-		//TODO BORRAR LISTAS Y DEMAS ASOCIADOS
+		//TODO BORRAR LISTAS Y FILTROS
 		
 		return servPersistencia.borrarEntidad(e);
 		

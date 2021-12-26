@@ -6,10 +6,10 @@ import um.tds.dominio.Video;
 
 public interface IAdaptadorVideoDAO {
 
-	public void addVideo(Video v);
-	public void removeVideo(Video v);
+	public boolean addVideo(Video v);
+	public boolean removeVideo(Video v);
 	public void modificarVideo(Video v);
-	public void findVideo(int id);
+	public Video findVideo(int id);
 	public List<Video> recuperarTodosVideos();
 	
 }

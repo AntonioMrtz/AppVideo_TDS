@@ -43,7 +43,7 @@ public class CatalogoUsuarios {
 		return unicaInstancia;
 	}
 	
-	
+	/*Obtiene todo los usuarios del mapa*/
 	public List<Usuario> getUsuarios(){
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		for (Usuario u:usuarios.values()) 
@@ -51,7 +51,7 @@ public class CatalogoUsuarios {
 		return lista;
 	}
 	
-	
+	/* obtiene usuario del mapa local segun nombre*/
 	public Usuario getUsuario(String us) {
 
 		for (Usuario u:usuarios.values()) {
@@ -60,16 +60,32 @@ public class CatalogoUsuarios {
 		}
 		return null;
 	}
-
 	
+	/* obtiene usuario del mapa local segun id*/
+	public Usuario getUsuario(int id) {
+		
+		for(Usuario u:usuarios.values()) {
+			
+			if(u.getId()==id)return u;
+			
+		}
+		
+		return null;
+	}
+
+	/*Añade usuario al mapa local*/
 	public void addUsuario(Usuario u) {
 		
 		usuarios.put(u.getUsuario(),u);
 
 	}
+	
+	/*borra usuario del mapa local*/
 	public void removeUsuario(Usuario u) {
 		usuarios.remove(u.getUsuario());
 	}
+	
+	
 	
 	/*Recupera todos los clientes para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {

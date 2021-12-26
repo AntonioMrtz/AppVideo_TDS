@@ -4,20 +4,22 @@ import java.util.List;
 
 public class Video {
 
-	// url ,titulo ,num rep
 	
+	
+	private int id;
 	private String url;
 	private String titulo;
 	private int numRepro;     //TODO TRATAR
 	private List<Etiqueta> etiquetas;
+
 	
-	private int id;
 	
-	
-	public Video(String url,String titulo) {  // no se meten en el constructor las etiquetas , cambiar si necesario
+	public Video(String url,String titulo) {  // Creado sin etiquetas
 		
+		this.id=0;
 		this.url=url;
 		this.titulo=titulo;
+		this.numRepro=0;
 		
 	}
 	
@@ -25,38 +27,73 @@ public class Video {
 	
 	//////////////////
 	
-	public String getUrl() {
-		return url;
-	}
-	public String getTitulo() {
-		return titulo;
-	}
-	public List<Etiqueta> getEtiquetas() {
-		return etiquetas;
-	}
-	
-	
-	public int getNumRepro() {
-		return numRepro;
-	}
-	
-	
-	private void setId(int i) {
-		
-		this.id=i;
-	}
-	
-	private int getId() {
-		
-		
-		return this.id;
-	}
+
 	
 	
 	
 	///////////////////
 	
 	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getUrl() {
+		return url;
+	}
+
+
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+
+
+	public int getNumRepro() {
+		return numRepro;
+	}
+
+
+
+	public void setNumRepro(int numRepro) {
+		this.numRepro = numRepro;
+	}
+
+
+
+	public List<Etiqueta> getEtiquetas() {
+		return etiquetas;
+	}
+
+
+
+	public void setEtiquetas(List<Etiqueta> etiquetas) {
+		this.etiquetas = etiquetas;
+	}
+
+
+
 	public void añadirEtiquetas(Etiqueta e) {
 		
 		
@@ -70,6 +107,13 @@ public class Video {
 		
 		numRepro+=1;
 		
+	}
+	
+	@Override
+	public String toString() {
+		
+		
+		return titulo+" "+url+" "+numRepro;
 	}
 	
 

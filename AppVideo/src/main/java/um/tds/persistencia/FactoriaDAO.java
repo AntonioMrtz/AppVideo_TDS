@@ -12,7 +12,6 @@ public abstract class FactoriaDAO {
 			try { unicaInstancia=(FactoriaDAO) Class.forName(tipo).newInstance();
 			} catch (Exception e) {	
 				throw new DAOException(e.getMessage());
-				//e.printStackTrace();
 			} 
 		return unicaInstancia;
 	}

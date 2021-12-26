@@ -22,13 +22,8 @@ public class Lanzador {
 					ventana.mostrarVentana();
 					
 					ServicioPersistencia servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
-					/*
-					Entidad usuario= new Entidad();
-					usuario.setNombre("Usuario");
-					usuario.setPropiedades(new ArrayList<Propiedad>(Arrays.asList(new Propiedad("nif", "12345678A"))));
-					servPersistencia.registrarEntidad(usuario);
+
 					
-					System.out.println(servPersistencia.recuperarEntidades());*/
 					
 				} catch (Exception e) {
 					e.printStackTrace();

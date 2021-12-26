@@ -11,10 +11,12 @@ import um.tds.persistencia.IAdaptadorVideoDAO;
 
 public class CatalogoVideos {
 
+	private static final int NUM_VIDEOS_TOP=10;
 	
-	private Map<String,Video> videos; 
+	
 	private static CatalogoVideos unicaInstancia = new CatalogoVideos();
 	
+	private Map<String,Video> videos; 
 	private FactoriaDAO dao;
 	private IAdaptadorVideoDAO adaptadorVideo;
 	
@@ -23,10 +25,14 @@ public class CatalogoVideos {
 	private CatalogoVideos() {
 			
 		try {
+			
   			dao = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
   			adaptadorVideo = dao.getVideoDAO();
   			videos = new HashMap<String,Video>();
+  			
   			this.cargarCatalogo();
+  			
+  			
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
   		}
@@ -71,9 +77,11 @@ public class CatalogoVideos {
 	
 	/*Recupera todos los clientes para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {
+		
 		 List<Video> videosBD = adaptadorVideo.recuperarTodosVideos();
 		 for (Video v: videosBD) 
 			 videos.put(v.getUrl(),v);
+		 
 	}
 	
 	
