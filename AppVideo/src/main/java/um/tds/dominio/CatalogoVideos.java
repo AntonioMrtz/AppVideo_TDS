@@ -17,9 +17,9 @@ public class CatalogoVideos {
 	private static final int NUM_VIDEOS_TOP=10;
 	
 	
+	private Map<String,Video> videos; 
 	private static CatalogoVideos unicaInstancia = new CatalogoVideos();
 	
-	private Map<String,Video> videos; 
 	private FactoriaDAO dao;
 	private IAdaptadorVideoDAO adaptadorVideo;
 	
@@ -122,10 +122,11 @@ public class CatalogoVideos {
 	}
 	
 	
-	/*Recupera todos los clientes para trabajar con ellos en memoria*/
+	/*Recupera todos los videos para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {
 		
 		 List<Video> videosBD = adaptadorVideo.recuperarTodosVideos();
+		 
 		 for (Video v: videosBD) 
 			 videos.put(v.getUrl(),v);
 		 

@@ -28,7 +28,7 @@ public class Controlador {
 	private IAdaptadorVideoDAO adaptadorVideo;
 	private IAdaptadorEtiquetasDAO adaptadorEtiqueta;
 	//TODO private IAdaptadorFiltroDAO adaptadorFiltro;
-	
+	//TODO LISTAS?
 	
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
@@ -150,7 +150,7 @@ public class Controlador {
 			e.printStackTrace();
 		}
 		adaptadorUsuario= factoria.getUsuarioDAO();
-		//adaptadorVideo = factoria.getVideoDAO();
+		adaptadorVideo = factoria.getVideoDAO();
 		//adaptadorFiltro = factoria.getFiltroDAO();
 		//adaptadorEtiqueta = factoria.getEtiquetaDAO();
 		
@@ -162,7 +162,7 @@ public class Controlador {
 	private void inicializarCatálogos() {
 		
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
-		//catalogoVideos= CatalogoVideos.getUnicaInstancia();
+		catalogoVideos= CatalogoVideos.getUnicaInstancia();
 		//catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
 		//catalogoFiltros=CatalogoFiltros.getUnicaInstancia();
 		
@@ -196,7 +196,7 @@ public class Controlador {
 		
 		return catalogoUsuarios.getUsuarios();
 	}
-	public List<Video> getClientes() {
+	public List<Video> getVideos() {
 
 		return catalogoVideos.getVideos();
 	}

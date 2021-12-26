@@ -12,13 +12,13 @@ public final class TDSFactoriaDAO extends FactoriaDAO{
 	public IAdaptadorUsuarioDAO getUsuarioDAO() {
 		
 		return AdaptadorUsuario.getUnicaInstancia();
-		//return null;
+		
 	}
 
 	@Override
 	public IAdaptadorVideoDAO getVideoDAO() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return AdaptadorVideo.getUnicaInstancia();
 	}
 
 	@Override
