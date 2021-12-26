@@ -32,6 +32,7 @@ public class CatalogoUsuarios {
   			this.cargarCatalogo();
   			
   			
+  			
   		} catch (DAOException eDAO) {
   			eDAO.printStackTrace();
   		}
