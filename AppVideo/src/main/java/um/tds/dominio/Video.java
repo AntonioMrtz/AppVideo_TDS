@@ -113,7 +113,7 @@ public class Video {
 	public String toString() {
 		
 		
-		return titulo+" "+url+" "+numRepro;
+		return getTitulo()+" "+getUrl()+" "+getNumRepro();
 	}
 	
 
