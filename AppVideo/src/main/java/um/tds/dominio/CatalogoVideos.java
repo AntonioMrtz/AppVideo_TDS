@@ -1,6 +1,9 @@
 package um.tds.dominio;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +77,50 @@ public class CatalogoVideos {
 	public void removeVideo(Video v) {
 		videos.remove(v.getUrl());
 	}
+	
+	Comparator<Video> compareByNumRepro = new Comparator<Video>() {
+		@Override
+		public int compare(Video o1, Video o2) {
+			
+			Integer v1 = o1.getNumRepro();
+			Integer v2 = o2.getNumRepro();
+			
+			return v1.compareTo(v2);
+			
+		}
+
+	};
+	
+	
+	
+	public List<Video> getTop10Videos() { //TODO COMPROBAR
+		
+		ArrayList<Video> aux = new ArrayList<>();
+		ArrayList<Video> top10 = new ArrayList<>();
+		
+		for (Video v : videos.values()) {
+			
+			aux.add(v);
+			
+		}
+		
+		Collections.sort(aux,compareByNumRepro);
+		
+		int cont=0;
+		
+		for(Video v :aux) {
+			
+			if(cont==10) break;
+			
+			top10.add(v);
+			
+			cont++;
+		}
+		
+		return top10;
+		
+	}
+	
 	
 	/*Recupera todos los clientes para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {
