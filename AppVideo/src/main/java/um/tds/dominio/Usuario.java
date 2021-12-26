@@ -18,6 +18,11 @@ public class Usuario {
 	private int id;
 	
 	//private List<Videos> listareproduccion;
+	
+	//TODO listas de reproduccion de videos
+	//TODO lista de videos recientes
+	//TODO lista top 10 ! solo PREMIUM
+	//TODO Filtro ! solo PREMIUM
 
 	public Usuario(String nombre,String apellidos, String email,boolean premium,String user,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
 

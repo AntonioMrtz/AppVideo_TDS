@@ -30,7 +30,11 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	
 	/*
 	private static final String HISTORIAL = "historial";
-	private static final String LISTAS_CANCIONES = "playlists";
+	private static final String LISTAS_REPRODUCCION = "playlists";
+	private static final String FILTROS = "filtros";
+	
+	// listas especiales separadas de las normales ?
+	private static final String LISTAS_REPRODUCCION = "playlists";
 	*/
 	
 	//TODO AÑADIR LAS DEMAS PROPIEDADES DE UN USUARIO
@@ -115,7 +119,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		if (premium.equals("T")) prem=true;
 		else prem=false;
 		
-		//TODO poner la fecha en null tras recuperarla
+		//TODO poner la fecha en su valor correspondiente tras recuperarla
 		
 		Usuario u = new Usuario(nombre, apellidos, email, prem, user, password, null);
 
@@ -145,14 +149,16 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		try {
 			
 			e  = servPersistencia.recuperarEntidad(us.getId());
+			
 		
 		} catch (NullPointerException ex) {
+			
 		
-			existe=false;
+			//existe=false;
 		}
 		
 		
-		//if(existe && e!=null) return false;// !no pilla la excepcion por algun motivo
+		//if(existe==false || e!=null) return false;// !no pilla la excepcion por algun motivo
 		
 		if(e!=null)return false;
 		
@@ -170,10 +176,22 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 	@Override
 	public boolean removeUsuario(Usuario us) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Entidad e= servPersistencia.recuperarEntidad(us.getId());
+		
+		if(e==null)	return true;
+		
+		/////////////////////////////////
+		
+		//TODO BORRAR LISTAS Y DEMAS ASOCIADOS
+		
+		return servPersistencia.borrarEntidad(e);
+		
+		
 	}
 
+	
+	//TODO PROBABLEMENTE UNO PARA CADA PROPIEDAD TIENE PINTA
 	@Override
 	public void modificarUsuario(Usuario us) {
 		// TODO Auto-generated method stub
@@ -182,8 +200,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 	@Override
 	public Usuario findUsuario(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		
+		return buildUser(servPersistencia.recuperarEntidad(id));
 	}
 
 	@Override

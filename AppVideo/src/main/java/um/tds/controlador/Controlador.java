@@ -53,6 +53,8 @@ public class Controlador {
 		inicialiarAdaptadores();
 		inicializarCatálogos();
 		
+		usuarioActual=null;
+		
 		
 	}
 	
