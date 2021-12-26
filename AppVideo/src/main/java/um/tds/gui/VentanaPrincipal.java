@@ -16,6 +16,9 @@ import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
+
+import um.tds.controlador.Controlador;
+
 import java.awt.CardLayout;
 
 public class VentanaPrincipal {
@@ -250,6 +253,33 @@ public class VentanaPrincipal {
 	    });
 	    
 	    
+	    button_2.addActionListener(new ActionListener() {   // BOTON LOGOUT
+			
+			   public void actionPerformed(ActionEvent e) {
+				   
+				   Controlador.getUnicaInstancia().logoutUsuario();
+				   
+				   
+			   }
+			   
+	    });
+	    
+	    button_3.addActionListener(new ActionListener() {   // BOTON PREMIUM
+			
+			   public void actionPerformed(ActionEvent e) {
+				   
+				   
+				   
+				   if (Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   
+					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
+					   
+				   }
+				   
+				   
+			   }
+			   
+	    });  
 	    
 	    button_4.addActionListener(new ActionListener() {   // BOTON EXPLORAR
 			

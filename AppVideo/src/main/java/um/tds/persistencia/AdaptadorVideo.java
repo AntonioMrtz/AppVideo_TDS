@@ -148,8 +148,8 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 
 	@Override
 	public List<Video> recuperarTodosVideos() {
-		
-		System.out.println("hola");
+			
+	
 		List<Video> videos = new ArrayList<>();
 		List<Entidad> ent = servPersistencia.recuperarEntidades(VIDEO);
 		

@@ -33,6 +33,7 @@ public class CatalogoVideos {
   			adaptadorVideo = dao.getVideoDAO();
   			videos = new HashMap<String,Video>();
   			
+  			
   			this.cargarCatalogo();
   			
   			

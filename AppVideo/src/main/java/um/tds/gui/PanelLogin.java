@@ -306,7 +306,7 @@ public class PanelLogin extends JPanel{
 				   if (nomAux.isEmpty()||passAux.isEmpty()) {
 					   
 					   alerta.setVisible(true);
-					   System.out.println("hola");
+					   
 					   
 				   }
 					else { alerta.setVisible(false);

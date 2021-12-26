@@ -70,6 +70,11 @@ public class Controlador {
 	
 	/* LOGIN */
 	
+	public Usuario getUsuarioActual() {
+		
+		return usuarioActual;
+	}
+	
 	
 	public boolean loginUsuario(String nombre,String password) {
 		
@@ -83,6 +88,13 @@ public class Controlador {
 		}
 		
 		return false;
+		
+	}
+	
+	
+	public void logoutUsuario() {
+		
+		usuarioActual=null;
 		
 	}
 	
