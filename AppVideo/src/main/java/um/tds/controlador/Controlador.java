@@ -12,7 +12,6 @@ import um.tds.dominio.Video;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorEtiquetasDAO;
-import um.tds.persistencia.IAdaptadorFiltroDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;
 import um.tds.persistencia.IAdaptadorVideoDAO;
 
@@ -34,7 +33,6 @@ public class Controlador {
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
 	private CatalogoEtiquetas catalogoEtiquetas;
-	//TODO private CatalogoFiltros catalogoFiltros;
 	//TODO LISTAS?
 	
 	private Usuario usuarioActual;
@@ -171,7 +169,6 @@ public class Controlador {
 		}
 		adaptadorUsuario= factoria.getUsuarioDAO();
 		adaptadorVideo = factoria.getVideoDAO();
-		//adaptadorFiltro = factoria.getFiltroDAO();
 		adaptadorEtiqueta = factoria.getEtiquetaDAO();
 		
 		
@@ -184,7 +181,7 @@ public class Controlador {
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
 		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
 		catalogoVideos= CatalogoVideos.getUnicaInstancia();
-		//catalogoFiltros=CatalogoFiltros.getUnicaInstancia();
+		
 		
 	}
 	

@@ -31,7 +31,7 @@ public abstract class FactoriaDAO {
 	
 	public abstract IAdaptadorEtiquetasDAO getEtiquetaDAO();
 	
-	public abstract IAdaptadorFiltroDAO getFiltroDAO();
+	//public abstract IAdaptadorListasDAO getListasDAO();
 	
 	
 

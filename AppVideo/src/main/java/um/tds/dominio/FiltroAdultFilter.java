@@ -4,6 +4,7 @@ public class FiltroAdultFilter extends Filtro{
 
 	/* Comprueba si una etiqueta del video es Adulto*/
 	
+	
 	@Override
 	public boolean isVideoOk(Video v) {
 		
