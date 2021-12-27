@@ -275,13 +275,17 @@ public class VentanaPrincipal {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   
-				   
-				   if (Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
 					   
-					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
+					   
+					   if (Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+						   
+						   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
+						   
+					   }
 					   
 				   }
+				   
 				  
 				  
 				 
