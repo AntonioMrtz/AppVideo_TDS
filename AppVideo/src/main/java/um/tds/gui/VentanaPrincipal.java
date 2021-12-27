@@ -18,6 +18,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
 import um.tds.controlador.Controlador;
+import um.tds.dominio.CatalogoVideos;
+import um.tds.dominio.Etiqueta;
+import um.tds.dominio.Video;
 
 import java.awt.CardLayout;
 
@@ -275,6 +278,17 @@ public class VentanaPrincipal {
 					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
 					   
 				   }
+				   
+				   
+				   
+				   
+				   /////////TODO QUITAR
+				   
+	
+				   Controlador.getUnicaInstancia().registrarVideo("si","soy");
+				   Controlador.getUnicaInstancia().registrarVideo("si2","soy2");
+				   
+				   
 				   
 				   
 			   }

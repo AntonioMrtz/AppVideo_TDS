@@ -9,7 +9,7 @@ public interface IAdaptadorEtiquetasDAO {
 	
 	public boolean registrarEtiqueta(Etiqueta e);
 	public boolean borrarEtiqueta(Etiqueta e);
-	public void modificarEtiqueta(Etiqueta ef);
+	/*public void modificarEtiqueta(Etiqueta e);*/
 	public Etiqueta findEtiqueta(int codigo);
 	public List<Etiqueta> recuperarTodasEtiquetas();
 

@@ -130,6 +130,9 @@ public class Controlador {
 	public void registrarVideo(String url,String titulo) {
 		
 		Video v = new Video(url, titulo);
+
+		//si hay etiquetas default ponerlas aqui
+		
 		adaptadorVideo.addVideo(v);
 		catalogoVideos.addVideo(v);
 		
@@ -179,8 +182,8 @@ public class Controlador {
 	private void inicializarCatálogos() {
 		
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
-		catalogoVideos= CatalogoVideos.getUnicaInstancia();
 		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
+		catalogoVideos= CatalogoVideos.getUnicaInstancia();
 		//catalogoFiltros=CatalogoFiltros.getUnicaInstancia();
 		
 	}

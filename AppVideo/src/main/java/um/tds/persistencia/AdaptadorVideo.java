@@ -2,11 +2,13 @@ package um.tds.persistencia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
+import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Video;
 
 public class AdaptadorVideo implements IAdaptadorVideoDAO {
@@ -21,11 +23,11 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 	private static final String NUM_REPRO="Num_repro";
 	private static final String TITULO="Titulo";
 	
-	//private static final String ETIQUETAS="Etiquetas";
+	private static final String ETIQUETAS="Etiquetas";
 	
 	private enum Properties{
 		
-		URL,NUM_REPRO,TITULO;
+		URL,NUM_REPRO,TITULO,ETIQUETAS;
 	}
 	
 	
@@ -42,47 +44,7 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		
 	}
 	
-	
-	// AUXILIARES
-	
-	public Entidad buildEntity(Video v) {
-		
-		Entidad e= new Entidad();
-		
-		e.setNombre(VIDEO);
-		
-		
-		ArrayList<Propiedad> array= new ArrayList<>();
-		
-		array.add(new Propiedad(TITULO,v.getTitulo()));
-		array.add(new Propiedad(NUM_REPRO,Integer.toString(v.getNumRepro())));
-		array.add(new Propiedad(URL,v.getUrl()));
 
-		e.setPropiedades(array);
-		
-		
-		return e;
-	}
-	
-	
-	public Video buildVideo(Entidad e) {
-		
-		if(e==null)return null;
-		
-		String titulo=servPersistencia.recuperarPropiedadEntidad(e, TITULO);
-		String url=servPersistencia.recuperarPropiedadEntidad(e, URL);
-		String numrepro=servPersistencia.recuperarPropiedadEntidad(e, NUM_REPRO);
-
-		Video v = new Video(url, titulo);
-		v.setNumRepro(Integer.parseInt(numrepro));
-		v.setId(e.getId());
-		
-		
-		return v;
-	}
-	
-	
-	
 	
 	
 	// METODOS
@@ -126,14 +88,30 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		
 		if(e==null)return true;
 		
-		//TODO BORRAR ETIQUETAS
+		
 		
 		return servPersistencia.borrarEntidad(e);
 	}
 
 	@Override
 	public void modificarVideo(Video v) {
-		// TODO Auto-generated method stub
+
+
+		
+		Entidad e = servPersistencia.recuperarEntidad(v.getId());
+		
+		
+		servPersistencia.eliminarPropiedadEntidad(e, URL);
+		servPersistencia.anadirPropiedadEntidad(e, URL,v.getUrl());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, TITULO);
+		servPersistencia.anadirPropiedadEntidad(e, TITULO,v.getTitulo());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, NUM_REPRO);
+		servPersistencia.anadirPropiedadEntidad(e, NUM_REPRO,Integer.toString(v.getNumRepro()));
+		
+		servPersistencia.eliminarPropiedadEntidad(e, ETIQUETAS);
+		servPersistencia.anadirPropiedadEntidad(e, ETIQUETAS,getIdEtiquetas(v.getEtiquetas()));
 
 	}
 
@@ -153,15 +131,105 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		List<Entidad> ent = servPersistencia.recuperarEntidades(VIDEO);
 		
 		
+		
 		for (Entidad e : ent) {
+			
+			
+			//servPersistencia.borrarEntidad(e);
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			videos.add(buildVideo(eaux));
 			
+			
 		}
+		
+		
 		
 		return videos;
 		
 	}
+	
+	
+	
+	// AUXILIARES
+	
+	public Entidad buildEntity(Video v) {
+		
+		Entidad e= new Entidad();
+		
+		e.setNombre(VIDEO);
+		
+		
+		ArrayList<Propiedad> array= new ArrayList<>();
+		
+		array.add(new Propiedad(TITULO,v.getTitulo()));
+		array.add(new Propiedad(NUM_REPRO,Integer.toString(v.getNumRepro())));
+		array.add(new Propiedad(URL,v.getUrl()));
+		array.add(new Propiedad(ETIQUETAS,getIdEtiquetas(v.getEtiquetas())));
+		
+		
+
+		e.setPropiedades(array);
+		
+		
+		return e;
+	}
+	
+	
+	public Video buildVideo(Entidad e) {
+		
+		if(e==null)return null;
+		
+		String titulo=servPersistencia.recuperarPropiedadEntidad(e, TITULO);
+		String url=servPersistencia.recuperarPropiedadEntidad(e, URL);
+		String numrepro=servPersistencia.recuperarPropiedadEntidad(e, NUM_REPRO);
+		String etiquetas=servPersistencia.recuperarPropiedadEntidad(e, ETIQUETAS);
+		
+		Video v = new Video(url, titulo);
+		v.setNumRepro(Integer.parseInt(numrepro));
+		v.setId(e.getId());
+		
+		
+		
+		v.setEtiquetas(getEtiquetaFromId(etiquetas));
+		
+		
+		return v;
+	}
+	
+	
+	
+	private String getIdEtiquetas(List<Etiqueta> etiquetas) {
+		
+		String aux="";
+		
+		for(Etiqueta e:etiquetas) {
+			
+			aux+=e.getId()+" ";
+			
+		}
+	
+		return aux.trim();
+	}
+	
+	
+	private List<Etiqueta> getEtiquetaFromId(String etiquetas){
+		
+		List<Etiqueta> et = new ArrayList<>();
+		
+		
+		StringTokenizer strTok = new StringTokenizer(etiquetas," ");
+		
+		AdaptadorEtiquetas adaptadorEtiquetas = AdaptadorEtiquetas.getUnicaInstancia();
+		
+		while(strTok.hasMoreTokens()) {
+			
+			et.add(adaptadorEtiquetas.findEtiqueta(Integer.valueOf((String) strTok.nextElement())));
+		}
+		
+		return et;
+		
+	}
+	
 
 }

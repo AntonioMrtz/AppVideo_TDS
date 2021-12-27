@@ -31,9 +31,11 @@ public class AdaptadorEtiquetas implements IAdaptadorEtiquetasDAO {
 
 		
 		servPersistencia= FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+		
 	}
 	
 	public static AdaptadorEtiquetas getUnicaInstancia() {
+		
 		if (unicaInstancia == null)
 			return new AdaptadorEtiquetas();
 		else
@@ -111,11 +113,12 @@ public class AdaptadorEtiquetas implements IAdaptadorEtiquetasDAO {
 		
 	}
 
+	/*En principio no es necesario modificar una etiqueta ya que solo tiene el campo string
 	@Override
 	public void modificarEtiqueta(Etiqueta e) {
-		// TODO Auto-generated method stub
 		
-	}
+		
+	}*/
 
 	@Override
 	public Etiqueta findEtiqueta(int codigo) {

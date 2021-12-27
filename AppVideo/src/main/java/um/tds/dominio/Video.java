@@ -1,5 +1,6 @@
 package um.tds.dominio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Video {
@@ -9,7 +10,7 @@ public class Video {
 	private int id;
 	private String url;
 	private String titulo;
-	private int numRepro;     //TODO TRATAR
+	private int numRepro;     
 	private List<Etiqueta> etiquetas;
 
 	
@@ -21,6 +22,7 @@ public class Video {
 		this.titulo=titulo;
 		this.numRepro=0;
 		
+		etiquetas=new ArrayList<Etiqueta>();
 	}
 	
 	
@@ -88,16 +90,18 @@ public class Video {
 
 
 
+
 	public void setEtiquetas(List<Etiqueta> etiquetas) {
 		this.etiquetas = etiquetas;
 	}
 
 
 
-	public void añadirEtiquetas(Etiqueta e) {
+	public void añadirEtiqueta(Etiqueta e) {
 		
 		
 		etiquetas.add(e);
+		
 		
 	}
 	
@@ -113,7 +117,7 @@ public class Video {
 	public String toString() {
 		
 		
-		return getTitulo()+" "+getUrl()+" "+getNumRepro();
+		return getTitulo()+" "+getUrl()+" "+getNumRepro()+" "+getEtiquetas();
 	}
 	
 
