@@ -191,7 +191,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 
 	
-	//TODO PROBABLEMENTE UNO PARA CADA PROPIEDAD TIENE PINTA
+	
 	@Override
 	public void modificarUsuario(Usuario us) {
 		// TODO Auto-generated method stub
