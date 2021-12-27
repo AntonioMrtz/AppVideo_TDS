@@ -7,10 +7,10 @@ import um.tds.dominio.Filtro;
 
 public interface IAdaptadorEtiquetasDAO {
 	
-	public void registrarEtiqueta(Etiqueta e);
-	public void borrarEtiqueta(Etiqueta e);
+	public boolean registrarEtiqueta(Etiqueta e);
+	public boolean borrarEtiqueta(Etiqueta e);
 	public void modificarEtiqueta(Etiqueta ef);
-	public Filtro findEtiquetas(int codigo);
+	public Etiqueta findEtiqueta(int codigo);
 	public List<Etiqueta> recuperarTodasEtiquetas();
 
 }

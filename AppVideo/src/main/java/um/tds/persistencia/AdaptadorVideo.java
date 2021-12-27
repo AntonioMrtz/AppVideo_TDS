@@ -7,7 +7,6 @@ import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
-import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 
 public class AdaptadorVideo implements IAdaptadorVideoDAO {
