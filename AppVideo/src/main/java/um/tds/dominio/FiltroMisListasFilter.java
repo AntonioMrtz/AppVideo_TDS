@@ -6,8 +6,7 @@ public class FiltroMisListasFilter extends Filtro{
 	public boolean isVideoOk(Video v) {
 
 		//TODO implementar
-		
-		
+			
 		return false;
 	}
 
