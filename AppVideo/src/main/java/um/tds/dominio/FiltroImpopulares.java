@@ -7,7 +7,7 @@ public class FiltroImpopulares extends Filtro {
 
 	@Override
 	public boolean isVideoOk(Video v) {
-		// TODO Auto-generated method stub
+		
 		return v.getNumRepro()>=visitas;
 	}
 

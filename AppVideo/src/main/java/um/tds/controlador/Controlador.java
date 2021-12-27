@@ -139,6 +139,16 @@ public class Controlador {
 	}
 	
 	
+	
+	public void registrarEtiqueta(String e) {
+		
+		adaptadorEtiqueta.registrarEtiqueta(new Etiqueta("e"));
+		catalogoEtiquetas.addEtiqueta(new Etiqueta(e));
+		
+		
+	}
+	
+	
 	/* FIND */
 	
 	public Video findVideo(Video v) {
