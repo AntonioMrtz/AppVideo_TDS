@@ -1,5 +1,6 @@
 package um.tds.persistencia;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	// Campos usuario en servidor
 	
 	private static final String USUARIO = "Usuario";
+	
+	
 	private static final String NOMBRE = "nombre";
 	private static final String APELLIDOS = "apellidos";
 	private static final String EMAIL = "email";
@@ -84,7 +87,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		array.add(new Propiedad(USER,u.getUsuario()));
 		array.add(new Propiedad(PASSWORD,u.getPassword()));
 		
-		//////////////!
+		array.add(new Propiedad(FECHA_NACIMIENTO,u.getFechaNacimiento().toString()));
 		array.add(new Propiedad(FILTRO,u.getFiltroActual().toString()));
 		
 		
@@ -138,9 +141,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		if(f==null) {
 			
 			
-			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
+			System.out.println("filtro nulo cuidado");
 		}
-		//////
+		
 		
 		
 		
@@ -149,9 +152,14 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		if (premium.equals("T")) prem=true;
 		else prem=false;
 		
+		
+		
 		//TODO poner la fecha en su valor correspondiente tras recuperarla
 		
-		Usuario u = new Usuario(nombre, apellidos, email, prem, user, password, null);
+		LocalDate d = null;
+		
+		
+		Usuario u = new Usuario(nombre, apellidos, email, prem, user, password, d);
 
 		u.setId(e.getId());
 		
@@ -161,6 +169,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		u.setFiltroActual(f);
 		
 		//TODO  AÑADIR LISTAS Y FILTROS
+		
+		
+		
 		
 		return u;
 		
@@ -230,13 +241,44 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	@Override
 	public void modificarUsuario(Usuario us) {
 
-		/*
+	
+		
 		Entidad e = servPersistencia.recuperarEntidad(us.getId());
 		
+		servPersistencia.eliminarPropiedadEntidad(e, NOMBRE);
+		servPersistencia.anadirPropiedadEntidad(e, NOMBRE,us.getNombre());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, APELLIDOS);
+		servPersistencia.anadirPropiedadEntidad(e, APELLIDOS,us.getApellidos());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, EMAIL);
+		servPersistencia.anadirPropiedadEntidad(e, EMAIL,us.getEmail());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, FECHA_NACIMIENTO);
+		servPersistencia.anadirPropiedadEntidad(e, FECHA_NACIMIENTO,us.getFechaNacimiento().toString());
+		
+		servPersistencia.eliminarPropiedadEntidad(e, USER);
+		servPersistencia.anadirPropiedadEntidad(e, USER,us.getUsuario());
+				
+		servPersistencia.eliminarPropiedadEntidad(e, PASSWORD);
+		servPersistencia.anadirPropiedadEntidad(e, PASSWORD,us.getPassword());
+		
+		
+		String auxPremium;
+		
+		if(us.isPremium()) auxPremium="T";
+		else auxPremium="F";
+		
+		servPersistencia.eliminarPropiedadEntidad(e, PREMIUM);
+		servPersistencia.anadirPropiedadEntidad(e, PREMIUM,auxPremium);
+		
+		
+		
+		//TODO LISTAS CUANDO ESTEN READY
 		
 		servPersistencia.eliminarPropiedadEntidad(e, FILTRO);
 		servPersistencia.anadirPropiedadEntidad(e, FILTRO,us.getFiltroActual().toString());
-		*/
+		
 	}
 
 	@Override
