@@ -5,6 +5,13 @@ public class Etiqueta {
 	private String nombre;
 	private int id;
 	
+	public Etiqueta(String nombre) {
+		
+		this.nombre=nombre;
+		this.id=0;
+	}
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -25,10 +32,11 @@ public class Etiqueta {
 	}
 
 
-	public Etiqueta(String nombre) {
-		
-		this.nombre=nombre;
+	@Override
+	public String toString() {
+		return getNombre()+" "+getId();
 	}
+	
 	
 	
 }

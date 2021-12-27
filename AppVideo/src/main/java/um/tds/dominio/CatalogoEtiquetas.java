@@ -1,6 +1,7 @@
 package um.tds.dominio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,19 @@ public class CatalogoEtiquetas {
 	
 	private CatalogoEtiquetas() {
 		
-		
+		try {
+			dao = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
+			adaptadorEtiquetasDAO = dao.getEtiquetaDAO();
+			etiquetas = new HashMap<String,Etiqueta>();
+			
+			
+			this.cargarCatalogo();
+			
+			
+			
+		} catch (DAOException eDAO) {
+			eDAO.printStackTrace();
+		}
 		
 	}
 	
@@ -39,25 +52,25 @@ public class CatalogoEtiquetas {
 	
 	public Etiqueta getEtiqueta(String et) {
 		for (Etiqueta e:etiquetas.values()) {
-			if (e.getEtiqueta()==et) return e;
+			if (e.getNombre().equals(et)) return e;
 		}
 		return null;
 	}
 	
 	
 	public void addEtiqueta(Etiqueta e) {
-		etiquetas.put(e.getEtiqueta(),e);
+		etiquetas.put(e.getNombre(),e);
 	}
 	
 	public void removeEtiqueta(Etiqueta u) {
-		etiquetas.remove(u.getEtiqueta());
+		etiquetas.remove(u.getNombre());
 	}
 	
 	private void cargarCatalogo() throws DAOException {
 		
 		 List<Etiqueta> etiquet = adaptadorEtiquetasDAO.recuperarTodasEtiquetas();
 		 for (Etiqueta e: etiquet) 
-			 etiquetas.put(e.getEtiqueta(),e);
+			 etiquetas.put(e.getNombre(),e);
 	}
 	
 	

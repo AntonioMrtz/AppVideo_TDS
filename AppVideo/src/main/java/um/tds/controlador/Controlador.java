@@ -6,6 +6,7 @@ import java.util.List;
 import um.tds.dominio.CatalogoEtiquetas;
 import um.tds.dominio.CatalogoUsuarios;
 import um.tds.dominio.CatalogoVideos;
+import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 import um.tds.persistencia.DAOException;
@@ -34,6 +35,7 @@ public class Controlador {
 	private CatalogoVideos catalogoVideos;
 	private CatalogoEtiquetas catalogoEtiquetas;
 	//TODO private CatalogoFiltros catalogoFiltros;
+	//TODO LISTAS?
 	
 	private Usuario usuarioActual;
 	
@@ -49,11 +51,11 @@ public class Controlador {
 		}*/
 		
 
+		usuarioActual=null;
 		
 		inicialiarAdaptadores();
 		inicializarCatálogos();
 		
-		usuarioActual=null;
 		
 		
 	}
@@ -149,7 +151,10 @@ public class Controlador {
 		
 	}
 	
-	
+	public Etiqueta findEtiqueta(Etiqueta e) {
+		
+		return catalogoEtiquetas.getEtiqueta(e.getNombre());
+	}
 	
 	/* INICIALIZAR */
 	
@@ -164,7 +169,7 @@ public class Controlador {
 		adaptadorUsuario= factoria.getUsuarioDAO();
 		adaptadorVideo = factoria.getVideoDAO();
 		//adaptadorFiltro = factoria.getFiltroDAO();
-		//adaptadorEtiqueta = factoria.getEtiquetaDAO();
+		adaptadorEtiqueta = factoria.getEtiquetaDAO();
 		
 		
 	}
@@ -175,7 +180,7 @@ public class Controlador {
 		
 		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
 		catalogoVideos= CatalogoVideos.getUnicaInstancia();
-		//catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
+		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
 		//catalogoFiltros=CatalogoFiltros.getUnicaInstancia();
 		
 	}
@@ -200,6 +205,12 @@ public class Controlador {
 	}
 	
 	
+	public void removeEtiqueta(Etiqueta e) {
+		
+		adaptadorEtiqueta.borrarEtiqueta(e);
+		catalogoEtiquetas.removeEtiqueta(e);
+	}
+	
 
 	/* GET */
 	
@@ -211,6 +222,11 @@ public class Controlador {
 	public List<Video> getVideos() {
 
 		return catalogoVideos.getVideos();
+	}
+	
+	public List<Etiqueta> getEtiquetas() {
+
+		return catalogoEtiquetas.getEtiquetas();
 	}
 	
 }
