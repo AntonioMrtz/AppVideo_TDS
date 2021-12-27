@@ -153,8 +153,8 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
 		}
 		
-		System.out.println(f.toString());
-		u.setFiltroActual(f);//////////////////////////////!!!!!!
+		
+		u.setFiltroActual(f);
 		
 		//TODO  AÑADIR LISTAS Y FILTROS
 		
