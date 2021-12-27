@@ -215,7 +215,6 @@ public class Controlador {
 	/* GET */
 	
 	
-	
 	public List<Usuario> getUsuarios() {
 		
 		return catalogoUsuarios.getUsuarios();
