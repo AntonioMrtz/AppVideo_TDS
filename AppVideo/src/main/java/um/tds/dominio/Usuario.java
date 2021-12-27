@@ -1,10 +1,9 @@
 package um.tds.dominio;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
-//! PARA REGISTRAR USUARIOS EL NOMBRE TIENE QUE SER UNICO , ACTUA COMO CODIGO
+
 
 public class Usuario {
 	
@@ -15,6 +14,9 @@ public class Usuario {
 	private String usuario;
 	private String password;
 	private LocalDate fechaNacimiento;
+	
+	private Filtro filtroActual;
+	
 	private int id;
 	
 	//private List<Videos> listareproduccion;
@@ -33,12 +35,15 @@ public class Usuario {
 		this.apellidos=apellidos;
 		this.fechaNacimiento=fecha;
 		this.usuario=user;
-		this.id=0; // aun no sabemos cual tendra hasta que lo insertemos en la DB
-		//ventas = new LinkedList<Venta>(); listas repro
+		this.id=0;
+		
+		
+		filtroActual=new FiltroNoFilter(); // establecemos filtro default
+	
 	}
 	
 	
-	//////////////
+	/*--------------------------------------------*/
 
 	public String getNombre() {
 		return nombre;
@@ -76,6 +81,17 @@ public class Usuario {
 		return password;
 	}
 	
+	public Filtro getFiltroActual(){
+		
+		return filtroActual;
+	}
+	
+	public void setFiltroActual(Filtro f) {
+	
+		filtroActual=f;
+		
+	}
+	
 	
 
 	public boolean checkLogin(String password) {
@@ -97,7 +113,7 @@ public class Usuario {
 	
 	
 	
-	//////////////////
+	/*--------------------------------------------*/
 	
 	/*
 	public void addVideo(Video v) {
@@ -112,7 +128,7 @@ public class Usuario {
 	// añadir lista , añadir videos a lista etc
 
 	
-	////////////////////////
+	/*--------------------------------------------*/
 	
 	
 	@Override

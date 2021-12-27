@@ -4,6 +4,7 @@ public class FiltroAdultFilter extends Filtro{
 
 	/* Comprueba si una etiqueta del video es Adulto*/
 	
+	public static final String FILTRO="um.tds.dominio.FiltroAdultFilter" ;
 	
 	@Override
 	public boolean isVideoOk(Video v) {
@@ -18,4 +19,8 @@ public class FiltroAdultFilter extends Filtro{
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return FILTRO;
+	}
 }

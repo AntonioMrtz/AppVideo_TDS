@@ -277,7 +277,9 @@ public class VentanaPrincipal {
 					   
 					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
 					   
-				   }				   
+				   }
+				   
+				  
 				   
 			   }
 			   

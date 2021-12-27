@@ -2,6 +2,8 @@ package um.tds.dominio;
 
 public class FiltroMisListasFilter extends Filtro{
 
+	public static final String FILTRO="um.tds.dominio.FiltroMisListasFilter" ;
+	
 	@Override
 	public boolean isVideoOk(Video v) {
 
@@ -10,5 +12,8 @@ public class FiltroMisListasFilter extends Filtro{
 		return false;
 	}
 
-	
+	@Override
+	public String toString() {
+		return FILTRO;
+	}
 }

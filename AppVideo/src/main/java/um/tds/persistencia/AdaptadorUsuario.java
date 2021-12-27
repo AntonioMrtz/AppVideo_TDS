@@ -7,6 +7,7 @@ import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
+import um.tds.dominio.Filtro;
 import um.tds.dominio.Usuario;
 
 public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
@@ -27,6 +28,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	private static final String PASSWORD = "password";
 	private static final String FECHA_NACIMIENTO = "fechaNacimiento";
 	private static final String PREMIUM = "premium";
+	private static final String FILTRO = "filtro";
 	
 	/*
 	private static final String HISTORIAL = "historial";
@@ -42,7 +44,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	
 	private enum Properties{
 		
-		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM;
+		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM,FILTRO;
 	}
 	
 	
@@ -82,6 +84,10 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		array.add(new Propiedad(USER,u.getUsuario()));
 		array.add(new Propiedad(PASSWORD,u.getPassword()));
 		
+		//////////////!
+		array.add(new Propiedad(FILTRO,u.getFiltroActual().toString()));
+		
+		
 		String premium ;
 		if (u.isPremium()) {
 			premium="T";
@@ -113,6 +119,22 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		String fechaNacimiento=servPersistencia.recuperarPropiedadEntidad(e, FECHA_NACIMIENTO);
 		String premium=servPersistencia.recuperarPropiedadEntidad(e, PREMIUM);
 		
+		String filtro=servPersistencia.recuperarPropiedadEntidad(e, FILTRO);
+		
+		
+		///////
+		
+		Filtro f=null;
+		
+		try {
+			f=(Filtro) Class.forName(filtro).newInstance();
+			
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		//////
 		
 		boolean prem=false;
 		
@@ -126,6 +148,15 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		u.setId(e.getId());
 		
 		
+		if(f!=null) {
+			
+			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
+		}
+		
+		System.out.println(f.toString());
+		u.setFiltroActual(f);//////////////////////////////!!!!!!
+		
+		//TODO  AÑADIR LISTAS Y FILTROS
 		
 		return u;
 		
@@ -183,7 +214,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		/////////////////////////////////
 		
-		//TODO BORRAR LISTAS Y FILTROS
+		//TODO BORRAR LISTAS 
 		
 		return servPersistencia.borrarEntidad(e);
 		
@@ -216,6 +247,8 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			users.add(buildUser(eaux));
+			
+			
 			
 		}
 		
