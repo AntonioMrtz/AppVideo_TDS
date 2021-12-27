@@ -33,7 +33,7 @@ public class PanelRegistro extends JPanel {
 	private JTextField pass2;
 	private JTextField apellidos;
 	private JTextField nombre;
-	private LocalDate fecha;
+	private LocalDate fecha=null;
 
 
 	
@@ -322,7 +322,10 @@ public class PanelRegistro extends JPanel {
 				String usuaux=usuario.getText();
 				String apellidosaux=apellidos.getText();
 				
-				fecha=dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				
+				
+				if(dateChooser.getDate()!=null)fecha=dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+				
 		
 				
 			if (passaux.isEmpty()||pass2aux.isEmpty()||nomaux.isEmpty()||usuaux.isEmpty()||emailaux.isEmpty()||fecha==null||!pass2aux.equals(passaux)) {

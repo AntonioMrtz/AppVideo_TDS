@@ -129,12 +129,19 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		try {
 			f=(Filtro) Class.forName(filtro).newInstance();
 			
+			
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e1) {
 			
 			e1.printStackTrace();
 		}
 		
+		if(f==null) {
+			
+			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
+		}
 		//////
+		
+		
 		
 		boolean prem=false;
 		
@@ -148,10 +155,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		u.setId(e.getId());
 		
 		
-		if(f!=null) {
-			
-			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
-		}
 		
 		
 		u.setFiltroActual(f);
@@ -222,11 +225,17 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 
 	
-	
+	//TODO
 	@Override
 	public void modificarUsuario(Usuario us) {
-		// TODO Auto-generated method stub
+
+		/*
+		Entidad e = servPersistencia.recuperarEntidad(us.getId());
 		
+		
+		servPersistencia.eliminarPropiedadEntidad(e, FILTRO);
+		servPersistencia.anadirPropiedadEntidad(e, FILTRO,us.getFiltroActual().toString());
+		*/
 	}
 
 	@Override
