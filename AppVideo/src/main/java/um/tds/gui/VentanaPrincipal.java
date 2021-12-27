@@ -17,10 +17,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
+import tds.driver.ServicioPersistencia;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.CatalogoVideos;
 import um.tds.dominio.Etiqueta;
+import um.tds.dominio.FiltroAdultFilter;
 import um.tds.dominio.Video;
+import um.tds.persistencia.DAOException;
+import um.tds.persistencia.FactoriaDAO;
 
 import java.awt.CardLayout;
 
@@ -278,9 +282,9 @@ public class VentanaPrincipal {
 					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
 					   
 				   }
-				   
 				  
-				   
+				  
+				 
 			   }
 			   
 	    });  
