@@ -137,6 +137,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		if(f==null) {
 			
+			
 			System.out.println("filtro nulo cuidado");//////////////////////////////!!!!!!
 		}
 		//////
