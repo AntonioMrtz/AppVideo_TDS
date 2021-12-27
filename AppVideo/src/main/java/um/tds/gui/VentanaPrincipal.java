@@ -277,19 +277,7 @@ public class VentanaPrincipal {
 					   
 					   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
 					   
-				   }
-				   
-				   
-				   
-				   
-				   /////////TODO QUITAR
-				   
-	
-				   Controlador.getUnicaInstancia().registrarVideo("si","soy");
-				   Controlador.getUnicaInstancia().registrarVideo("si2","soy2");
-				   
-				   
-				   
+				   }				   
 				   
 			   }
 			   
