@@ -331,17 +331,6 @@ public class PanelLogin extends JPanel{
 			   
 			   }
 			   
-			  
-			   
-			   
-			   
-			/*   user = Controlador.getUnicaInstancia().getUsuarioActual();
-			   if(user==null) {
-				   panel_login_name.setVisible(false);
-			   }else {
-				   lblTest.setText(user.getUsuario());
-				   panel_login_name.setVisible(true);
-			   }*/
 			   
 	    });  
 		
