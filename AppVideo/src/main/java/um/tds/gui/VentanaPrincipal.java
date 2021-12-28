@@ -22,6 +22,7 @@ import um.tds.controlador.Controlador;
 import um.tds.dominio.CatalogoVideos;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.FiltroAdultFilter;
+import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 import um.tds.persistencia.DAOException;
@@ -49,7 +50,7 @@ public class VentanaPrincipal {
 	
 	public static int setLoginName() {
 		
-		System.out.println("hola");
+		
 		user = Controlador.getUnicaInstancia().getUsuarioActual();
 		   if(user==null) {
 			   panel_login_name.setVisible(false);
@@ -323,11 +324,9 @@ public class VentanaPrincipal {
 						   
 					   }
 					   
-				   }
-				   
-				  
-				  
-				 
+				   } 
+  
+	 
 			   }
 			   
 	    });  

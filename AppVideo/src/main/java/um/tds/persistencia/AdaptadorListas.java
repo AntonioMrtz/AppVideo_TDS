@@ -70,13 +70,17 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		if(e!=null)return false;
 		
+		
+		
 		e=buildEntidad(l);
+		
+
 		
 		e=servPersistencia.registrarEntidad(e);
 		
 		l.setId(e.getId());
 		
-		
+
 		
 		return true;
 		
@@ -132,8 +136,7 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		for (Entidad e : ent) {
 			
-			
-			
+			// servPersistencia.borrarEntidad(e);
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			listas.add(buildLista(eaux));
@@ -155,8 +158,11 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		if(e==null) return null;
 		
+		
 		Usuario u=AdaptadorUsuario.getUnicaInstancia().findUsuario(Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(e, USUARIO)));
 		String nombre=servPersistencia.recuperarPropiedadEntidad(e, NOMBRE);
+		
+		
 		
 		ListaVideos l= new ListaVideos(u, nombre);
 		l.setId(e.getId());
@@ -181,7 +187,9 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		array.add(new Propiedad(USUARIO,String.valueOf(l.getUser().getId())));
 		array.add(new Propiedad(VIDEOS,getIdVideos(l.getVideos())));
 		
-		return null;
+		e.setPropiedades(array);	
+		
+		return e;
 	}
 
 	
