@@ -16,6 +16,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.Box;
+import javax.swing.JFrame;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -314,7 +316,7 @@ public class PanelLogin extends JPanel{
 						   if(Controlador.getUnicaInstancia().loginUsuario(nomAux, passAux)){
 							   
 							   JOptionPane.showMessageDialog(null,"Cliente logeado correctamente","Login cliente",JOptionPane.PLAIN_MESSAGE);
-							   
+							   int i=VentanaPrincipal.setLoginName();/////////////////
 						   }
 						   
 						   else {
@@ -328,6 +330,18 @@ public class PanelLogin extends JPanel{
 		 
 			   
 			   }
+			   
+			  
+			   
+			   
+			   
+			/*   user = Controlador.getUnicaInstancia().getUsuarioActual();
+			   if(user==null) {
+				   panel_login_name.setVisible(false);
+			   }else {
+				   lblTest.setText(user.getUsuario());
+				   panel_login_name.setVisible(true);
+			   }*/
 			   
 	    });  
 		

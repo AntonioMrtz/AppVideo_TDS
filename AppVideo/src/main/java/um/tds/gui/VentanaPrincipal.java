@@ -32,8 +32,34 @@ import java.awt.Label;
 
 public class VentanaPrincipal {
 
-	private JFrame frame;
-	private Usuario user;
+	private static JFrame frame;
+	private static Usuario user;
+	private static JPanel panel_login_name= new JPanel();
+	private static JLabel lblTest=new JLabel("test");
+	
+	
+	
+	public static JFrame getFrame() {
+		
+
+			return frame;
+
+	}
+	
+	
+	public static int setLoginName() {
+		
+		System.out.println("hola");
+		user = Controlador.getUnicaInstancia().getUsuarioActual();
+		   if(user==null) {
+			   panel_login_name.setVisible(false);
+		   }else {
+			   lblTest.setText(user.getUsuario());
+			   panel_login_name.setVisible(true);
+		   }
+
+		   return 0;
+}
 	
 
 	/**
@@ -88,12 +114,12 @@ public class VentanaPrincipal {
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
-		JPanel panel_login_name = new JPanel();
+		//JPanel panel_login_name = new JPanel();
 		panel_login_name.setVisible(false);
 		panel.add(panel_login_name);
 		panel_login_name.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblTest = new JLabel("test");
+		//JLabel lblTest = new JLabel("test");
 		panel_login_name.add(lblTest, BorderLayout.SOUTH);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido:");
@@ -252,13 +278,7 @@ public class VentanaPrincipal {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				
 				   cl.show(pantallaPrincipal,"registro");
 				   
 			   }
@@ -269,13 +289,7 @@ public class VentanaPrincipal {
 	    button_1.addActionListener(new ActionListener() {   // BOTON LOGIN
 			
 			   public void actionPerformed(ActionEvent e) {
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }				   
+			
 				   cl.show(pantallaPrincipal,"login");
 				   
 				   
@@ -287,13 +301,7 @@ public class VentanaPrincipal {
 	    button_2.addActionListener(new ActionListener() {   // BOTON LOGOUT
 			
 			   public void actionPerformed(ActionEvent e) {
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   } 
+			
 				   Controlador.getUnicaInstancia().logoutUsuario();
 				   
 				   
@@ -305,13 +313,7 @@ public class VentanaPrincipal {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				 
 				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
 					   
 					   
@@ -334,13 +336,7 @@ public class VentanaPrincipal {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				 
 				   cl.show(pantallaPrincipal,"explorar");
 				   
 				   
@@ -353,14 +349,7 @@ public class VentanaPrincipal {
 	    button_7.addActionListener(new ActionListener() {   // BOTON NUEVA LISTA
 			
 			   public void actionPerformed(ActionEvent e) {
-				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				  
 				   cl.show(pantallaPrincipal,"nuevalista");
 				   
 				   
@@ -373,13 +362,7 @@ public class VentanaPrincipal {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				 
 				   cl.show(pantallaPrincipal,"mislistas");
 				   
 				   
@@ -392,14 +375,7 @@ public class VentanaPrincipal {
 	    button_6.addActionListener(new ActionListener() {   // BOTON RECIENTES
 			
 			   public void actionPerformed(ActionEvent e) {
-				   
-				   user = Controlador.getUnicaInstancia().getUsuarioActual();
-				   if(user==null) {
-					   panel_login_name.setVisible(false);
-				   }else {
-					   lblTest.setText(user.getUsuario());
-					   panel_login_name.setVisible(true);
-				   }
+				
 				   cl.show(pantallaPrincipal,"recientes");
 				   
 				   

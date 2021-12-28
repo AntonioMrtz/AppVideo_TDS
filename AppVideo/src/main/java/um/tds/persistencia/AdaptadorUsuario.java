@@ -129,7 +129,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		Filtro f=null;
 		
-		//da violaciones de segmento
+		
 		try {
 			f=(Filtro) Class.forName(filtro).newInstance();
 			
@@ -302,7 +302,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			users.add(buildUser(eaux));
-			//servPersistencia.borrarEntidad(e);
+			
 			
 			
 		}
