@@ -30,8 +30,9 @@ public abstract class FactoriaDAO {
 	public abstract IAdaptadorVideoDAO getVideoDAO();
 	
 	public abstract IAdaptadorEtiquetasDAO getEtiquetaDAO();
-	
-	//public abstract IAdaptadorListasDAO getListasDAO();
+
+	public abstract IAdaptadorListaVideosDAO getListasDAO();
+
 	
 	
 

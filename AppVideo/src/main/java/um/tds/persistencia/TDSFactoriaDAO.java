@@ -27,10 +27,11 @@ public final class TDSFactoriaDAO extends FactoriaDAO{
 		return AdaptadorEtiquetas.getUnicaInstancia();
 	}
 
-/*	@Override
-	public IAdaptadorListasDAO getListasDAO() {
+	@Override
+	public IAdaptadorListaVideosDAO getListasDAO() {
 		
 		return AdaptadorListas.getUnicaInstancia();
-	}*/
+				
+	}
 
 }
