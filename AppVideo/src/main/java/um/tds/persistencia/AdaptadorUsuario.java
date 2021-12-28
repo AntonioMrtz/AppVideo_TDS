@@ -129,6 +129,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		Filtro f=null;
 		
+		//da violaciones de segmento
 		try {
 			f=(Filtro) Class.forName(filtro).newInstance();
 			
@@ -157,7 +158,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		//TODO poner la fecha en su valor correspondiente tras recuperarla
 		
 		LocalDate d = null;
-		
+		//System.out.println(fechaNacimiento);
+		if(fechaNacimiento!=null) d = LocalDate.parse(fechaNacimiento);
+		//if(d!=null)System.out.println(d.toString());
 		
 		Usuario u = new Usuario(nombre, apellidos, email, prem, user, password, d);
 
@@ -299,7 +302,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			users.add(buildUser(eaux));
-			
+			//servPersistencia.borrarEntidad(e);
 			
 			
 		}
