@@ -38,15 +38,7 @@ public class VentanaPrincipal {
 	private static JPanel panel_login_name= new JPanel();
 	private static JLabel lblTest=new JLabel("test");
 	
-	
-	
-	public static JFrame getFrame() {
-		
 
-			return frame;
-
-	}
-	
 	
 	public static int setLoginName() {
 		
@@ -61,6 +53,21 @@ public class VentanaPrincipal {
 
 		   return 0;
 }
+	
+	/*
+public static int hideLoginName() {
+		
+		
+		user = Controlador.getUnicaInstancia().getUsuarioActual();
+		   if(user==null) {
+			   panel_login_name.setVisible(false);
+		   }else {
+			   lblTest.setText(user.getUsuario());
+			   panel_login_name.setVisible(true);
+		   }
+
+		  return 0;
+}*/
 	
 
 	/**
@@ -304,6 +311,8 @@ public class VentanaPrincipal {
 			   public void actionPerformed(ActionEvent e) {
 			
 				   Controlador.getUnicaInstancia().logoutUsuario();
+				   user=null;
+				   setLoginName();
 				   
 				   
 			   }
