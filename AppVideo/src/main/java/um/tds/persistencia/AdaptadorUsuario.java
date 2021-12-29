@@ -183,7 +183,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		//TODO  AÑADIR LISTAS Y FILTROS
 		
 		
-		
+		System.out.println("usuario "+u);
 		
 		return u;
 		
@@ -262,7 +262,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	@Override
 	public void modificarUsuario(Usuario us) {
 
-	
+		
 		
 		Entidad e = servPersistencia.recuperarEntidad(us.getId());
 		
@@ -295,11 +295,15 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		
-		//TODO LISTAS CUANDO ESTEN READY
+		servPersistencia.eliminarPropiedadEntidad(e, LISTAS_REPRODUCCION);
+		servPersistencia.anadirPropiedadEntidad(e, PREMIUM,getIdListas(us.getListas()));
 		
 		servPersistencia.eliminarPropiedadEntidad(e, FILTRO);
 		servPersistencia.anadirPropiedadEntidad(e, FILTRO,us.getFiltroActual().toString());
 		
+		
+		System.out.println("print mod "+getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION)));
+		//System.out.println(us.getFiltroActual().toString());
 	}
 
 	@Override
@@ -318,9 +322,10 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		for (Entidad e : ent) {
 			
+			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			users.add(buildUser(eaux));
-			
+			//servPersistencia.borrarEntidad(e);
 			
 			
 		}

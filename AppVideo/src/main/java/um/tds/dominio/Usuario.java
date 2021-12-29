@@ -173,6 +173,7 @@ public class Usuario {
 		
 		
 		if(!listas.add(l))	return false;
+		
 		return adaptadorListaVideosDAO.registrarListaVideos(l);
 		
 		
@@ -223,7 +224,7 @@ public class Usuario {
 	
 	@Override
 	public String toString() {
-		return getUsuario()+" "+getId();
+		return getUsuario()+" "+getId()+" "+getListas();
 	}
 	
 }

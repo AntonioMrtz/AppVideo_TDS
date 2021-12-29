@@ -80,7 +80,6 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		l.setId(e.getId());
 		
-
 		
 		return true;
 		

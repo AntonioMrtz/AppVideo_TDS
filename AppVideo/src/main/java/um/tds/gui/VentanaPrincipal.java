@@ -14,6 +14,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Button;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.ResourceBundle.Control;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
@@ -334,7 +336,33 @@ public static int hideLoginName() {
 					   }
 					   
 				   } 
-  
+				   
+				   
+				   
+				   ListaVideos l = new ListaVideos(user, "222ee12");
+				   l.addVideo(new Video("si","soy"));
+				   
+				   ListaVideos l1 = new ListaVideos(user, "222ee12");
+				   l.addVideo(new Video("si2","so2y"));
+				   
+				   user.addLista(l);
+				   user.addLista(l1);
+				   try {
+					FactoriaDAO.getInstancia().getUsuarioDAO().modificarUsuario(user);
+				} catch (DAOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				   
+				   
+				  
+				   try {
+					System.out.println(FactoriaDAO.getInstancia().getUsuarioDAO().recuperarTodosUsuarios());
+				} catch (DAOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				   
 	 
 			   }
 			   

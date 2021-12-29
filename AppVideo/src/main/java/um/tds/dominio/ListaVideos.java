@@ -81,7 +81,7 @@ public class ListaVideos {
 
 	@Override
 	public String toString() {
-		return getNombre()+" "+getUser()+" "+getVideos()+" "+getId();
+		return getVideos()+" "+getId();
 	}
 	
 }

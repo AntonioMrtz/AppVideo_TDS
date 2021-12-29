@@ -229,8 +229,9 @@ public class Controlador {
 	public void addLista(ListaVideos l) {
 		
 		
+		
 		if(usuarioActual.addLista(l)) {
-			
+		
 			adaptadorUsuario.modificarUsuario(usuarioActual);
 			
 		}
@@ -249,7 +250,7 @@ public class Controlador {
 		
 	}
 	
-	
+
 	
 	
 
