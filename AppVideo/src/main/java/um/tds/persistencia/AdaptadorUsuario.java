@@ -2,14 +2,18 @@ package um.tds.persistencia;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import um.tds.dominio.Filtro;
+import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
+import um.tds.dominio.Video;
 
 public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
@@ -35,19 +39,19 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	
 	/*
 	private static final String HISTORIAL = "historial";
-	private static final String LISTAS_REPRODUCCION = "playlists";
 	private static final String FILTROS = "filtros";
 	
 	// listas especiales separadas de las normales ?
 	private static final String LISTAS_REPRODUCCION = "playlists";
 	*/
 	
+	private static final String LISTAS_REPRODUCCION = "playlists";
 	//TODO AÑADIR LAS DEMAS PROPIEDADES DE UN USUARIO
 
 	
 	private enum Properties{
 		
-		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM,FILTRO;
+		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM,FILTRO,LISTAS_REPRODUCCION;
 	}
 	
 	
@@ -90,6 +94,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		array.add(new Propiedad(FECHA_NACIMIENTO,u.getFechaNacimiento().toString()));
 		array.add(new Propiedad(FILTRO,u.getFiltroActual().toString()));
 		
+		array.add(new Propiedad(LISTAS_REPRODUCCION,getIdListas(u.getListas())));
 		
 		String premium ;
 		if (u.isPremium()) {
@@ -126,6 +131,10 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		///////
+		
+		List<Video> listas = getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION));
+
+	
 		
 		Filtro f=null;
 		
@@ -166,8 +175,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 		u.setId(e.getId());
 		
-		
-		
+		u.setListas(listas);///////////////////////////////////TODO
 		
 		u.setFiltroActual(f);
 		
@@ -210,6 +218,15 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		//if(existe==false || e!=null) return false;// !no pilla la excepcion por algun motivo
 		
 		if(e!=null)return false;
+		
+		//registramos las listas
+		
+		for(ListaVideos l:us.getListas()) {
+			
+			AdaptadorListas.getUnicaInstancia().registrarListaVideos(l);
+			// aqui l ya tiene su id 
+		}
+		
 		
 		e=buildEntity(us);
 		
@@ -311,5 +328,39 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		return users;
 		
 	}
+	
+	
+	//
+	
+
+	
+	public String getIdListas(List<ListaVideos> listavideos) {
+		
+		String aux = "";
+		for (ListaVideos l : listavideos)
+			aux += l.getId() + " ";
+		
+		return aux.trim();
+	}
+	
+	
+	public List<Video> getListasFromId(String identificadores) {
+		
+		List<Video> lista = new LinkedList<>();
+		if (identificadores == null)
+			return lista;
+
+		
+			AdaptadorVideo adaptadorVideo = AdaptadorVideo.getUnicaInstancia();
+			
+			StringTokenizer strTok = new StringTokenizer(identificadores, " ");
+			
+			while (strTok.hasMoreTokens())
+				lista.add(adaptadorVideo.findVideo(Integer.valueOf((String) strTok.nextElement())));
+
+		
+		return lista;
+	}
+	
 
 }

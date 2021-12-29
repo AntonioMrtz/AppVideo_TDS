@@ -194,7 +194,7 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 
 	
 	
-private List<Video> getVideoFromId(String videos){
+	public List<Video> getVideoFromId(String videos){
 		
 		List<Video> v = new ArrayList<>();
 		
@@ -213,7 +213,7 @@ private List<Video> getVideoFromId(String videos){
 	}
 
 
-private String getIdVideos(List<Video> videos) {
+public String getIdVideos(List<Video> videos) {
 	
 	String aux="";
 	

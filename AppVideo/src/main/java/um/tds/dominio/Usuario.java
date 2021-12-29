@@ -1,6 +1,16 @@
 package um.tds.dominio;
 
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
+import beans.Entidad;
+import um.tds.persistencia.DAOException;
+import um.tds.persistencia.FactoriaDAO;
+import um.tds.persistencia.IAdaptadorListaVideosDAO;
 
 
 
@@ -14,12 +24,19 @@ public class Usuario {
 	private String usuario;
 	private String password;
 	private LocalDate fechaNacimiento;
+
+	private final int NUM_RECIENTES=5;
 	
 	private Filtro filtroActual;
 	
 	private int id;
 	
-	//private List<Videos> listareproduccion;
+	private LinkedList<Video> recientes;
+	private List<ListaVideos> listas;
+	
+	private static IAdaptadorListaVideosDAO adaptadorListaVideosDAO=null;
+	
+	
 	
 	//TODO listas de reproduccion de videos
 	//TODO lista de videos recientes
@@ -37,8 +54,21 @@ public class Usuario {
 		this.usuario=user;
 		this.id=0;
 		
-		
+		recientes= new LinkedList<Video>();
+		listas= new ArrayList<ListaVideos>();
 		filtroActual=new FiltroNoFilter(); // establecemos filtro default
+		
+		
+		if(adaptadorListaVideosDAO==null) {
+			
+			try {
+				adaptadorListaVideosDAO=FactoriaDAO.getInstancia().getListasDAO();
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
 	
 	}
 	
@@ -76,6 +106,26 @@ public class Usuario {
 		return usuario;
 	}
 	
+	public LinkedList<Video> getRecientes() {
+		return recientes;
+	}
+
+
+	public void setRecientes(LinkedList<Video> historial) {
+		this.recientes = historial;
+	}
+
+
+	public List<ListaVideos> getListas() {
+		return listas;
+	}
+
+
+	public void setListas(List<ListaVideos> listas) {
+		this.listas = listas;
+	}
+
+
 	public String getPassword() {
 		
 		return password;
@@ -88,7 +138,11 @@ public class Usuario {
 	
 	public void setFiltroActual(Filtro f) {
 	
-		filtroActual=f;
+		if(esPremium) {
+			
+			filtroActual=f;
+			
+		}
 		
 	}
 	
@@ -115,17 +169,53 @@ public class Usuario {
 	
 	/*--------------------------------------------*/
 	
-	/*
-	public void addVideo(Video v) {
-		ventas.add(v);
+	public boolean addLista(ListaVideos l) {
+		
+		
+		if(!listas.add(l))	return false;
+		return adaptadorListaVideosDAO.registrarListaVideos(l);
+		
+		
+		
 	}
-
-	public List<ListaVideos> getListasVideos() {
-		return ventas;
+	
+	public boolean removeLista(ListaVideos l) {
+		
+		if(!listas.remove(l))	return false;
+		return adaptadorListaVideosDAO.borrarListaVideo(l);
+			
 	}
-	*/
+		
+	
+	
+	
+	public void addVideoHistorial(Video v) {
+		
+		if(recientes.size()>=NUM_RECIENTES) {
+			
+			recientes.removeLast();
+		}
+		
+		recientes.addFirst(v);
+	}
+	
 
-	// añadir lista , añadir videos a lista etc
+	public boolean actualizarListaCanciones(String nombre, List<Video> videos) {
+		
+		for (ListaVideos l: listas)
+			if (l.getNombre().equals(nombre)) {
+				
+				l.setVideos(videos);
+				
+				adaptadorListaVideosDAO.modificarListaVideos(l);
+				return true;
+			}
+	
+		return false;
+	}
+	
+	
+	
 
 	
 	/*--------------------------------------------*/

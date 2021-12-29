@@ -1,12 +1,14 @@
 package um.tds.controlador;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 
 import um.tds.dominio.CatalogoEtiquetas;
 import um.tds.dominio.CatalogoUsuarios;
 import um.tds.dominio.CatalogoVideos;
 import um.tds.dominio.Etiqueta;
+import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 import um.tds.persistencia.DAOException;
@@ -221,6 +223,35 @@ public class Controlador {
 		catalogoEtiquetas.removeEtiqueta(e);
 	}
 	
+	
+	
+	
+	public void addLista(ListaVideos l) {
+		
+		
+		if(usuarioActual.addLista(l)) {
+			
+			adaptadorUsuario.modificarUsuario(usuarioActual);
+			
+		}
+		
+		
+		
+	}
+	
+	public void removeLista(ListaVideos l) {
+		
+		if(usuarioActual.removeLista(l)) {
+			
+			adaptadorUsuario.modificarUsuario(usuarioActual);
+			
+		}
+		
+	}
+	
+	
+	
+	
 
 	/* GET */
 	
@@ -237,6 +268,35 @@ public class Controlador {
 	public List<Etiqueta> getEtiquetas() {
 
 		return catalogoEtiquetas.getEtiquetas();
+	}
+	
+	
+	
+	//TODO get top 10 SOLO premium
+	
+	public List<ListaVideos> getListas(){
+		
+		if(usuarioActual!=null) {
+			
+			return usuarioActual.getListas();
+			
+		}
+		
+		return null;
+		
+	}
+	
+	
+	public List<Video> getRecientes(){
+		
+		if(usuarioActual!=null) {
+			
+			return usuarioActual.getRecientes();
+			
+		}
+		
+		return null;
+		
 	}
 	
 }
