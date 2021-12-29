@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import org.w3c.dom.ls.LSInput;
+
 import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
@@ -132,7 +134,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		///////
 		
-		List<Video> listas = getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION));
 
 	
 		
@@ -175,7 +176,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 		u.setId(e.getId());
 		
-		//u.setListas(listas);///////////////////////////////////TODO
+		u.setListas(getListasFromId(servPersistencia.recuperarPropiedadEntidad(e,LISTAS_REPRODUCCION)));
 		
 		u.setFiltroActual(f);
 		
@@ -344,9 +345,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 	
 	
-	public List<Video> getListasFromId(String identificadores) {
+	public List<ListaVideos> getListasFromId(String identificadores) {
 		
-		List<Video> lista = new LinkedList<>();
+		List<ListaVideos> lista = new LinkedList<>();
 		if (identificadores == null)
 			return lista;
 
@@ -356,7 +357,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			StringTokenizer strTok = new StringTokenizer(identificadores, " ");
 			
 			while (strTok.hasMoreTokens())
-				lista.add(adaptadorVideo.findVideo(Integer.valueOf((String) strTok.nextElement())));
+				lista.add(AdaptadorListas.getUnicaInstancia().recuperarListaVideos(Integer.valueOf((String) strTok.nextElement())));
 
 		
 		return lista;
