@@ -175,7 +175,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 		u.setId(e.getId());
 		
-		u.setListas(listas);///////////////////////////////////TODO
+		//u.setListas(listas);///////////////////////////////////TODO
 		
 		u.setFiltroActual(f);
 		
