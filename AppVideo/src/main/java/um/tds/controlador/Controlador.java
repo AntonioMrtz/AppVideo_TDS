@@ -21,6 +21,8 @@ import um.tds.persistencia.IAdaptadorVideoDAO;
 
 public class Controlador {
 	
+	
+	
 	//singleton
 	private static Controlador unicaInstancia;
 	
@@ -40,7 +42,7 @@ public class Controlador {
 	private Usuario usuarioActual;
 	
 	
-	
+	//TODO HABRA QUE CREAR INSTANCIA TANTO DE CARGADOR COMO DE REPRODUCTOR
 	
 	private Controlador()  {
 		
@@ -68,6 +70,9 @@ public class Controlador {
 		
 		return unicaInstancia;
 	}
+	
+	
+	
 	
 	
 	/* LOGIN */
@@ -123,6 +128,8 @@ public class Controlador {
 		
 		catalogoUsuarios.addUsuario(u);
 		
+		usuarioActual=u;		// NADA MAS REGISTRAR YA SE INICIE SESION
+		
 		return true;
 	}
 	
@@ -139,23 +146,27 @@ public class Controlador {
 		return v;
 		
 	}
-/*	
-	public void registrarVideo(String url,String titulo) {
-		
-		Video v = new Video(url, titulo);
 
-		//si hay etiquetas default ponerlas aqui
-		
-		adaptadorVideo.addVideo(v);
-		catalogoVideos.addVideo(v);
+	public void registrarListaVideos(String nombre,List<Video> videos) {
 		
 		
-	}*/
+		if(usuarioActual.addLista(nombre,videos)) {
+			
+			adaptadorUsuario.modificarUsuario(usuarioActual);
+			
+		}
+		
+		
+	}
 	
-	public void registrarEtiqueta(String e) {
+	public Etiqueta registrarEtiqueta(String e) {
 		
-		adaptadorEtiqueta.registrarEtiqueta(new Etiqueta("e"));
-		catalogoEtiquetas.addEtiqueta(new Etiqueta(e));
+		Etiqueta et=new Etiqueta("etiqueta");
+		
+		adaptadorEtiqueta.registrarEtiqueta(et);
+		catalogoEtiquetas.addEtiqueta(et);
+		
+		return et;
 		
 		
 	}
@@ -235,29 +246,17 @@ public class Controlador {
 	
 	
 	
-	
-	public void addLista(ListaVideos l) {
-		
-		
-		
-		if(usuarioActual.addLista(l)) {
-		
-			adaptadorUsuario.modificarUsuario(usuarioActual);
-			
-		}
-		
-		
-		
-	}
-	
-	public void removeLista(ListaVideos l) {
+
+	public boolean removeLista(ListaVideos l) {
 		
 		if(usuarioActual.removeLista(l)) {
 			
 			adaptadorUsuario.modificarUsuario(usuarioActual);
 			
+			return true;
 		}
 		
+		return false;
 	}
 	
 

@@ -111,11 +111,10 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		servPersistencia.anadirPropiedadEntidad(e, NOMBRE,l.getNombre());
 		
 		servPersistencia.eliminarPropiedadEntidad(e, USUARIO);
-		servPersistencia.anadirPropiedadEntidad(e, USUARIO,Integer.toString(l.getUser().getId()));
+		servPersistencia.anadirPropiedadEntidad(e, USUARIO,Integer.toString((Controlador.getUnicaInstancia().getUsuarioActual().getId())));
 		
 		servPersistencia.eliminarPropiedadEntidad(e, VIDEOS);
 		servPersistencia.anadirPropiedadEntidad(e, VIDEOS,getIdVideos(l.getVideos()));
-		
 		
 		
 	}
@@ -136,7 +135,7 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		for (Entidad e : ent) {
 			
-			// servPersistencia.borrarEntidad(e);
+			 //servPersistencia.borrarEntidad(e);
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			listas.add(buildLista(eaux));

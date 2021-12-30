@@ -123,6 +123,9 @@ public class CatalogoVideos {
 	}
 	
 	
+	//TODO METER ALGO PARA FILTRAR
+	
+	
 	/*Recupera todos los videos para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {
 		

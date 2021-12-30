@@ -169,14 +169,22 @@ public class Usuario {
 	
 	/*--------------------------------------------*/
 	
-	public boolean addLista(ListaVideos l) {
+	public boolean addLista(String nombre,List<Video> videos) {
 		
 		
-		if(!listas.add(l))	return false;
+		if(actualizarListaVideos(nombre, videos)) return false; // se ha actualizado , no hace falta crear otra
 		
-		return adaptadorListaVideosDAO.registrarListaVideos(l);
+		ListaVideos l = new ListaVideos(this,nombre,videos);
+		listas.add(l);
 		
+		try {
+			FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l);
+		} catch (DAOException e) {
+			
+			e.printStackTrace();
+		}
 		
+		return true;
 		
 	}
 	
@@ -201,7 +209,7 @@ public class Usuario {
 	}
 	
 
-	public boolean actualizarListaCanciones(String nombre, List<Video> videos) {
+	public boolean actualizarListaVideos(String nombre, List<Video> videos) {
 		
 		for (ListaVideos l: listas)
 			if (l.getNombre().equals(nombre)) {
@@ -218,6 +226,12 @@ public class Usuario {
 	
 	
 
+	
+	/*--------------------------------------------*/
+	
+	
+	//TODO FILTRAR
+	
 	
 	/*--------------------------------------------*/
 	

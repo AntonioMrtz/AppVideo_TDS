@@ -342,32 +342,11 @@ public static int hideLoginName() {
 				   
 				   
 				   Video v=Controlador.getUnicaInstancia().registrarVideo("http","titulovideo");
-				   v.addEtiqueta(new Etiqueta("etiqueta1"));
-				   AdaptadorVideo.getUnicaInstancia().modificarVideo(v);
 				   Video v2=Controlador.getUnicaInstancia().registrarVideo("http2","titulovideo2");
+				   ArrayList<Video> l = new ArrayList<Video>();
+				   l.add(v);
 				   
-				   ListaVideos l = new ListaVideos(user, "e111");
-				   l.addVideo(v);
-				   l.addVideo(v2);
-				   
-				   /*ListaVideos l1 = new ListaVideos(user, "e222");
-				   l.addVideo(new Video("si2","so2y"));*/
-				   
-				   user.addLista(l);
-				   
-				   l.setNombre("HOLA");
-				   
-				   AdaptadorListas.getUnicaInstancia().modificarListaVideos(l);
-				   
-				   //user.addLista(l1);
-				   user.becomePremium();
-				   try {
-					FactoriaDAO.getInstancia().getUsuarioDAO().modificarUsuario(user);
-				} catch (DAOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				   
+				   Controlador.getUnicaInstancia().registrarListaVideos("lista1",l);
 				   
 				  
 				   try {
@@ -377,6 +356,18 @@ public static int hideLoginName() {
 					e1.printStackTrace();
 				}
 				   
+				   
+				  l.add(v2);
+				  Controlador.getUnicaInstancia().registrarListaVideos("lista1",l);
+				   
+				  
+				  
+				   try {
+					System.out.println(FactoriaDAO.getInstancia().getUsuarioDAO().recuperarTodosUsuarios());
+				} catch (DAOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 	 
 			   }
 			   
