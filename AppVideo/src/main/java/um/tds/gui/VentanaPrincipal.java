@@ -27,6 +27,9 @@ import um.tds.dominio.FiltroAdultFilter;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
+import um.tds.persistencia.AdaptadorListas;
+import um.tds.persistencia.AdaptadorUsuario;
+import um.tds.persistencia.AdaptadorVideo;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 
@@ -338,15 +341,26 @@ public static int hideLoginName() {
 				   } 
 				   
 				   
+				   Video v=Controlador.getUnicaInstancia().registrarVideo("http","titulovideo");
+				   v.addEtiqueta(new Etiqueta("etiqueta1"));
+				   AdaptadorVideo.getUnicaInstancia().modificarVideo(v);
+				   Video v2=Controlador.getUnicaInstancia().registrarVideo("http2","titulovideo2");
 				   
-				   ListaVideos l = new ListaVideos(user, "222ee12");
-				   l.addVideo(new Video("si","soy"));
+				   ListaVideos l = new ListaVideos(user, "e111");
+				   l.addVideo(v);
+				   l.addVideo(v2);
 				   
-				   ListaVideos l1 = new ListaVideos(user, "222ee12");
-				   l.addVideo(new Video("si2","so2y"));
+				   /*ListaVideos l1 = new ListaVideos(user, "e222");
+				   l.addVideo(new Video("si2","so2y"));*/
 				   
 				   user.addLista(l);
-				   user.addLista(l1);
+				   
+				   l.setNombre("HOLA");
+				   
+				   AdaptadorListas.getUnicaInstancia().modificarListaVideos(l);
+				   
+				   //user.addLista(l1);
+				   user.becomePremium();
 				   try {
 					FactoriaDAO.getInstancia().getUsuarioDAO().modificarUsuario(user);
 				} catch (DAOException e2) {

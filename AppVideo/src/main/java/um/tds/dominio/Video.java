@@ -97,10 +97,18 @@ public class Video {
 
 
 
-	public void añadirEtiqueta(Etiqueta e) {
+	public void addEtiqueta(Etiqueta e) {
 		
 		
 		etiquetas.add(e);
+		
+		
+	}
+	
+	public void removeEtiqueta(Etiqueta e) {
+		
+		
+		etiquetas.remove(e);
 		
 		
 	}

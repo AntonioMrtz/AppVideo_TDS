@@ -165,10 +165,10 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		
-		//TODO poner la fecha en su valor correspondiente tras recuperarla
+		
 		
 		LocalDate d = null;
-		//System.out.println(fechaNacimiento);
+		
 		if(fechaNacimiento!=null) d = LocalDate.parse(fechaNacimiento);
 		//if(d!=null)System.out.println(d.toString());
 		
@@ -182,8 +182,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		//TODO  AÑADIR LISTAS Y FILTROS
 		
-		
-		System.out.println("usuario "+u);
 		
 		return u;
 		
@@ -265,7 +263,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		Entidad e = servPersistencia.recuperarEntidad(us.getId());
-		
+		/*
 		servPersistencia.eliminarPropiedadEntidad(e, NOMBRE);
 		servPersistencia.anadirPropiedadEntidad(e, NOMBRE,us.getNombre());
 		
@@ -284,25 +282,46 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		servPersistencia.eliminarPropiedadEntidad(e, PASSWORD);
 		servPersistencia.anadirPropiedadEntidad(e, PASSWORD,us.getPassword());
 		
-		
+		*/
 		String auxPremium;
 		
 		if(us.isPremium()) auxPremium="T";
 		else auxPremium="F";
-		
+
+		/*
 		servPersistencia.eliminarPropiedadEntidad(e, PREMIUM);
 		servPersistencia.anadirPropiedadEntidad(e, PREMIUM,auxPremium);
 		
 		
-		
 		servPersistencia.eliminarPropiedadEntidad(e, LISTAS_REPRODUCCION);
-		servPersistencia.anadirPropiedadEntidad(e, PREMIUM,getIdListas(us.getListas()));
+		servPersistencia.anadirPropiedadEntidad(e, LISTAS_REPRODUCCION,getIdListas(us.getListas()));
 		
 		servPersistencia.eliminarPropiedadEntidad(e, FILTRO);
 		servPersistencia.anadirPropiedadEntidad(e, FILTRO,us.getFiltroActual().toString());
 		
+		*/
 		
-		System.out.println("print mod "+getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION)));
+		
+		for (Propiedad prop : e.getPropiedades()) {
+			
+			if(prop.getNombre().equals(PREMIUM)) {
+				
+				prop.setValor(auxPremium);
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(LISTAS_REPRODUCCION)) {
+				
+				prop.setValor(getIdListas(us.getListas()));
+				servPersistencia.modificarPropiedad(prop);
+			}
+				
+			
+		}
+		
+		//System.out.println("pre "+servPersistencia.recuperarPropiedadEntidad(e, PREMIUM));
+		
+		//System.out.println("print mod "+getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION)));
 		//System.out.println(us.getFiltroActual().toString());
 	}
 

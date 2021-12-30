@@ -127,6 +127,19 @@ public class Controlador {
 	}
 	
 	
+	public Video registrarVideo(String url,String titulo) {
+		
+		Video v = new Video(url, titulo);
+
+		//si hay etiquetas default ponerlas aqui
+		
+		adaptadorVideo.addVideo(v);
+		catalogoVideos.addVideo(v);
+		
+		return v;
+		
+	}
+/*	
 	public void registrarVideo(String url,String titulo) {
 		
 		Video v = new Video(url, titulo);
@@ -137,10 +150,7 @@ public class Controlador {
 		catalogoVideos.addVideo(v);
 		
 		
-		
-	}
-	
-	
+	}*/
 	
 	public void registrarEtiqueta(String e) {
 		

@@ -9,6 +9,7 @@ import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
+import um.tds.controlador.Controlador;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
@@ -157,13 +158,9 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		if(e==null) return null;
 		
-		
-		Usuario u=AdaptadorUsuario.getUnicaInstancia().findUsuario(Integer.parseInt(servPersistencia.recuperarPropiedadEntidad(e, USUARIO)));
 		String nombre=servPersistencia.recuperarPropiedadEntidad(e, NOMBRE);
-		
-		
-		
-		ListaVideos l= new ListaVideos(u, nombre);
+
+		ListaVideos l= new ListaVideos(Controlador.getUnicaInstancia().getUsuarioActual(), nombre);
 		l.setId(e.getId());
 		
 		l.setVideos(getVideoFromId(servPersistencia.recuperarPropiedadEntidad(e, VIDEOS)));
@@ -200,29 +197,34 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		StringTokenizer strTok = new StringTokenizer(videos," ");
 		
+		
+		
 		AdaptadorVideo adaptadorVideo = AdaptadorVideo.getUnicaInstancia();
 		
 		while(strTok.hasMoreTokens()) {
 			
+		
 			v.add(adaptadorVideo.findVideo(Integer.valueOf((String) strTok.nextElement())));
 		}
+		
 		
 		return v;
 		
 	}
 
 
-public String getIdVideos(List<Video> videos) {
-	
-	String aux="";
-	
-	for(Video v:videos) {
+	public String getIdVideos(List<Video> videos) {
 		
-		aux+=v.getId()+" ";
+		String aux="";
 		
+		for(Video v:videos) {
+			
+			aux+=v.getId()+" ";
+			
+			
+		}
+		
+		return aux.trim();
 	}
-
-	return aux.trim();
-}
 
 }
