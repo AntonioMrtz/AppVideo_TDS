@@ -178,6 +178,19 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		array.add(new Propiedad(TITULO,v.getTitulo()));
 		array.add(new Propiedad(NUM_REPRO,Integer.toString(v.getNumRepro())));
 		array.add(new Propiedad(URL,v.getUrl()));
+		
+		
+		
+		for(Etiqueta et:v.getEtiquetas()) {
+			
+			try {
+				FactoriaDAO.getInstancia().getEtiquetaDAO().registrarEtiqueta(et);
+			} catch (DAOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		
 		array.add(new Propiedad(ETIQUETAS,getIdEtiquetas(v.getEtiquetas())));
 		
 		
@@ -202,10 +215,11 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		v.setNumRepro(Integer.parseInt(numrepro));
 		v.setId(e.getId());
 		
-		
-		
+		//System.out.println("etiquetas ="+etiquetas);
 		v.setEtiquetas(getEtiquetaFromId(etiquetas));
 		
+		System.out.println(v.getEtiquetas());
+		//TODO ETIQUETAS RECUPERAR BIEN
 		
 		return v;
 	}

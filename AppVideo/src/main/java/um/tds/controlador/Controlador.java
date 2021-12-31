@@ -335,9 +335,9 @@ public class Controlador implements VideoListener{
 			
 			for (Video v : getVideosFromXml(((VideosEvent) e).getVideos())) {
 				
+				adaptadorVideo.addVideo(v);
 				catalogoVideos.addVideo(v);
 				
-				adaptadorVideo.addVideo(v);
 
 				
 			}
