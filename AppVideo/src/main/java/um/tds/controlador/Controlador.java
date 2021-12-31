@@ -1,9 +1,14 @@
 package um.tds.controlador;
 
 import java.time.LocalDate;
+import java.util.EventObject;
 import java.util.LinkedList;
 import java.util.List;
 
+import um.tds.componente.CargadorVideos;
+import um.tds.componente.VideoListener;
+import um.tds.componente.Videos;
+import um.tds.componente.VideosEvent;
 import um.tds.dominio.CatalogoEtiquetas;
 import um.tds.dominio.CatalogoUsuarios;
 import um.tds.dominio.CatalogoVideos;
@@ -11,6 +16,7 @@ import um.tds.dominio.Etiqueta;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
+import um.tds.persistencia.AdaptadorVideo;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorEtiquetasDAO;
@@ -19,8 +25,8 @@ import um.tds.persistencia.IAdaptadorVideoDAO;
 
 
 
-public class Controlador {
-	
+
+public class Controlador implements VideoListener{
 	
 	
 	//singleton
@@ -41,8 +47,8 @@ public class Controlador {
 	
 	private Usuario usuarioActual;
 	
+	private CargadorVideos cargadorVideos;
 	
-	//TODO HABRA QUE CREAR INSTANCIA TANTO DE CARGADOR COMO DE REPRODUCTOR
 	
 	private Controlador()  {
 		
@@ -58,7 +64,8 @@ public class Controlador {
 		inicialiarAdaptadores();
 		inicializarCatálogos();
 		
-		
+		cargadorVideos = CargadorVideos.getUnicaInstancia();
+		cargadorVideos.attach(this); // añadimos el controlador como unico listener
 		
 	}
 	
@@ -308,5 +315,50 @@ public class Controlador {
 		return null;
 		
 	}
+
+	
+	/*				CARGADOR VIDEOS			*/
+	@Override
+	public void enteradoCambios(EventObject e) {
+		
+		System.out.println("entro enterado");
+		if (e instanceof VideosEvent) {
+			
+			try {
+				AdaptadorVideo adaptadorVideo = (AdaptadorVideo) FactoriaDAO.getInstancia().getVideoDAO();
+			} catch (DAOException e1) {
+				
+				e1.printStackTrace();
+			} ///CUIDADIN ? casteo
+		
+			
+			
+			for (Video v : getVideosFromXml(((VideosEvent) e).getVideos())) {
+				
+				catalogoVideos.addVideo(v);
+				
+				adaptadorVideo.addVideo(v);
+
+				
+			}
+		}
+		
+	}
+	
+	
+	public static List<Video> getVideosFromXml(Videos videos){
+		
+		List<Video> l = new LinkedList<>();
+		for (um.tds.componente.Video v : videos.getVideo())
+			l.add(new Video(v.getURL(), v.getTitulo()));
+		
+		System.out.println(l);
+		return l;
+		
+	}
+	
+	
+	
+	
 	
 }

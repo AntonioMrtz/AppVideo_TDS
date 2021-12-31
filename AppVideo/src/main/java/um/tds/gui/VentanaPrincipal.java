@@ -2,7 +2,6 @@ package um.tds.gui;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -14,12 +13,15 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Button;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.ResourceBundle.Control;
 import java.awt.event.ActionEvent;
 import javax.swing.border.MatteBorder;
 
 import tds.driver.ServicioPersistencia;
+import um.tds.componente.CargadorVideos;
+import um.tds.componente.VideosEvent;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.CatalogoVideos;
 import um.tds.dominio.Etiqueta;
@@ -340,34 +342,10 @@ public static int hideLoginName() {
 					   
 				   } 
 				   
-				   
-				   Video v=Controlador.getUnicaInstancia().registrarVideo("http","titulovideo");
-				   Video v2=Controlador.getUnicaInstancia().registrarVideo("http2","titulovideo2");
-				   ArrayList<Video> l = new ArrayList<Video>();
-				   l.add(v);
-				   
-				   Controlador.getUnicaInstancia().registrarListaVideos("lista1",l);
-				   
-				  
-				   try {
-					System.out.println(FactoriaDAO.getInstancia().getUsuarioDAO().recuperarTodosUsuarios());
-				} catch (DAOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				   CargadorVideos.getUnicaInstancia().setFileVideo("/home/antonio/Descargas/CargadorVideos/CargadorVideos/xml/videos.xml");
 				   
 				   
-				  l.add(v2);
-				  Controlador.getUnicaInstancia().registrarListaVideos("lista1",l);
-				   
-				  
-				  
-				   try {
-					System.out.println(FactoriaDAO.getInstancia().getUsuarioDAO().recuperarTodosUsuarios());
-				} catch (DAOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				 
 	 
 			   }
 			   
@@ -425,4 +403,9 @@ public static int hideLoginName() {
 	    });
 		
 	}
+	
+	
+
+		
+	
 }
