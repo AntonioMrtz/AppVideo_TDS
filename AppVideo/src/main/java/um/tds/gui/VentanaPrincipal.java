@@ -345,6 +345,8 @@ public static int hideLoginName() {
 				   CargadorVideos.getUnicaInstancia().setFileVideo("/home/antonio/Descargas/CargadorVideos/CargadorVideos/xml/videos.xml");
 				   
 				   
+				   System.out.println( AdaptadorVideo.getUnicaInstancia().recuperarTodosVideos());
+				   
 				 
 	 
 			   }

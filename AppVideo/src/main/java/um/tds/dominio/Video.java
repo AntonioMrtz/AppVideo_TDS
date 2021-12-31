@@ -121,6 +121,17 @@ public class Video {
 		
 	}
 	
+	public void addEtiquetasString(List<String> et) {
+		
+		for (String s : et) {
+			
+			
+			addEtiqueta(new Etiqueta(s));
+		}
+		
+	}
+	
+	
 	@Override
 	public String toString() {
 		

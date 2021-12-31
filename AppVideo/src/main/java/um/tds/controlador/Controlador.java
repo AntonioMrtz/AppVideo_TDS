@@ -321,7 +321,7 @@ public class Controlador implements VideoListener{
 	@Override
 	public void enteradoCambios(EventObject e) {
 		
-		System.out.println("entro enterado");
+
 		if (e instanceof VideosEvent) {
 			
 			try {
@@ -349,10 +349,18 @@ public class Controlador implements VideoListener{
 	public static List<Video> getVideosFromXml(Videos videos){
 		
 		List<Video> l = new LinkedList<>();
-		for (um.tds.componente.Video v : videos.getVideo())
-			l.add(new Video(v.getURL(), v.getTitulo()));
+		for (um.tds.componente.Video v : videos.getVideo()) {
+			
+			
+			Video vid = new Video(v.getURL(),v.getTitulo() );
+			vid.addEtiquetasString(v.getEtiqueta());
+			l.add(vid);
+			
+		}
+			
+			
 		
-		System.out.println(l);
+		//System.out.println(l);
 		return l;
 		
 	}
