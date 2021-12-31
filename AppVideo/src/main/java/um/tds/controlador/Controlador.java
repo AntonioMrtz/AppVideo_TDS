@@ -366,6 +366,10 @@ public class Controlador implements VideoListener{
 	}
 	
 	
+	public boolean getVideosFromXml(String xml) {
+		
+		return cargadorVideos.setFileVideo(xml);
+	}
 	
 	
 	

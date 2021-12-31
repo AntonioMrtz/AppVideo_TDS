@@ -1,44 +1,35 @@
 package um.tds.gui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import java.awt.GridBagConstraints;
-import java.awt.Color;
-import javax.swing.ImageIcon;
 import java.awt.Button;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.util.ArrayList;
-import java.util.ResourceBundle.Control;
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.EventObject;
+
+import javax.swing.Box;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 
-import tds.driver.ServicioPersistencia;
+import pulsador.IEncendidoListener;
+import pulsador.Luz;
 import um.tds.componente.CargadorVideos;
-import um.tds.componente.VideosEvent;
 import um.tds.controlador.Controlador;
-import um.tds.dominio.CatalogoVideos;
-import um.tds.dominio.Etiqueta;
-import um.tds.dominio.FiltroAdultFilter;
-import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
-import um.tds.dominio.Video;
-import um.tds.persistencia.AdaptadorListas;
-import um.tds.persistencia.AdaptadorUsuario;
 import um.tds.persistencia.AdaptadorVideo;
-import um.tds.persistencia.DAOException;
-import um.tds.persistencia.FactoriaDAO;
 
-import java.awt.CardLayout;
-import java.awt.Label;
-
-public class VentanaPrincipal {
+public class VentanaPrincipal implements IEncendidoListener {
 
 	private static JFrame frame;
 	private static Usuario user;
@@ -87,7 +78,6 @@ public static int hideLoginName() {
 					VentanaPrincipal window = new VentanaPrincipal();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
 				}
 			}
 		});
@@ -131,6 +121,18 @@ public static int hideLoginName() {
 		
 		//JPanel panel_login_name = new JPanel();
 		panel_login_name.setVisible(false);
+		
+		Luz luz = new Luz();
+		panel.add(luz);
+		luz.setColor(Color.YELLOW);
+		
+		//luz.setEncendido(true);
+		luz.addEncendidoListener((IEncendidoListener) this);
+		
+		
+		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut);
 		panel.add(panel_login_name);
 		panel_login_name.setLayout(new BorderLayout(0, 0));
 		
@@ -408,6 +410,26 @@ public static int hideLoginName() {
 	
 	
 
+	@Override
+	public void enteradoCambioEncendido(EventObject evt) {
+
+			JFileChooser fileChooser = new JFileChooser();
+			
+			int retChooser = fileChooser.showOpenDialog(null);
+			
+			if(retChooser==JFileChooser.APPROVE_OPTION) {
+				
+				String pwd = fileChooser.getSelectedFile().getAbsolutePath();
+				
+				Controlador.getUnicaInstancia().getVideosFromXml(pwd);
+				
+			} 
+			
+			else {
+				JOptionPane.showMessageDialog(frame, "Sin fichero seleccionado", "Error fichero",JOptionPane.WARNING_MESSAGE);
+			
+			}
 		
+	}
 	
 }
