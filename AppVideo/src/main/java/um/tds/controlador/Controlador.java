@@ -1,10 +1,12 @@
 package um.tds.controlador;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.EventObject;
 import java.util.LinkedList;
 import java.util.List;
 
+import um.tds.Lanzador;
 import um.tds.componente.CargadorVideos;
 import um.tds.componente.VideoListener;
 import um.tds.componente.Videos;
@@ -77,6 +79,20 @@ public class Controlador implements VideoListener{
 			unicaInstancia=new Controlador();
 		
 		return unicaInstancia;
+	}
+	
+	
+	
+	
+	public void playVideo(Video v) {
+		
+		Lanzador.videoWeb.playVideo(v.getUrl());
+		adaptadorVideo.modificarVideo(v);
+		
+		usuarioActual.addVideoHistorial(v);
+		adaptadorUsuario.modificarUsuario(usuarioActual);
+		
+		
 	}
 	
 	
@@ -373,5 +389,12 @@ public class Controlador implements VideoListener{
 	}
 	
 	
+	
+	public Collection<Video> filterVideo(String titulo,Etiqueta e) {
+		
+		return CatalogoVideos.getUnicaInstancia().filterVideo(usuarioActual.getFiltroActual(),titulo,e);
+		
+		
+	}
 	
 }

@@ -8,9 +8,12 @@ import beans.Entidad;
 import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
+import tds.video.VideoWeb;
 import um.tds.gui.VentanaPrincipal;
 
 public class Lanzador {
+	
+	public static VideoWeb videoWeb;
 
 	public static void main(final String[] args) {
 
@@ -20,6 +23,7 @@ public class Lanzador {
 	
 					VentanaPrincipal ventana = new VentanaPrincipal();
 					ventana.mostrarVentana();
+					videoWeb= new VideoWeb();
 					
 					ServicioPersistencia servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
 

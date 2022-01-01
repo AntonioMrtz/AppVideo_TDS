@@ -24,6 +24,8 @@ import javax.swing.border.MatteBorder;
 
 import pulsador.IEncendidoListener;
 import pulsador.Luz;
+import tds.video.VideoWeb;
+import um.tds.Lanzador;
 import um.tds.componente.CargadorVideos;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.Usuario;
@@ -37,6 +39,16 @@ public class VentanaPrincipal implements IEncendidoListener {
 	private static JLabel lblTest=new JLabel("test");
 	
 
+	private PanelLogin login = new PanelLogin();
+	private PanelRegistro registro = new PanelRegistro();
+	private PanelExplorar explorar= new PanelExplorar();
+	private  PanelMisListas mislistas = new PanelMisListas();
+	private PanelNuevaLista nuevalistas = new PanelNuevaLista();
+	private PanelRecientes recientes = new PanelRecientes();
+	
+	private CardLayout cl;
+	
+	private JPanel activeCard; 
 	
 	public static int setLoginName() {
 		
@@ -71,6 +83,7 @@ public static int hideLoginName() {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,7 +94,7 @@ public static int hideLoginName() {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the application.
@@ -264,30 +277,28 @@ public static int hideLoginName() {
 		panel_1.add(pantallaPrincipal, BorderLayout.CENTER);
 		pantallaPrincipal.setLayout(new CardLayout(0, 0));
 		
-		PanelLogin login = new PanelLogin();
+		//PanelLogin login = new PanelLogin();
 		pantallaPrincipal.add(login,"login");
 		
-		PanelRegistro registro = new PanelRegistro();
+		//PanelRegistro registro = new PanelRegistro();
 		pantallaPrincipal.add(registro,"registro");
 		
-		PanelExplorar explorar= new PanelExplorar();
+		//PanelExplorar explorar= new PanelExplorar();
 		pantallaPrincipal.add(explorar,"explorar");
 		
-		PanelMisListas mislistas = new PanelMisListas();
+		//PanelMisListas mislistas = new PanelMisListas();
 		pantallaPrincipal.add(mislistas,"mislistas");
 		
-		PanelNuevaLista nuevalistas = new PanelNuevaLista();
+		//PanelNuevaLista nuevalistas = new PanelNuevaLista();
 		pantallaPrincipal.add(nuevalistas,"nuevalista");
 		
-		PanelRecientes recientes = new PanelRecientes();
+		//PanelRecientes recientes = new PanelRecientes();
 		pantallaPrincipal.add(recientes,"recientes");		
 		
-		CardLayout cl = (CardLayout)(pantallaPrincipal.getLayout());
+		 cl = (CardLayout)(pantallaPrincipal.getLayout());
 	    cl.show(pantallaPrincipal,"login");
 	    
-	    
-	   
-		
+
 	    /* action handlers */
 
 		
@@ -295,7 +306,8 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				
+				   switchWindow();
+				   activeCard= registro;
 				   cl.show(pantallaPrincipal,"registro");
 				   
 			   }
@@ -307,6 +319,8 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 			
+				   switchWindow();
+				   activeCard= login;
 				   cl.show(pantallaPrincipal,"login");
 				   
 				   
@@ -322,7 +336,7 @@ public static int hideLoginName() {
 				   Controlador.getUnicaInstancia().logoutUsuario();
 				   user=null;
 				   setLoginName();
-				   
+				  
 				   
 			   }
 			   
@@ -343,13 +357,6 @@ public static int hideLoginName() {
 					   }
 					   
 				   } 
-				   
-				   //CargadorVideos.getUnicaInstancia().setFileVideo("/home/antonio/Descargas/CargadorVideos/CargadorVideos/xml/videos.xml");
-				   
-				   
-				   //System.out.println( AdaptadorVideo.getUnicaInstancia().recuperarTodosVideos());
-				   
-				   System.out.println("prop "+System.getProperties());
 	 
 			   }
 			   
@@ -359,9 +366,11 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				 
+				   switchWindow();
+				   activeCard= explorar;
 				   cl.show(pantallaPrincipal,"explorar");
-				   
+				   explorar.enterExplorar();
+				  
 				   
 			   }
 			   
@@ -373,6 +382,8 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				  
+				   switchWindow();
+				   activeCard= nuevalistas;
 				   cl.show(pantallaPrincipal,"nuevalista");
 				   
 				   
@@ -385,7 +396,8 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				 
+				   switchWindow();
+				   activeCard= mislistas;
 				   cl.show(pantallaPrincipal,"mislistas");
 				   
 				   
@@ -399,6 +411,8 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				
+				   switchWindow();
+				   activeCard= recientes;
 				   cl.show(pantallaPrincipal,"recientes");
 				   
 				   
@@ -433,5 +447,48 @@ public static int hideLoginName() {
 			
 		
 	}
+	
+	
+	public void switchWindow() { // dependiendo del card actual actuamos de una manera u otra
+		
+		
+		if (activeCard instanceof PanelLogin) {
+			
+			//TODO
+		}
+		
+		else if (activeCard instanceof PanelExplorar) {
+			
+			explorar.exitExplorar();
+		}
+		
+		else if (activeCard instanceof PanelMasVistos) {
+			
+			//TODO
+		}
+		else if (activeCard instanceof PanelMisListas) {
+			
+			//TODO
+		}
+		
+		else if (activeCard instanceof PanelNuevaLista) {
+			
+			//TODO
+		}
+
+				
+		else if (activeCard instanceof PanelRegistro) {
+	
+			//TODO
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+
 	
 }

@@ -119,7 +119,7 @@ public class VideoApp extends JFrame {
 			@Override
 			public void run() {
 				try {
-					videoWeb = new VideoWeb();
+					//videoWeb = new VideoWeb();
 					VideoApp frame = new VideoApp();
 					frame.setVisible(true);
 				} catch (Exception e) {

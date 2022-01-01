@@ -1,17 +1,28 @@
 package um.tds.gui;
 
-import javax.swing.JPanel;
-import java.awt.Color;
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Collection;
+
 import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+
+import um.tds.Lanzador;
+import um.tds.controlador.Controlador;
+import um.tds.dominio.Etiqueta;
+import um.tds.dominio.Video;
 
 
 public class PanelExplorar extends JPanel {
@@ -19,12 +30,31 @@ public class PanelExplorar extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
+	private JPanel panel_3 = new JPanel();
+	JTextPane textPane_1;
+	
+	private JScrollPane scrollPane;
 	private JTextField textField;
-
-
+	
+	//private HashMap<String,JButton> icons = new HashMap<JButton, String>();
 
 	//TODO mirar los box que cuando escribes se agranda la ventana
 	
+	
+	
+	private ActionListener listenerButtons= new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			cleanVideos();
+			panel_3.add(Lanzador.videoWeb);
+			Lanzador.videoWeb.playVideo(arg0.getActionCommand());
+			
+			
+		}
+	};
 	
 	
 	public PanelExplorar() {
@@ -34,9 +64,9 @@ public class PanelExplorar extends JPanel {
 		panel.setBackground(Color.GRAY);
 		add(panel, BorderLayout.EAST);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panel.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
@@ -62,13 +92,20 @@ public class PanelExplorar extends JPanel {
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JTextPane textPane = new JTextPane();
-		GridBagConstraints gbc_textPane = new GridBagConstraints();
-		gbc_textPane.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane.fill = GridBagConstraints.BOTH;
-		gbc_textPane.gridx = 1;
-		gbc_textPane.gridy = 2;
-		panel.add(textPane, gbc_textPane);
+		 scrollPane = new JScrollPane();
+		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
+		gbc_scrollPane.fill = GridBagConstraints.BOTH;
+		gbc_scrollPane.gridx = 1;
+		gbc_scrollPane.gridy = 2;
+		panel.add(scrollPane, gbc_scrollPane);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
+		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 0);
+		gbc_horizontalStrut_1.gridx = 2;
+		gbc_horizontalStrut_1.gridy = 2;
+		panel.add(horizontalStrut_1, gbc_horizontalStrut_1);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_1 = new GridBagConstraints();
@@ -77,7 +114,7 @@ public class PanelExplorar extends JPanel {
 		gbc_verticalStrut_1.gridy = 3;
 		panel.add(verticalStrut_1, gbc_verticalStrut_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Buscar Etiquetas");
 		lblNewLabel_2.setForeground(Color.WHITE);
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
@@ -85,7 +122,7 @@ public class PanelExplorar extends JPanel {
 		gbc_lblNewLabel_2.gridy = 4;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		JTextPane textPane_1 = new JTextPane();
+		textPane_1 = new JTextPane();
 		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
 		gbc_textPane_1.gridheight = 2;
 		gbc_textPane_1.insets = new Insets(0, 0, 5, 5);
@@ -93,20 +130,6 @@ public class PanelExplorar extends JPanel {
 		gbc_textPane_1.gridx = 1;
 		gbc_textPane_1.gridy = 5;
 		panel.add(textPane_1, gbc_textPane_1);
-		
-		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
-		gbc_horizontalStrut_1.insets = new Insets(0, 0, 5, 5);
-		gbc_horizontalStrut_1.gridx = 3;
-		gbc_horizontalStrut_1.gridy = 5;
-		panel.add(horizontalStrut_1, gbc_horizontalStrut_1);
-		
-		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_horizontalStrut_2 = new GridBagConstraints();
-		gbc_horizontalStrut_2.insets = new Insets(0, 0, 5, 0);
-		gbc_horizontalStrut_2.gridx = 4;
-		gbc_horizontalStrut_2.gridy = 5;
-		panel.add(horizontalStrut_2, gbc_horizontalStrut_2);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
@@ -116,14 +139,19 @@ public class PanelExplorar extends JPanel {
 		panel.add(verticalStrut_2, gbc_verticalStrut_2);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.GRAY);
 		add(panel_1, BorderLayout.CENTER);
 		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		//JPanel panel_3 = new JPanel();
+		panel_3.setBackground(Color.GRAY);
+		panel_1.add(panel_3, BorderLayout.CENTER);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.GRAY);
 		panel_1.add(panel_2, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("Buscar Título:");
 		lblNewLabel.setForeground(Color.WHITE);
 		panel_2.add(lblNewLabel);
 		
@@ -131,16 +159,110 @@ public class PanelExplorar extends JPanel {
 		panel_2.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnNewButton_1 = new JButton("New button");
-		panel_2.add(btnNewButton_1);
+		JButton btnNewButton = new JButton("Buscar");
+		panel_2.add(btnNewButton);
 		
-		JButton btnNewButton_3 = new JButton("New button");
-		panel_2.add(btnNewButton_3);
+		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(Color.GRAY);
+		panel_1.add(panel_4, BorderLayout.SOUTH);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Color.GRAY);
-		panel_1.add(panel_3, BorderLayout.CENTER);
+		JButton btnNewButton_1 = new JButton("Nueva Búsqueda");
+		panel_4.add(btnNewButton_1);
+		
+		
+		btnNewButton_1.addActionListener(new ActionListener() {   // BOTON NUEVA BÚSQUEDA
+			
+			   public void actionPerformed(ActionEvent e) {
+				  
+				  
+				   cleanVideos();
+				   
+			   }
+			   
+	    }); 
+		
+		
+		btnNewButton.addActionListener(new ActionListener() {   // BOTON BUSCAR
+			
+			   public void actionPerformed(ActionEvent e) {
+				  
+				   cleanVideos();
+				   loadVideos();
+				   
+			   }
+			   
+	    }); 
 
+	}
+	
+	
+	public void enterExplorar() {
+		
+
+		
+		String aux="";
+		
+		for(Etiqueta e: Controlador.getUnicaInstancia().getEtiquetas()) {
+			
+			aux+=e.getNombre();
+			aux+="\n";
+		}
+		
+		
+
+		
+	}
+	
+	public void exitExplorar() {
+		
+		/*Lanzador.videoWeb.cancel();
+		panel_3.remove(Lanzador.videoWeb);*/
+		
+		cleanVideos();
+		
+		//TODO RESETEAR ETIQUETAS PANEL DERECHO
+		
+	}
+	
+	
+	public void cleanVideos() {
+		
+		for(Component c:panel_3.getComponents()) {
+			
+			panel_3.remove(c);
+		}
+		
+		panel_3.repaint();
+	}
+	
+	public void loadVideos() {
+		
+		
+		cleanVideos();
+		
+		
+		
+		String titulo=textField.getText().trim();
+		Collection<Video> set=Controlador.getUnicaInstancia().filterVideo(titulo, null);
+		
+		//System.out.println(set);
+		
+		for(Video v:set) {
+			
+			JButton boton= new JButton();
+			boton.setBackground(Color.gray);
+			boton.setActionCommand(v.getUrl());
+		
+			ImageIcon thumb = Lanzador.videoWeb.getSmallThumb(v.getUrl());
+			
+			boton.setIcon(thumb);
+			boton.addActionListener(listenerButtons);
+			
+			panel_3.add(boton);
+			
+		}
+		
+		panel_3.revalidate();
 	}
 
 }

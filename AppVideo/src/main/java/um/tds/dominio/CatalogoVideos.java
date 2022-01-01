@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -123,7 +124,72 @@ public class CatalogoVideos {
 	}
 	
 	
-	//TODO METER ALGO PARA FILTRAR
+	public Collection<Video> filterVideo(Filtro f,String titulo,Etiqueta e ){
+		
+		Collection<Video> set = filterFilter(f);
+		
+		
+		set.retainAll(filterTitle(titulo));
+		
+		if(e!=null)set.retainAll(filterEtiqueta(e));
+		
+		
+		/*set.addAll(filterFilter(f));
+		if(titulo!=null)set.addAll(filterTitle(titulo));
+		if(e!=null)set.addAll(filterEtiqueta(e));*/
+		
+		return set;
+		
+		
+	}
+	
+	public Collection<Video> filterFilter(Filtro f){
+		
+		HashSet<Video> set = new HashSet();
+		
+		for(Video v:videos.values()) {
+			
+			if(f.isVideoOk(v)) set.add(v);
+		}
+		
+		
+		return set;
+		
+	}
+	
+	
+	public Collection<Video> filterTitle(String s){
+		
+		HashSet<Video> set = new HashSet();
+		
+		for(Video v:videos.values()) {
+			
+			if(v.getTitulo().indexOf(s)>=0) set.add(v);
+			
+		}
+			
+		return set;
+		
+	}
+	
+	
+	
+	public Collection<Video> filterEtiqueta(Etiqueta e){
+		
+		HashSet<Video> set = new HashSet();
+		
+		for(Video v:videos.values()) {
+			
+			for(Etiqueta et : v.getEtiquetas()) {
+				
+				if(et.getNombre().equals(e.getNombre()))  set.add(v);
+			}
+			
+		}
+			
+		return set;
+		
+	}
 	
 	
 	/*Recupera todos los videos para trabajar con ellos en memoria*/
