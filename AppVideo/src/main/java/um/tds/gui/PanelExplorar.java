@@ -8,9 +8,15 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,11 +24,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.ListModel;
+import javax.swing.table.DefaultTableModel;
 
 import um.tds.Lanzador;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Video;
+import javax.swing.JList;
 
 
 public class PanelExplorar extends JPanel implements IWindow{
@@ -32,10 +41,12 @@ public class PanelExplorar extends JPanel implements IWindow{
 	private static final long serialVersionUID = 1L;
 
 	private JPanel panel_3 = new JPanel();
-	JTextPane textPane_1;
-	
-	private JScrollPane scrollPane;
 	private JTextField textField;
+	private JList list_1;
+	
+	private JList list;
+	
+	private DefaultListModel<String> d2 = new DefaultListModel<String>();
 	
 	
 	private ActionListener listenerButtons= new ActionListener() {
@@ -87,13 +98,41 @@ public class PanelExplorar extends JPanel implements IWindow{
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		 scrollPane = new JScrollPane();
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 1;
-		gbc_scrollPane.gridy = 2;
-		panel.add(scrollPane, gbc_scrollPane);
+		
+		DefaultListModel<String> d = new DefaultListModel<String>();
+		
+		
+		list=new JList<String>(d);
+		
+		addEtiquetasList(d,list);
+		
+		list.addMouseListener(new MouseAdapter() {
+		    public void mouseClicked(MouseEvent evt) {
+		        if (evt.getClickCount() == 2) {
+
+		            // Double-click detected
+		            //int index = list.locationToIndex(evt.getPoint());
+		            
+		            //System.out.println(list.getSelectedValue());
+		        	String aux = (String) list.getSelectedValue();
+		        	
+		        	d2.addElement(aux);
+		        	
+		        }
+		    }
+		});
+		
+		//list.addMouseListener(mouseClicked);
+
+		
+		JScrollPane pane2 = new JScrollPane(list);
+		GridBagConstraints gbc_list = new GridBagConstraints();
+		gbc_list.insets = new Insets(0, 0, 5, 5);
+		gbc_list.fill = GridBagConstraints.BOTH;
+		gbc_list.gridx = 1;
+		gbc_list.gridy = 2;
+		panel.add(pane2, gbc_list);
+		//panel.add(list, gbc_list);
 		
 		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut_1 = new GridBagConstraints();
@@ -117,14 +156,14 @@ public class PanelExplorar extends JPanel implements IWindow{
 		gbc_lblNewLabel_2.gridy = 4;
 		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		textPane_1 = new JTextPane();
-		GridBagConstraints gbc_textPane_1 = new GridBagConstraints();
-		gbc_textPane_1.gridheight = 2;
-		gbc_textPane_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textPane_1.fill = GridBagConstraints.BOTH;
-		gbc_textPane_1.gridx = 1;
-		gbc_textPane_1.gridy = 5;
-		panel.add(textPane_1, gbc_textPane_1);
+		list_1 = new JList<String>(d2);
+		JScrollPane pane3 = new JScrollPane(list_1);
+		GridBagConstraints gbc_list_1 = new GridBagConstraints();
+		gbc_list_1.insets = new Insets(0, 0, 5, 5);
+		gbc_list_1.fill = GridBagConstraints.BOTH;
+		gbc_list_1.gridx = 1;
+		gbc_list_1.gridy = 5;
+		panel.add(pane3, gbc_list_1);
 		
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_2 = new GridBagConstraints();
@@ -174,7 +213,7 @@ public class PanelExplorar extends JPanel implements IWindow{
 				  
 				  
 				   cleanVideos();
-				   
+				   d2.clear(); 
 			   }
 			   
 	    }); 
@@ -198,6 +237,11 @@ public class PanelExplorar extends JPanel implements IWindow{
 		
 
 		//TODO CARGAR PANELES
+		
+
+		
+		
+		
 		String aux="";
 		
 		for(Etiqueta e: Controlador.getUnicaInstancia().getEtiquetas()) {
@@ -217,8 +261,8 @@ public class PanelExplorar extends JPanel implements IWindow{
 		panel_3.remove(Lanzador.videoWeb);*/
 		
 		cleanVideos();
-		
-		//TODO RESETEAR ETIQUETAS PANEL DERECHO
+		textField.setText("");
+		d2.clear(); 
 		
 	}
 	
@@ -231,7 +275,11 @@ public class PanelExplorar extends JPanel implements IWindow{
 		}
 		
 		panel_3.repaint();
-		textField.setText("");
+		//textField.setText("");
+		
+	
+		
+		
 	}
 	
 	public void loadVideos() {
@@ -239,12 +287,23 @@ public class PanelExplorar extends JPanel implements IWindow{
 		
 		cleanVideos();
 		
+				
+		
+		List<String> etiquetas = new ArrayList() ;
+		
+		
+		for(int i=0;i<list_1.getModel().getSize();i++) {
+			
+			etiquetas.add(d2.getElementAt(i));
+						
+		}
+		
 		
 		
 		String titulo=textField.getText().trim();
-		Collection<Video> set=Controlador.getUnicaInstancia().filterVideo(titulo, null);
 		
-		//System.out.println(set);
+		Collection<Video> set=Controlador.getUnicaInstancia().filterVideo(titulo,etiquetas);
+		
 		
 		for(Video v:set) {
 			
@@ -262,6 +321,29 @@ public class PanelExplorar extends JPanel implements IWindow{
 		}
 		
 		panel_3.revalidate();
+		textField.setText("");
+		d2.clear(); 
 	}
+	
+
+	
+	public void addEtiquetasList(DefaultListModel<String> d,JList<String> j) {
+		
+		HashSet<String> set = new HashSet<String>();
+		
+		for(Etiqueta et:Controlador.getUnicaInstancia().getEtiquetas()) {
+			
+			set.add(et.getNombre());
+			d.addElement(et.getNombre());
+		}
+		
+		d.addAll(set);
+		
+	}
+	
+	
+
+	
+	
 
 }

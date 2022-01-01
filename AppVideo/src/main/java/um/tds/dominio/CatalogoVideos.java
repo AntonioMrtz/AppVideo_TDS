@@ -124,7 +124,7 @@ public class CatalogoVideos {
 	}
 	
 	
-	public Collection<Video> filterVideo(Filtro f,String titulo,Etiqueta e ){
+	public Collection<Video> filterVideo(Filtro f,String titulo,List<String> e ){
 		
 		Collection<Video> set = filterFilter(f);
 		
@@ -133,10 +133,6 @@ public class CatalogoVideos {
 		
 		if(e!=null)set.retainAll(filterEtiqueta(e));
 		
-		
-		/*set.addAll(filterFilter(f));
-		if(titulo!=null)set.addAll(filterTitle(titulo));
-		if(e!=null)set.addAll(filterEtiqueta(e));*/
 		
 		return set;
 		
@@ -164,29 +160,50 @@ public class CatalogoVideos {
 		
 		for(Video v:videos.values()) {
 			
-			if(v.getTitulo().indexOf(s)>=0) set.add(v);
+			if(v.getTitulo().contains(s)) {
+				
+				
+				set.add(v);
+			}
 			
 		}
-			
 		return set;
 		
 	}
 	
 	
 	
-	public Collection<Video> filterEtiqueta(Etiqueta e){
+	public Collection<Video> filterEtiqueta(List<String> e){
 		
 		HashSet<Video> set = new HashSet();
+		int control=0;
+		
 		
 		for(Video v:videos.values()) {
 			
 			for(Etiqueta et : v.getEtiquetas()) {
 				
-				if(et.getNombre().equals(e.getNombre()))  set.add(v);
+				for(String et2:e) {
+					
+					
+					if(et2.equals(et.getNombre())) {
+						
+						control+=1;
+						
+					}
+					
+				}
 			}
 			
+			if(e.size()==control) {
+				
+				set.add(v);
+				
+			}
+			control=0;
 		}
-			
+		
+
 		return set;
 		
 	}

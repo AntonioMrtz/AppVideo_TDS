@@ -122,7 +122,7 @@ public static int hideLoginName() {
 		//frame.setResizable(false);
 		frame.setResizable(true);
 		//frame.setBounds(100, 100, 450, 300);
-		frame.setBounds(100, 100, 600, 400);
+		frame.setBounds(100, 100, 700, 500);
 		
 		
 		
@@ -366,12 +366,13 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   switchWindow();
-				   activeCard= explorar;
-				   cl.show(pantallaPrincipal,"explorar");
-				   explorar.enterExplorar();
+				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   switchWindow();
+					   activeCard= explorar;
+					   cl.show(pantallaPrincipal,"explorar");
+					   explorar.enterExplorar();
 				  
-				   
+				   }
 			   }
 			   
 	    });  
@@ -382,10 +383,11 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				  
-				   switchWindow();
-				   activeCard= nuevalistas;
-				   cl.show(pantallaPrincipal,"nuevalista");
-				   
+				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   switchWindow();
+					   activeCard= nuevalistas;
+					   cl.show(pantallaPrincipal,"nuevalista");
+				   }
 				   
 			   }
 			   
@@ -396,10 +398,11 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				   switchWindow();
-				   activeCard= mislistas;
-				   cl.show(pantallaPrincipal,"mislistas");
-				   
+				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   switchWindow();
+					   activeCard= mislistas;
+					   cl.show(pantallaPrincipal,"mislistas");
+				   }
 				   
 			   }
 			   
@@ -411,10 +414,11 @@ public static int hideLoginName() {
 			
 			   public void actionPerformed(ActionEvent e) {
 				
-				   switchWindow();
-				   activeCard= recientes;
-				   cl.show(pantallaPrincipal,"recientes");
-				   
+				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   switchWindow();
+					   activeCard= recientes;
+					   cl.show(pantallaPrincipal,"recientes");
+				   }
 				   
 			   }
 			   

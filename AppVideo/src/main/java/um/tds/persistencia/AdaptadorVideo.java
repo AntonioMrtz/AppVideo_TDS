@@ -121,7 +121,7 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 			} else if (prop.getNombre().equals(ETIQUETAS)) {
 				
 				prop.setValor(String.valueOf(getIdEtiquetas(v.getEtiquetas())));
-				System.out.println("etiqueta = "+prop.getValor());
+				//System.out.println("etiqueta = "+prop.getValor());
 			}
 			servPersistencia.modificarPropiedad(prop);
 		}
@@ -218,7 +218,7 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		//System.out.println("etiquetas ="+etiquetas);
 		v.setEtiquetas(getEtiquetaFromId(etiquetas));
 		
-		System.out.println(v.getEtiquetas());
+		//System.out.println(v.getEtiquetas());
 		//TODO ETIQUETAS RECUPERAR BIEN
 		
 		return v;

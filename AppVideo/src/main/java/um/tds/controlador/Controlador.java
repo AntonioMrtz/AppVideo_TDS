@@ -390,7 +390,7 @@ public class Controlador implements VideoListener{
 	
 	
 	
-	public Collection<Video> filterVideo(String titulo,Etiqueta e) {
+	public Collection<Video> filterVideo(String titulo,List<String> e) {
 		
 		return CatalogoVideos.getUnicaInstancia().filterVideo(usuarioActual.getFiltroActual(),titulo,e);
 		
