@@ -48,6 +48,7 @@ public class Controlador implements VideoListener{
 	private Usuario usuarioActual;
 	
 	private CargadorVideos cargadorVideos;
+	//private 
 	
 	
 	private Controlador()  {

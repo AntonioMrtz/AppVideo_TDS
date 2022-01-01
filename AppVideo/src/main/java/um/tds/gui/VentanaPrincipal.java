@@ -344,12 +344,12 @@ public static int hideLoginName() {
 					   
 				   } 
 				   
-				   CargadorVideos.getUnicaInstancia().setFileVideo("/home/antonio/Descargas/CargadorVideos/CargadorVideos/xml/videos.xml");
+				   //CargadorVideos.getUnicaInstancia().setFileVideo("/home/antonio/Descargas/CargadorVideos/CargadorVideos/xml/videos.xml");
 				   
 				   
-				   System.out.println( AdaptadorVideo.getUnicaInstancia().recuperarTodosVideos());
+				   //System.out.println( AdaptadorVideo.getUnicaInstancia().recuperarTodosVideos());
 				   
-				 
+				   System.out.println("prop "+System.getProperties());
 	 
 			   }
 			   
@@ -429,6 +429,8 @@ public static int hideLoginName() {
 				JOptionPane.showMessageDialog(frame, "Sin fichero seleccionado", "Error fichero",JOptionPane.WARNING_MESSAGE);
 			
 			}
+			
+			
 		
 	}
 	
