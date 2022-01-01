@@ -37,11 +37,6 @@ public class PanelExplorar extends JPanel {
 	private JScrollPane scrollPane;
 	private JTextField textField;
 	
-	//private HashMap<String,JButton> icons = new HashMap<JButton, String>();
-
-	//TODO mirar los box que cuando escribes se agranda la ventana
-	
-	
 	
 	private ActionListener listenerButtons= new ActionListener() {
 		
@@ -169,6 +164,9 @@ public class PanelExplorar extends JPanel {
 		JButton btnNewButton_1 = new JButton("Nueva Búsqueda");
 		panel_4.add(btnNewButton_1);
 		
+		JScrollPane pane = new JScrollPane(panel_3);
+		panel_1.add(pane, BorderLayout.CENTER);
+		
 		
 		btnNewButton_1.addActionListener(new ActionListener() {   // BOTON NUEVA BÚSQUEDA
 			
@@ -233,6 +231,7 @@ public class PanelExplorar extends JPanel {
 		}
 		
 		panel_3.repaint();
+		textField.setText("");
 	}
 	
 	public void loadVideos() {
@@ -258,8 +257,8 @@ public class PanelExplorar extends JPanel {
 			boton.setIcon(thumb);
 			boton.addActionListener(listenerButtons);
 			
+			//panel_3.add(boton);
 			panel_3.add(boton);
-			
 		}
 		
 		panel_3.revalidate();
