@@ -15,7 +15,7 @@ import java.awt.FlowLayout;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 
-public class PanelMisListas extends JPanel {
+public class PanelMisListas extends JPanel implements IWindow{
 
 	/**
 	 * 
@@ -114,6 +114,18 @@ public class PanelMisListas extends JPanel {
 		Component verticalStrut_2 = Box.createVerticalStrut(20);
 		panel_1.add(verticalStrut_2);
 
+	}
+
+	@Override
+	public void enterExplorar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exitExplorar() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

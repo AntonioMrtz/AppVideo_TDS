@@ -25,7 +25,7 @@ import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Video;
 
 
-public class PanelExplorar extends JPanel {
+public class PanelExplorar extends JPanel implements IWindow{
 	/**
 	 * 
 	 */
@@ -197,7 +197,7 @@ public class PanelExplorar extends JPanel {
 	public void enterExplorar() {
 		
 
-		
+		//TODO CARGAR PANELES
 		String aux="";
 		
 		for(Etiqueta e: Controlador.getUnicaInstancia().getEtiquetas()) {
