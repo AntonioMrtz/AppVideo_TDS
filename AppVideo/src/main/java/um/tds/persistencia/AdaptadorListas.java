@@ -117,6 +117,31 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		servPersistencia.anadirPropiedadEntidad(e, VIDEOS,getIdVideos(l.getVideos()));
 		
 		
+		//TODO
+		
+		for (Propiedad prop : e.getPropiedades()) {
+			
+			
+			if(prop.getNombre().equals(NOMBRE)) {
+				
+				prop.setValor(l.getNombre());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(USUARIO)) {
+				
+				prop.setValor(String.valueOf(l.getUser().getId()));
+				servPersistencia.modificarPropiedad(prop);
+			}
+			if(prop.getNombre().equals(VIDEOS)) {
+				
+				prop.setValor(getIdVideos(l.getVideos()));
+				servPersistencia.modificarPropiedad(prop);
+			}
+		}
+		
+		
+		
 	}
 
 	@Override

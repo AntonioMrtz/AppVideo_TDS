@@ -263,46 +263,57 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		Entidad e = servPersistencia.recuperarEntidad(us.getId());
-		/*
-		servPersistencia.eliminarPropiedadEntidad(e, NOMBRE);
-		servPersistencia.anadirPropiedadEntidad(e, NOMBRE,us.getNombre());
+	
 		
-		servPersistencia.eliminarPropiedadEntidad(e, APELLIDOS);
-		servPersistencia.anadirPropiedadEntidad(e, APELLIDOS,us.getApellidos());
-		
-		servPersistencia.eliminarPropiedadEntidad(e, EMAIL);
-		servPersistencia.anadirPropiedadEntidad(e, EMAIL,us.getEmail());
-		
-		servPersistencia.eliminarPropiedadEntidad(e, FECHA_NACIMIENTO);
-		servPersistencia.anadirPropiedadEntidad(e, FECHA_NACIMIENTO,us.getFechaNacimiento().toString());
-		
-		servPersistencia.eliminarPropiedadEntidad(e, USER);
-		servPersistencia.anadirPropiedadEntidad(e, USER,us.getUsuario());
-				
-		servPersistencia.eliminarPropiedadEntidad(e, PASSWORD);
-		servPersistencia.anadirPropiedadEntidad(e, PASSWORD,us.getPassword());
-		
-		*/
 		String auxPremium;
 		
 		if(us.isPremium()) auxPremium="T";
 		else auxPremium="F";
 
-		/*
-		servPersistencia.eliminarPropiedadEntidad(e, PREMIUM);
-		servPersistencia.anadirPropiedadEntidad(e, PREMIUM,auxPremium);
-		
-		
-		servPersistencia.eliminarPropiedadEntidad(e, LISTAS_REPRODUCCION);
-		servPersistencia.anadirPropiedadEntidad(e, LISTAS_REPRODUCCION,getIdListas(us.getListas()));
-		
-		servPersistencia.eliminarPropiedadEntidad(e, FILTRO);
-		servPersistencia.anadirPropiedadEntidad(e, FILTRO,us.getFiltroActual().toString());
-		
-		*/
-		
 		
 		for (Propiedad prop : e.getPropiedades()) {
+			
+			
+			if(prop.getNombre().equals(NOMBRE)) {
+				
+				prop.setValor(us.getNombre());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(APELLIDOS)) {
+				
+				prop.setValor(us.getApellidos());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(EMAIL)) {
+				
+				prop.setValor(us.getEmail());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			if(prop.getNombre().equals(FECHA_NACIMIENTO)) {
+				
+				prop.setValor(us.getFechaNacimiento().toString());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(USER)) {
+				
+				prop.setValor(us.getUsuario());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(PASSWORD)) {
+				
+				prop.setValor(us.getPassword());
+				servPersistencia.modificarPropiedad(prop);
+			}
+			
+			if(prop.getNombre().equals(FILTRO)) {
+				
+				prop.setValor(us.getFiltroActual().toString());
+				servPersistencia.modificarPropiedad(prop);
+			}
 			
 			if(prop.getNombre().equals(PREMIUM)) {
 				
@@ -319,10 +330,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 		}
 		
-		//System.out.println("pre "+servPersistencia.recuperarPropiedadEntidad(e, PREMIUM));
-		
-		//System.out.println("print mod "+getListasFromId(servPersistencia.recuperarPropiedadEntidad(e, LISTAS_REPRODUCCION)));
-		//System.out.println(us.getFiltroActual().toString());
+
 	}
 
 	@Override
@@ -349,11 +357,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 		}
 		
-		//System.out.println("recupero?");
-		for (Usuario u:users) {
-			
-			System.out.println(u.getListas());
-		}
+		
 		return users;
 		
 	}

@@ -99,19 +99,6 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		
 		Entidad e = servPersistencia.recuperarEntidad(v.getId());
 		
-		/*
-		servPersistencia.eliminarPropiedadEntidad(e, URL);
-		servPersistencia.anadirPropiedadEntidad(e, URL,v.getUrl());
-		
-		servPersistencia.eliminarPropiedadEntidad(e, TITULO);
-		servPersistencia.anadirPropiedadEntidad(e, TITULO,v.getTitulo());
-		
-		servPersistencia.eliminarPropiedadEntidad(e, NUM_REPRO);
-		servPersistencia.anadirPropiedadEntidad(e, NUM_REPRO,Integer.toString(v.getNumRepro()));
-		
-		servPersistencia.eliminarPropiedadEntidad(e, ETIQUETAS);
-		servPersistencia.anadirPropiedadEntidad(e, ETIQUETAS,getIdEtiquetas(v.getEtiquetas()));
-		*/
 		
 		for (Propiedad prop : e.getPropiedades()) {
 			if (prop.getNombre().equals(TITULO)) {
@@ -121,7 +108,6 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 			} else if (prop.getNombre().equals(ETIQUETAS)) {
 				
 				prop.setValor(String.valueOf(getIdEtiquetas(v.getEtiquetas())));
-				//System.out.println("etiqueta = "+prop.getValor());
 			}
 			servPersistencia.modificarPropiedad(prop);
 		}
