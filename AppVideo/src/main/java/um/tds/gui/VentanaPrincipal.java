@@ -353,6 +353,7 @@ public static int hideLoginName() {
 					   if (Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
 						   
 						   Controlador.getUnicaInstancia().getUsuarioActual().becomePremium();
+						   JOptionPane.showMessageDialog(frame, "Usuario Premium", "Usuario Premium",JOptionPane.INFORMATION_MESSAGE);
 						   
 					   }
 					   
