@@ -158,7 +158,7 @@ public class PanelMisListas extends JPanel implements IWindow{
 			   public void actionPerformed(ActionEvent e) {
 				
 				   
-				  if(comboBox.getSelectedItem().toString()!=null && comboBox.getSelectedItem().toString()!="") {
+				  if(comboBox.getSelectedItem().toString()!=null && comboBox.getSelectedItem().toString()!="" && videoSeleccionado!=null) {
 					  
 					  addVideoPlayer();
 					  
@@ -218,12 +218,22 @@ public class PanelMisListas extends JPanel implements IWindow{
 
 	@Override
 	public void enterExplorar() {
-
-	
 		
-		for(ListaVideos l : Controlador.getUnicaInstancia().getListas()) {
+		
+		//Controlador.getUnicaInstancia().getUsuarioActual().addLista("listaprueba", Controlador.getUnicaInstancia().getVideos());
+		
+		//System.out.println(AdaptadorListas.getUnicaInstancia().recuperarTodasListaVideos());
+		
+		if(Controlador.getUnicaInstancia().getListas().size()>0) {
 			
-			comboBox.addItem(l.getNombre());
+			
+			for(ListaVideos l : Controlador.getUnicaInstancia().getListas()) {
+				
+				comboBox.addItem(l.getNombre());
+			}
+			
+			
+			
 		}
 		
 		
@@ -255,6 +265,7 @@ public class PanelMisListas extends JPanel implements IWindow{
 		panel_9.add(panel_10, BorderLayout.NORTH);
 		
 		
+		//System.out.println(Controlador.getUnicaInstancia().findVideo(videoSeleccionado));
 		
 		lblNewLabel_3 = new JLabel(Controlador.getUnicaInstancia().findVideo(videoSeleccionado).getTitulo());
 		lblNewLabel_3.setFont(new Font("Dialog", Font.BOLD, 20));
@@ -366,17 +377,21 @@ public class PanelMisListas extends JPanel implements IWindow{
 			
 			for(Video v:l) {
 				
-				
-				JButton boton= new JButton();
-				boton.setBackground(Color.gray);
-				boton.setActionCommand(v.getUrl());
-			
-				ImageIcon thumb = Lanzador.videoWeb.getSmallThumb(v.getUrl());
-				
-				boton.setIcon(thumb);
-				boton.addActionListener(listenerButtons);
-				
-				panel_4.add(boton);
+				if(v!=null) {
+					
+					JButton boton= new JButton();
+					boton.setBackground(Color.gray);
+					boton.setActionCommand(v.getUrl());
+					
+					ImageIcon thumb = Lanzador.videoWeb.getSmallThumb(v.getUrl());
+					
+					boton.setIcon(thumb);
+					boton.addActionListener(listenerButtons);
+					
+					panel_4.add(boton);
+					
+					
+				}
 			}
 			
 		}

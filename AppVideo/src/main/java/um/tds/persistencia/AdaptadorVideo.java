@@ -219,7 +219,7 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		v.setEtiquetas(getEtiquetaFromId(etiquetas));
 		
 		//System.out.println(v.getEtiquetas());
-		//TODO ETIQUETAS RECUPERAR BIEN
+		//ETIQUETAS RECUPERAR BIEN
 		
 		return v;
 	}

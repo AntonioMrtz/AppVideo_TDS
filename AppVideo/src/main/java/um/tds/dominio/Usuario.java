@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle.Control;
 
 import beans.Entidad;
+import um.tds.controlador.Controlador;
+import um.tds.persistencia.AdaptadorUsuario;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorListaVideosDAO;
@@ -178,11 +181,13 @@ public class Usuario {
 		listas.add(l);
 		
 		try {
-			System.out.println(FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l));
+			FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l);
 		} catch (DAOException e) {
 			
 			e.printStackTrace();
 		}
+		
+		AdaptadorUsuario.getUnicaInstancia().modificarUsuario(Controlador.getUnicaInstancia().getUsuarioActual());
 		
 		return true;
 		

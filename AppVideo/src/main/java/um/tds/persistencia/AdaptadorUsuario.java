@@ -180,7 +180,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		u.setFiltroActual(f);
 		
-		//TODO  AÑADIR LISTAS Y FILTROS
+		
 		
 		
 		return u;
@@ -349,7 +349,11 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 			
 		}
 		
-		
+		//System.out.println("recupero?");
+		for (Usuario u:users) {
+			
+			System.out.println(u.getListas());
+		}
 		return users;
 		
 	}

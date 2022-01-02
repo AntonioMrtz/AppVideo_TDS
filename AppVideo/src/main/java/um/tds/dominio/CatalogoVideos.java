@@ -63,7 +63,9 @@ public class CatalogoVideos {
 	
 	public Video getVideo(String url) {
 		for (Video v:videos.values()) {
-			if (v.getUrl()==url) return v;
+			
+			
+			if (v.getUrl().contentEquals(url)) return v;
 		}
 		return null;
 	}
@@ -223,9 +225,12 @@ public class CatalogoVideos {
 	private void cargarCatalogo() throws DAOException {
 		
 		 List<Video> videosBD = adaptadorVideo.recuperarTodosVideos();
+		 //System.out.println("cat vid"+videosBD);
 		 
 		 for (Video v: videosBD) 
 			 videos.put(v.getUrl(),v);
+		 
+		 
 		 
 	}
 	
