@@ -135,7 +135,8 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 		
 		for (Entidad e : ent) {
 			
-			 //servPersistencia.borrarEntidad(e);
+			/*System.out.println(e);
+			servPersistencia.borrarEntidad(e);*/
 			
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			listas.add(buildLista(eaux));

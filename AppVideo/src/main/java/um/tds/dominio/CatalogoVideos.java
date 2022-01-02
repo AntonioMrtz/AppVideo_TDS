@@ -74,7 +74,12 @@ public class CatalogoVideos {
 	
 	
 	public void addVideo(Video v) {
-		videos.put(v.getUrl(),v);
+		
+		if(!videos.keySet().contains(v)) {
+			
+			videos.put(v.getUrl(),v);
+			
+		}
 	}
 	public void removeVideo(Video v) {
 		videos.remove(v.getUrl());
@@ -203,11 +208,16 @@ public class CatalogoVideos {
 			control=0;
 		}
 		
-
 		return set;
 		
 	}
 	
+	
+	public void modifyVideo(Video v) {
+		
+		videos.replace(v.getUrl(), v);
+		
+	}
 	
 	/*Recupera todos los videos para trabajar con ellos en memoria*/
 	private void cargarCatalogo() throws DAOException {

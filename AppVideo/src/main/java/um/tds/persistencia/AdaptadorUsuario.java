@@ -342,9 +342,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		for (Entidad e : ent) {
 			
 			
+			//servPersistencia.borrarEntidad(e);
 			Entidad eaux=servPersistencia.recuperarEntidad(e.getId());
 			users.add(buildUser(eaux));
-			//servPersistencia.borrarEntidad(e);
 			
 			
 		}

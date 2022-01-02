@@ -87,6 +87,7 @@ public class Controlador implements VideoListener{
 	public void playVideo(Video v) {
 		
 		Lanzador.videoWeb.playVideo(v.getUrl());
+		v.incrementarRepro();
 		adaptadorVideo.modificarVideo(v);
 		
 		usuarioActual.addVideoHistorial(v);
@@ -95,7 +96,24 @@ public class Controlador implements VideoListener{
 		
 	}
 	
+	public void playVideo(String s) {
+		
+		Video v = findVideo(s);
+		v.incrementarRepro();
+		
+		Lanzador.videoWeb.playVideo(v.getUrl());
+		adaptadorVideo.modificarVideo(v);
+		
+		usuarioActual.addVideoHistorial(v);
+		adaptadorUsuario.modificarUsuario(usuarioActual);
+		
+		
+	}
 	
+	public void stopVideo() {
+		
+		Lanzador.videoWeb.cancel();
+	}
 	
 	
 	
@@ -185,7 +203,7 @@ public class Controlador implements VideoListener{
 	
 	public Etiqueta registrarEtiqueta(String e) {
 		
-		Etiqueta et=new Etiqueta("etiqueta");
+		Etiqueta et=new Etiqueta(e);
 		
 		adaptadorEtiqueta.registrarEtiqueta(et);
 		catalogoEtiquetas.addEtiqueta(et);
@@ -201,6 +219,12 @@ public class Controlador implements VideoListener{
 	public Video findVideo(Video v) {
 		
 		return catalogoVideos.getVideo(v.getUrl());
+	}
+	
+	public Video findVideo(String url) {
+		
+		return catalogoVideos.getVideo(url);
+		
 	}
 	
 	public Usuario findUser(Usuario us) {
@@ -320,6 +344,21 @@ public class Controlador implements VideoListener{
 		
 	}
 	
+	public List<Video> getLista(String s){
+		
+		for(ListaVideos l : usuarioActual.getListas()) {
+			
+			if (l.getNombre().equals(s)) {
+				
+				return l.getVideos();
+			}
+			
+		}
+		
+		return null;
+		
+	}
+	
 	
 	public List<Video> getRecientes(){
 		
@@ -374,10 +413,7 @@ public class Controlador implements VideoListener{
 			l.add(vid);
 			
 		}
-			
-			
 		
-		//System.out.println(l);
 		return l;
 		
 	}
@@ -396,5 +432,20 @@ public class Controlador implements VideoListener{
 		
 		
 	}
+	
+	public void addEtiquetaVideo(Video v,String et) {
+		
+		
+		registrarEtiqueta(et);
+		
+
+		v.addEtiqueta(findEtiqueta(new Etiqueta(et)));
+		
+		
+		catalogoVideos.modifyVideo(v);
+		adaptadorVideo.modificarVideo(v);
+		
+	}
+	
 	
 }

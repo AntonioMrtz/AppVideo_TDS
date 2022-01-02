@@ -399,6 +399,7 @@ public static int hideLoginName() {
 			   public void actionPerformed(ActionEvent e) {
 				   
 				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   mislistas.enterExplorar();
 					   switchWindow();
 					   activeCard= mislistas;
 					   cl.show(pantallaPrincipal,"mislistas");
@@ -472,7 +473,7 @@ public static int hideLoginName() {
 		}
 		else if (activeCard instanceof PanelMisListas) {
 			
-			//TODO
+			mislistas.exitExplorar();
 		}
 		
 		else if (activeCard instanceof PanelNuevaLista) {

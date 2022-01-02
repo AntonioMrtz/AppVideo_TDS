@@ -178,7 +178,7 @@ public class Usuario {
 		listas.add(l);
 		
 		try {
-			FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l);
+			System.out.println(FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l));
 		} catch (DAOException e) {
 			
 			e.printStackTrace();

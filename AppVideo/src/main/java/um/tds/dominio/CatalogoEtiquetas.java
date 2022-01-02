@@ -52,6 +52,7 @@ public class CatalogoEtiquetas {
 	
 	public Etiqueta getEtiqueta(String et) {
 		for (Etiqueta e:etiquetas.values()) {
+			
 			if (e.getNombre().equals(et)) return e;
 		}
 		return null;

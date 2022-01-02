@@ -56,8 +56,8 @@ public class PanelExplorar extends JPanel implements IWindow{
 			
 			cleanVideos();
 			panel_3.add(Lanzador.videoWeb);
-			Lanzador.videoWeb.playVideo(arg0.getActionCommand());
-			
+			//Lanzador.videoWeb.playVideo(arg0.getActionCommand());
+			Controlador.getUnicaInstancia().playVideo(arg0.getActionCommand());
 			
 		}
 	};
@@ -236,22 +236,7 @@ public class PanelExplorar extends JPanel implements IWindow{
 	public void enterExplorar() {
 		
 
-		//TODO CARGAR PANELES
-		
-
-		
-		
-		
-		String aux="";
-		
-		for(Etiqueta e: Controlador.getUnicaInstancia().getEtiquetas()) {
-			
-			aux+=e.getNombre();
-			aux+="\n";
-		}
-		
-		
-
+	
 		
 	}
 	
@@ -275,6 +260,7 @@ public class PanelExplorar extends JPanel implements IWindow{
 		}
 		
 		panel_3.repaint();
+		Controlador.getUnicaInstancia().stopVideo();
 		//textField.setText("");
 		
 	
@@ -292,12 +278,12 @@ public class PanelExplorar extends JPanel implements IWindow{
 		List<String> etiquetas = new ArrayList() ;
 		
 		
+		
 		for(int i=0;i<list_1.getModel().getSize();i++) {
 			
 			etiquetas.add(d2.getElementAt(i));
 						
 		}
-		
 		
 		
 		String titulo=textField.getText().trim();
