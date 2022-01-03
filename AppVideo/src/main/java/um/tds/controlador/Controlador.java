@@ -96,6 +96,7 @@ public class Controlador implements VideoListener{
 		adaptadorUsuario.modificarUsuario(usuarioActual);
 		
 		
+		
 	}
 	
 	public void playVideo(String s) {

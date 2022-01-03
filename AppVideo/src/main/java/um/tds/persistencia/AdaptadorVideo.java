@@ -201,11 +201,10 @@ public class AdaptadorVideo implements IAdaptadorVideoDAO {
 		v.setNumRepro(Integer.parseInt(numrepro));
 		v.setId(e.getId());
 		
-		//System.out.println("etiquetas ="+etiquetas);
+
 		v.setEtiquetas(getEtiquetaFromId(etiquetas));
 		
-		//System.out.println(v.getEtiquetas());
-		//ETIQUETAS RECUPERAR BIEN
+		
 		
 		return v;
 	}

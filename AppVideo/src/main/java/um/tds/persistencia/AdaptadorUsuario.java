@@ -38,6 +38,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	private static final String FECHA_NACIMIENTO = "fechaNacimiento";
 	private static final String PREMIUM = "premium";
 	private static final String FILTRO = "filtro";
+	private static final String RECIENTE = "reciente";
 	
 	/*
 	private static final String HISTORIAL = "historial";
@@ -53,7 +54,7 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	
 	private enum Properties{
 		
-		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM,FILTRO,LISTAS_REPRODUCCION;
+		USUARIO,NOMBRE,APELLIDOS,EMAIL,USER,PASSWORD,FECHA_NACIMIENTO,PREMIUM,FILTRO,LISTAS_REPRODUCCION,RECIENTE;
 	}
 	
 	
@@ -98,6 +99,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		array.add(new Propiedad(LISTAS_REPRODUCCION,getIdListas(u.getListas())));
 		
+		
+		array.add(new Propiedad(RECIENTE,getVideoIds(u.getRecientes())));
+		
 		String premium ;
 		if (u.isPremium()) {
 			premium="T";
@@ -133,7 +137,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		
 		///////
-		
 
 	
 		
@@ -177,6 +180,9 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		u.setId(e.getId());
 		
 		u.setListas(getListasFromId(servPersistencia.recuperarPropiedadEntidad(e,LISTAS_REPRODUCCION)));
+		
+		
+		u.setRecientes(getVideosFromId(servPersistencia.recuperarPropiedadEntidad(e, RECIENTE)));
 		
 		u.setFiltroActual(f);
 		
@@ -246,10 +252,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		if(e==null)	return true;
 		
-		/////////////////////////////////
-		
-		
-		
 		
 		
 		try {
@@ -275,7 +277,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 	}
 
 	
-	//TODO
 	@Override
 	public void modificarUsuario(Usuario us) {
 
@@ -345,7 +346,12 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 				prop.setValor(getIdListas(us.getListas()));
 				servPersistencia.modificarPropiedad(prop);
 			}
+		if(prop.getNombre().equals(RECIENTE)) {
 				
+			
+				prop.setValor(getVideoIds(us.getRecientes()));
+				servPersistencia.modificarPropiedad(prop);
+			}	
 			
 		}
 		
@@ -412,6 +418,40 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 
 		
 		return lista;
+	}
+	
+	public String getVideoIds(List<Video> l) {
+		
+		if(l.isEmpty()) return "";
+		
+		String aux = "";
+		for (Video v : l)
+			aux += v.getId() + " ";
+		
+		return aux.trim();
+		
+	}
+	
+	public List<Video> getVideosFromId(String s) {
+		
+		
+		List<Video> lista = new LinkedList<>();
+		if (s == null)
+			return lista;
+
+		try {
+			
+			StringTokenizer strTok = new StringTokenizer(s, " ");
+			
+			while (strTok.hasMoreTokens())
+				lista.add(FactoriaDAO.getInstancia().getVideoDAO().findVideo(Integer.valueOf((String) strTok.nextElement())));
+			
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		
+		return lista;
+		
 	}
 	
 

@@ -114,8 +114,9 @@ public class Usuario {
 	}
 
 
-	public void setRecientes(LinkedList<Video> historial) {
-		this.recientes = historial;
+	public void setRecientes(List<Video> historial) {
+		
+		this.recientes = new LinkedList<Video>(historial);
 	}
 
 
