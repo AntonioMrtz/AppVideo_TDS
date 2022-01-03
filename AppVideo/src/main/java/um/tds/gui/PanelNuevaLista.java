@@ -444,7 +444,7 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 				   
 				   
 				   
-					   //TODO LIMPIA PANEL TITULO , LOS 2 PANELES SCROLL Y BUSCAR
+					   
 				   	cleanAll();
 				   
 				   
@@ -471,13 +471,13 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 	}
 
 	@Override
-	public void enterExplorar() {
+	public void enter() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void exitExplorar() {
+	public void exit() {
 		
 		cleanAll();
 		

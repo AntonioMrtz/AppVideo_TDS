@@ -371,7 +371,7 @@ public static int hideLoginName() {
 					   switchWindow();
 					   activeCard= explorar;
 					   cl.show(pantallaPrincipal,"explorar");
-					   explorar.enterExplorar();
+					   explorar.enter();
 				  
 				   }
 			   }
@@ -385,6 +385,7 @@ public static int hideLoginName() {
 			   public void actionPerformed(ActionEvent e) {
 				  
 				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   nuevalistas.enter();
 					   switchWindow();
 					   activeCard= nuevalistas;
 					   cl.show(pantallaPrincipal,"nuevalista");
@@ -400,7 +401,7 @@ public static int hideLoginName() {
 			   public void actionPerformed(ActionEvent e) {
 				   
 				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
-					   mislistas.enterExplorar();
+					   mislistas.enter();
 					   switchWindow();
 					   activeCard= mislistas;
 					   cl.show(pantallaPrincipal,"mislistas");
@@ -417,6 +418,7 @@ public static int hideLoginName() {
 			   public void actionPerformed(ActionEvent e) {
 				
 				   if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+					   recientes.enter();
 					   switchWindow();
 					   activeCard= recientes;
 					   cl.show(pantallaPrincipal,"recientes");
@@ -462,21 +464,21 @@ public static int hideLoginName() {
 		
 		if (activeCard instanceof PanelExplorar) {
 			
-			explorar.exitExplorar();
+			explorar.exit();
 		}
 		
 		else if (activeCard instanceof PanelRecientes) {
 			
-			recientes.exitExplorar();
+			recientes.exit();
 		}
 		else if (activeCard instanceof PanelMisListas) {
 			
-			mislistas.exitExplorar();
+			mislistas.exit();
 		}
 		
 		else if (activeCard instanceof PanelNuevaLista) {
 			
-			nuevalistas.exitExplorar();
+			nuevalistas.exit();
 		}
 
 

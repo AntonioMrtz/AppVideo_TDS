@@ -217,7 +217,7 @@ public class PanelMisListas extends JPanel implements IWindow{
 	}
 
 	@Override
-	public void enterExplorar() {
+	public void enter() {
 		
 		
 		//Controlador.getUnicaInstancia().getUsuarioActual().addLista("listaprueba", Controlador.getUnicaInstancia().getVideos());
@@ -246,7 +246,7 @@ public class PanelMisListas extends JPanel implements IWindow{
 	}
 
 	@Override
-	public void exitExplorar() {
+	public void exit() {
 	
 		cleanPanel();
 		

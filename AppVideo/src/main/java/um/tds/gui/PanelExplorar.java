@@ -49,18 +49,6 @@ public class PanelExplorar extends JPanel implements IWindow{
 	private DefaultListModel<String> d2 = new DefaultListModel<String>();
 	
 	
-	private ActionListener listenerButtons= new ActionListener() {
-		
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			
-			cleanVideos();
-			panel_3.add(Lanzador.videoWeb);
-			//Lanzador.videoWeb.playVideo(arg0.getActionCommand());
-			Controlador.getUnicaInstancia().playVideo(arg0.getActionCommand());
-			
-		}
-	};
 	
 	
 	public PanelExplorar() {
@@ -233,14 +221,14 @@ public class PanelExplorar extends JPanel implements IWindow{
 	}
 	
 	
-	public void enterExplorar() {
+	public void enter() {
 		
 
 	
 		
 	}
 	
-	public void exitExplorar() {
+	public void exit() {
 		
 		/*Lanzador.videoWeb.cancel();
 		panel_3.remove(Lanzador.videoWeb);*/
@@ -330,6 +318,17 @@ public class PanelExplorar extends JPanel implements IWindow{
 	
 
 	
+	private ActionListener listenerButtons= new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			cleanVideos();
+			panel_3.add(Lanzador.videoWeb);
+			Controlador.getUnicaInstancia().playVideo(arg0.getActionCommand());
+			
+		}
+	};
 	
 
 }

@@ -351,6 +351,14 @@ public class Controlador implements VideoListener{
 	
 	//TODO get top 10 SOLO premium
 	
+	public List<Video> getTop10(){
+		
+		
+		return catalogoVideos.getTop10Videos();
+	}
+	
+	
+	
 	public List<ListaVideos> getListas(){
 		
 		if(usuarioActual!=null) {
