@@ -479,7 +479,7 @@ public static int hideLoginName() {
 		
 		else if (activeCard instanceof PanelNuevaLista) {
 			
-			//TODO
+			nuevalistas.exitExplorar();
 		}
 
 				

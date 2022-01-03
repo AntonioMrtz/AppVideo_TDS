@@ -18,10 +18,12 @@ import um.tds.dominio.Etiqueta;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
+import um.tds.persistencia.AdaptadorListas;
 import um.tds.persistencia.AdaptadorVideo;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorEtiquetasDAO;
+import um.tds.persistencia.IAdaptadorListaVideosDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;
 import um.tds.persistencia.IAdaptadorVideoDAO;
 
@@ -39,7 +41,7 @@ public class Controlador implements VideoListener{
 	private IAdaptadorUsuarioDAO adaptadorUsuario;
 	private IAdaptadorVideoDAO adaptadorVideo;
 	private IAdaptadorEtiquetasDAO adaptadorEtiqueta;
-	//TODO private IAdaptadorFiltroDAO adaptadorFiltro;
+	private  IAdaptadorListaVideosDAO adaptadorListaVideo;
 	//TODO LISTAS?
 	
 	private CatalogoUsuarios catalogoUsuarios;
@@ -214,6 +216,13 @@ public class Controlador implements VideoListener{
 	}
 	
 	
+	public void modifyLista(ListaVideos l) {
+		
+		
+		
+	}
+	
+	
 	/* FIND */
 	
 	public Video findVideo(Video v) {
@@ -236,6 +245,16 @@ public class Controlador implements VideoListener{
 	public Etiqueta findEtiqueta(Etiqueta e) {
 		
 		return catalogoEtiquetas.getEtiqueta(e.getNombre());
+	}
+	
+	public ListaVideos findLista(String s) {
+		
+		
+		for(ListaVideos l:usuarioActual.getListas()) {
+			
+			if (l.getNombre().equals(s)) return l;
+		}
+		return null;
 	}
 	
 	/* INICIALIZAR */

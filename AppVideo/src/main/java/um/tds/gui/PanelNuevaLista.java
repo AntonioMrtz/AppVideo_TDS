@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.HashSet;
 
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -15,10 +17,16 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
+
 import java.awt.Color;
 import javax.swing.ScrollPaneConstants;
 
+import um.tds.Lanzador;
 import um.tds.controlador.Controlador;
+import um.tds.dominio.ListaVideos;
+import um.tds.dominio.Video;
+import javax.swing.BoxLayout;
 
 
 public class PanelNuevaLista extends JPanel implements IWindow{
@@ -30,6 +38,9 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JTextField txtBuscarTtuloi;
+	private JPanel panel_5;
+	private ListaVideos lista;
+	private JPanel panel_6 ;
 
 	public PanelNuevaLista(){
 		setLayout(new BorderLayout(0, 0));
@@ -39,9 +50,9 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 		add(panelIzq, BorderLayout.WEST);
 		GridBagLayout gbl_panelIzq = new GridBagLayout();
 		gbl_panelIzq.columnWidths = new int[]{215, -26, 0, 0, 0};
-		gbl_panelIzq.rowHeights = new int[]{87, 0, 147, 0, -29, 0, 0};
+		gbl_panelIzq.rowHeights = new int[]{87, 0, 147, 0, -29, 0, 0, 0, 0};
 		gbl_panelIzq.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelIzq.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelIzq.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panelIzq.setLayout(gbl_panelIzq);
 		
 		JPanel superior = new JPanel();
@@ -113,12 +124,31 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				 
+				   ListaVideos aux = Controlador.getUnicaInstancia().findLista(textField.getText());
 				   
-				   //TODO  Coge nombre y comprueba si existe , si lo hace mostar elementos
-				   //TODO si no emergente y popup con aceptar/cancelar para crear lista
+				   if(aux!=null) {
 					   
-				   
+					   
+					   showVideos(panel_6, Controlador.getUnicaInstancia().getVideos(), "R");
+					   showVideos(panel_5,aux.getVideos(),"I");
+					   
+					   lista=aux;
+				   }
+				   else {
+					   
+					   
+					   JOptionPane.showConfirmDialog(null, "¿Desea añadir lista?");
+					   
+					   if(JOptionPane.OK_OPTION==0) {
+						   
+						   lista= new ListaVideos(Controlador.getUnicaInstancia().getUsuarioActual(), textField.getText());
+						   
+					   }
+					   
+					   
+				   }
+			
+					   	
 	 
 			   }
 			   
@@ -136,8 +166,8 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 			   public void actionPerformed(ActionEvent e) {
 				   
 				 
-				   //TODO  Elimina lista actual
-				   //TODO  Borra videos pantalla
+				   textField.setText("");
+				   lista=null;
 				   
 	 
 			   }
@@ -165,15 +195,16 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 		gbc_horizontalStrut_3.gridy = 1;
 		panelIzq.add(horizontalStrut_3, gbc_horizontalStrut_3);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
-		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
-		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridx = 0;
-		gbc_scrollPane.gridy = 2;
-		panelIzq.add(scrollPane, gbc_scrollPane);
-		scrollPane.getViewport().setBackground(Color.GRAY);
+		panel_5 = new JPanel();
+		panel_5.setBackground(Color.GRAY);
+		JScrollPane scroll = new JScrollPane(panel_5,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_5.setLayout(new BoxLayout(panel_5, BoxLayout.Y_AXIS));
+		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_5.fill = GridBagConstraints.BOTH;
+		gbc_panel_5.gridx = 0;
+		gbc_panel_5.gridy = 2;
+		panelIzq.add(scroll, gbc_panel_5);
 
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
@@ -220,52 +251,6 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
 		panel_2.setLayout(gbl_panel_2);
 		
-		JButton btnAadir_1 = new JButton("Añadir");
-		btnAadir_1.addActionListener(new ActionListener() {   // BOTON AÑADIR
-			
-			   public void actionPerformed(ActionEvent e) {
-				   
-				 
-				  JOptionPane.showConfirmDialog(null, "¿Desea añadir lista?");
-				   
-				  if(JOptionPane.OK_OPTION==0) {
-					
-					  //TODO AÑADIR LISTA
-				   }
-
-				  
-					   //TODO AÑADIMOS VIDEO DEL SCROLL DERECHO AL IZQUIERDO
-				   
-	 
-			   }
-			   
-	    });  
-		GridBagConstraints gbc_btnAadir_1 = new GridBagConstraints();
-		gbc_btnAadir_1.fill = GridBagConstraints.BOTH;
-		gbc_btnAadir_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnAadir_1.gridx = 0;
-		gbc_btnAadir_1.gridy = 0;
-		panel_2.add(btnAadir_1, gbc_btnAadir_1);
-		
-		JButton btnQuitar_1 = new JButton("Quitar");
-		
-		btnQuitar_1.addActionListener(new ActionListener() {   // BOTON QUITAR
-			
-			   public void actionPerformed(ActionEvent e) {
-				   
-				 
-					   //TODO QUITA EL VIDEO DE LA IZQUIERDA SELECCIONADO
-				   
-	 
-			   }
-			   
-	    });  
-		GridBagConstraints gbc_btnQuitar_1 = new GridBagConstraints();
-		gbc_btnQuitar_1.fill = GridBagConstraints.BOTH;
-		gbc_btnQuitar_1.gridx = 1;
-		gbc_btnQuitar_1.gridy = 0;
-		panel_2.add(btnQuitar_1, gbc_btnQuitar_1);
-		
 		Component verticalStrut_4 = Box.createVerticalStrut(20);
 		GridBagConstraints gbc_verticalStrut_4 = new GridBagConstraints();
 		gbc_verticalStrut_4.insets = new Insets(0, 0, 0, 5);
@@ -293,12 +278,41 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				 
-					   //TODO CREA PLAYLIST NIVEL GLOBAL PARA USUARIO
-				   		//TODO RESETEA SCROLL Y DERECHA
 				   
-	 
-			   }
+					 //System.out.println(lista);
+				   
+				   if(lista!=null) {
+					   
+					   
+					   
+					   ListaVideos aux = Controlador.getUnicaInstancia().findLista(textField.getText());
+					   
+					   if(aux!=null) {
+						   
+						   
+						   Controlador.getUnicaInstancia().registrarListaVideos(aux.getNombre(), aux.getVideos());
+						   
+					   }
+					   else {
+						   
+						   
+						   Controlador.getUnicaInstancia().registrarListaVideos(lista.getNombre(), lista.getVideos());
+						   
+						   
+						   
+						   
+						   
+						   
+					   }
+					   
+				   }
+				   
+				   
+				   
+				   cleanAll();
+			   }   
+				   
+
 			   
 	    });  
 		
@@ -316,27 +330,34 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 		gbc_verticalStrut_2.gridy = 4;
 		panelIzq.add(verticalStrut_2, gbc_verticalStrut_2);
 		
+		Component verticalStrut_5 = Box.createVerticalStrut(20);
+		GridBagConstraints gbc_verticalStrut_5 = new GridBagConstraints();
+		gbc_verticalStrut_5.insets = new Insets(0, 0, 5, 5);
+		gbc_verticalStrut_5.gridx = 0;
+		gbc_verticalStrut_5.gridy = 6;
+		panelIzq.add(verticalStrut_5, gbc_verticalStrut_5);
+		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		GridBagConstraints gbc_horizontalStrut = new GridBagConstraints();
 		gbc_horizontalStrut.insets = new Insets(0, 0, 0, 5);
 		gbc_horizontalStrut.gridx = 0;
-		gbc_horizontalStrut.gridy = 5;
+		gbc_horizontalStrut.gridy = 7;
 		panelIzq.add(horizontalStrut, gbc_horizontalStrut);
 		
 		JPanel panelCentral = new JPanel();
 		panelCentral.setBackground(Color.GRAY);
 		add(panelCentral, BorderLayout.CENTER);
 		GridBagLayout gbl_panelCentral = new GridBagLayout();
-		gbl_panelCentral.columnWidths = new int[]{0, 0, 0};
+		gbl_panelCentral.columnWidths = new int[]{0, 0};
 		gbl_panelCentral.rowHeights = new int[]{92, 0, 0};
-		gbl_panelCentral.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+		gbl_panelCentral.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gbl_panelCentral.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		panelCentral.setLayout(gbl_panelCentral);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.GRAY);
 		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
 		gbc_panel.gridy = 0;
@@ -395,9 +416,15 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 			   public void actionPerformed(ActionEvent e) {
 				   
 				 
-				   //TODO BUSCAR POR TITULO Y MOSTRAR EN PANEL
-					   
+				   String titulo=txtBuscarTtuloi.getText().trim();
+				  
+				   clearRightPanel();
 				   
+				   Collection<Video> videos=Controlador.getUnicaInstancia().filterVideo(titulo, null);
+				   
+				   showVideos(panel_6,videos,"D");
+				   
+				   txtBuscarTtuloi.setText("");
 	 
 			   }
 			   
@@ -415,8 +442,11 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 			
 			   public void actionPerformed(ActionEvent e) {
 				   
-				 
+				   
+				   
 					   //TODO LIMPIA PANEL TITULO , LOS 2 PANELES SCROLL Y BUSCAR
+				   	cleanAll();
+				   
 				   
 	 
 			   }
@@ -427,22 +457,14 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 		gbc_btnNuevaBusqueda.gridy = 3;
 		panel.add(btnNuevaBusqueda, gbc_btnNuevaBusqueda);
 		
-		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
-		GridBagConstraints gbc_horizontalStrut_5 = new GridBagConstraints();
-		gbc_horizontalStrut_5.insets = new Insets(0, 0, 5, 0);
-		gbc_horizontalStrut_5.gridx = 1;
-		gbc_horizontalStrut_5.gridy = 0;
-		panelCentral.add(horizontalStrut_5, gbc_horizontalStrut_5);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBackground(Color.GRAY);
-		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
-		gbc_scrollPane_1.insets = new Insets(0, 0, 0, 5);
-		gbc_scrollPane_1.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane_1.gridx = 0;
-		gbc_scrollPane_1.gridy = 1;
-		panelCentral.add(scrollPane_1, gbc_scrollPane_1);
-		scrollPane_1.getViewport().setBackground(Color.GRAY);
+		panel_6 = new JPanel();
+		JScrollPane scroll2 = new JScrollPane(panel_6,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panel_6.setBackground(Color.GRAY);
+		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.fill = GridBagConstraints.BOTH;
+		gbc_panel_6.gridx = 0;
+		gbc_panel_6.gridy = 1;
+		panelCentral.add(scroll2, gbc_panel_6);
 		
 		
 		
@@ -456,21 +478,164 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 
 	@Override
 	public void exitExplorar() {
-		// TODO Auto-generated method stub
+		
+		cleanAll();
+		
+
 		
 	}
 	
 	
 	private void clearLeftPanel() {
-		// TODO Auto-generated method stub
+		
+
+		for(Component c:panel_5.getComponents()) {
+			
+			panel_5.remove(c);
+		}
 		
 	}
 	
 	private void clearRightPanel() {
-		// TODO Auto-generated method stub
+		
+		for(Component c:panel_6.getComponents()) {
+			
+			panel_6.remove(c);
+		}
 		
 	}
 	
 	
+	private void cleanAll() {
+		
 
+		clearLeftPanel();
+		clearRightPanel();
+		
+		textField.setText("");
+		txtBuscarTtuloi.setText("");
+		
+		panel_5.revalidate();
+		panel_6.revalidate();
+		panel_5.repaint();
+		panel_6.repaint();
+	}
+	
+	private void showVideos(JPanel j,Collection<Video> videos,String s) {
+		
+		
+		for(Video v:videos) {
+			
+			
+			
+			
+			JButton boton= new JButton();
+			boton.setBackground(Color.gray);
+			boton.setActionCommand(v.getUrl());
+		
+			ImageIcon thumb = Lanzador.videoWeb.getSmallThumb(v.getUrl());
+			
+			boton.setIcon(thumb);
+			
+			if(s.equals("I")) boton.addActionListener(listenerButtonsLeftPanel);
+			
+			else boton.addActionListener(listenerButtonsRightPanel);
+			
+			int control=0;
+			
+			if(j==panel_5) {
+				
+				
+				for(Component c:panel_5.getComponents()) {
+					
+					
+					if(c instanceof JButton) {
+						
+						if(((JButton) c).getActionCommand().equals(v.getUrl())) {
+							
+							control=1;
+						}
+						
+					}
+				}
+				
+				if(control==0) j.add(boton);
+				
+			}
+			
+			else j.add(boton);
+			
+			
+			
+			
+		}
+		
+		j.revalidate();
+		j.repaint();
+		
+	}
+	
+	private ActionListener listenerButtonsRightPanel= new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			//meter urls a la lista
+			
+			
+			if(lista!=null) {
+				
+				
+				Video v=Controlador.getUnicaInstancia().findVideo(arg0.getActionCommand());
+				
+				lista.addVideo(Controlador.getUnicaInstancia().findVideo(arg0.getActionCommand()));
+				
+				Collection<Video> listv = new HashSet();
+				listv.add(v);
+				
+				
+				showVideos(panel_5, listv, "I");
+				
+				
+			}
+			
+			else {
+				
+				JOptionPane.showInternalMessageDialog(null, "Primer debes seleccionar una lista");
+				
+			}
+			
+			
+		}
+	};
+
+	
+	private ActionListener listenerButtonsLeftPanel= new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			
+			
+			Video v=Controlador.getUnicaInstancia().findVideo(arg0.getActionCommand());
+			
+			lista.delVideo(v);
+			
+			for(Component c:panel_5.getComponents()) {
+				
+				
+				if(c instanceof JButton) {
+					
+					if(((JButton) c).getActionCommand().equals(arg0.getActionCommand())){
+						
+						panel_5.remove(c);
+						panel_5.revalidate();
+						panel_5.repaint();
+					}
+					
+				}
+			}
+			
+			
+		}
+	};
 }

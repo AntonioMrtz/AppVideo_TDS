@@ -370,12 +370,22 @@ public class PanelMisListas extends JPanel implements IWindow{
 	
 	private void showList(String lista) {
 		
+		
+		for(Component c:panel_4.getComponents()) {
+			
+			panel_4.remove(c);
+		}
+		
+		
 		List<Video> l=Controlador.getUnicaInstancia().getLista(lista);
 		
 		
 		if(l!=null) {
 			
 			for(Video v:l) {
+				
+				
+				
 				
 				if(v!=null) {
 					

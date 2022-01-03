@@ -130,7 +130,7 @@ public class AdaptadorListas implements IAdaptadorListaVideosDAO {
 			
 			if(prop.getNombre().equals(USUARIO)) {
 				
-				prop.setValor(String.valueOf(l.getUser().getId()));
+				prop.setValor(String.valueOf(Controlador.getUnicaInstancia().getUsuarioActual().getId()));
 				servPersistencia.modificarPropiedad(prop);
 			}
 			if(prop.getNombre().equals(VIDEOS)) {
