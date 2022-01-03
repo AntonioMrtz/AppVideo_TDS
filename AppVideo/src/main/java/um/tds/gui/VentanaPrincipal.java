@@ -458,19 +458,16 @@ public static int hideLoginName() {
 	public void switchWindow() { // dependiendo del card actual actuamos de una manera u otra
 		
 		
-		if (activeCard instanceof PanelLogin) {
-			
-			//TODO
-		}
+	
 		
-		else if (activeCard instanceof PanelExplorar) {
+		if (activeCard instanceof PanelExplorar) {
 			
 			explorar.exitExplorar();
 		}
 		
-		else if (activeCard instanceof PanelMasVistos) {
+		else if (activeCard instanceof PanelRecientes) {
 			
-			//TODO
+			recientes.exitExplorar();
 		}
 		else if (activeCard instanceof PanelMisListas) {
 			
@@ -482,15 +479,7 @@ public static int hideLoginName() {
 			nuevalistas.exitExplorar();
 		}
 
-				
-		else if (activeCard instanceof PanelRegistro) {
-	
-			//TODO
-		}
-		
-		
-		
-		
+
 		
 	}
 	

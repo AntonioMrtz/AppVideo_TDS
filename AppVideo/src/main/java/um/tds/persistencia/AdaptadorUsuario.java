@@ -248,7 +248,6 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		/////////////////////////////////
 		
-		//TODO BORRAR LISTAS 
 		
 		
 		
