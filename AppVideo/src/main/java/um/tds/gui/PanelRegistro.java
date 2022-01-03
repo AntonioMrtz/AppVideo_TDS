@@ -1,22 +1,23 @@
 package um.tds.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.Box;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
-import java.awt.event.ActionEvent;
+
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import com.toedter.calendar.JDateChooser;
 
 import um.tds.controlador.Controlador;

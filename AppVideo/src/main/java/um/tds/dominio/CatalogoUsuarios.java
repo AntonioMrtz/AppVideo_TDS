@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import um.tds.persistencia.AdaptadorUsuario;
+
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;

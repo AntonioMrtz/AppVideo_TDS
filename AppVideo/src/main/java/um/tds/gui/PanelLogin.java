@@ -16,8 +16,6 @@ import java.awt.Component;
 import java.awt.Dimension;
 
 import javax.swing.Box;
-import javax.swing.JFrame;
-
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

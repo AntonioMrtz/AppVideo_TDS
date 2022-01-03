@@ -1,9 +1,7 @@
 package um.tds.controlador;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.EventObject;
@@ -28,7 +26,6 @@ import um.tds.dominio.Etiqueta;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
-import um.tds.persistencia.AdaptadorListas;
 import um.tds.persistencia.AdaptadorVideo;
 import um.tds.persistencia.DAOException;
 import um.tds.persistencia.FactoriaDAO;

@@ -3,12 +3,9 @@ package um.tds.dominio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ResourceBundle.Control;
 
-import beans.Entidad;
 import um.tds.controlador.Controlador;
 import um.tds.persistencia.AdaptadorUsuario;
 import um.tds.persistencia.DAOException;

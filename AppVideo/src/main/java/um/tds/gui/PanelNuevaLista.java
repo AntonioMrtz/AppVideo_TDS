@@ -20,8 +20,6 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 
 import java.awt.Color;
-import javax.swing.ScrollPaneConstants;
-
 import um.tds.Lanzador;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.ListaVideos;
@@ -590,7 +588,7 @@ public class PanelNuevaLista extends JPanel implements IWindow{
 				
 				lista.addVideo(Controlador.getUnicaInstancia().findVideo(arg0.getActionCommand()));
 				
-				Collection<Video> listv = new HashSet();
+				Collection<Video> listv = new HashSet<Video>();
 				listv.add(v);
 				
 				

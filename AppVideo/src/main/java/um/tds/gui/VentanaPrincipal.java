@@ -5,16 +5,12 @@ import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.EventObject;
-import java.util.ResourceBundle.Control;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -26,20 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 
-import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.pdf.PdfWriter;
 
 import pulsador.IEncendidoListener;
 import pulsador.Luz;
-import tds.video.VideoWeb;
-import um.tds.Lanzador;
-import um.tds.componente.CargadorVideos;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.Usuario;
-import um.tds.persistencia.AdaptadorVideo;
-import java.awt.Insets;
-import java.awt.FlowLayout;
 
 public class VentanaPrincipal implements IEncendidoListener {
 

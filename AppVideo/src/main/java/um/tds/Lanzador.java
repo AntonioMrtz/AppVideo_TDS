@@ -1,11 +1,7 @@
 package um.tds;
 
 import java.awt.EventQueue;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import beans.Entidad;
-import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import tds.video.VideoWeb;

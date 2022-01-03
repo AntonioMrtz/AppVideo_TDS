@@ -1,38 +1,32 @@
 package um.tds.gui;
 
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-
 import java.awt.BorderLayout;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
-import javax.swing.Box;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle.Control;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 
 import um.tds.Lanzador;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.ListaVideos;
 import um.tds.dominio.Video;
-import um.tds.persistencia.AdaptadorListas;
-import um.tds.persistencia.AdaptadorUsuario;
-
-import java.awt.Color;
-import javax.swing.JTextField;
-import java.awt.Font;
 
 public class PanelMisListas extends JPanel implements IWindow{
 
@@ -112,7 +106,7 @@ public class PanelMisListas extends JPanel implements IWindow{
 		gbc_lblNewLabel.gridy = 0;
 		panel_3.add(lblNewLabel, gbc_lblNewLabel);
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.addItem("");
 		comboBox.addActionListener (new ActionListener () {
 		    public void actionPerformed(ActionEvent e) {

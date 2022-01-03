@@ -77,7 +77,7 @@ public class CatalogoVideos {
 	
 	public void addVideo(Video v) {
 		
-		if(!videos.keySet().contains(v)) {
+		if(!videos.keySet().contains(v.getUrl())) {
 			
 			videos.put(v.getUrl(),v);
 			
@@ -148,7 +148,7 @@ public class CatalogoVideos {
 	
 	public Collection<Video> filterFilter(Filtro f){
 		
-		HashSet<Video> set = new HashSet();
+		HashSet<Video> set = new HashSet<Video>();
 		
 		for(Video v:videos.values()) {
 			
@@ -182,7 +182,7 @@ public class CatalogoVideos {
 	
 	public Collection<Video> filterEtiqueta(List<String> e){
 		
-		HashSet<Video> set = new HashSet();
+		HashSet<Video> set = new HashSet<Video>();
 		int control=0;
 		
 		

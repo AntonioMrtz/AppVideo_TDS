@@ -3,7 +3,7 @@ package um.tds.persistencia;
 import java.util.List;
 
 import um.tds.dominio.Etiqueta;
-import um.tds.dominio.Filtro;
+
 
 public interface IAdaptadorEtiquetasDAO {
 	

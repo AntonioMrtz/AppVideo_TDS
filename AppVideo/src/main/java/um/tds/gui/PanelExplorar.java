@@ -20,18 +20,15 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.ListModel;
-import javax.swing.table.DefaultTableModel;
 
 import um.tds.Lanzador;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.Etiqueta;
 import um.tds.dominio.Video;
-import javax.swing.JList;
 
 
 public class PanelExplorar extends JPanel implements IWindow{

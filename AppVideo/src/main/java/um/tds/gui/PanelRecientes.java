@@ -44,7 +44,7 @@ public class PanelRecientes extends JPanel implements IWindow{
 	private JPanel panel_8;
 	private JPanel panel_9;
 	
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
@@ -108,7 +108,7 @@ public class PanelRecientes extends JPanel implements IWindow{
 		gbc_lblNewLabel.gridy = 1;
 		panel_3.add(lblNewLabel, gbc_lblNewLabel);
 		
-		 comboBox = new JComboBox();
+		 comboBox = new JComboBox<String>();
 		comboBox.addItem("");
 		comboBox.addItem("Recientes");
 		

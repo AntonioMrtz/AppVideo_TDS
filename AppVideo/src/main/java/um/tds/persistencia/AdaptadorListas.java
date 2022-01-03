@@ -1,6 +1,5 @@
 package um.tds.persistencia;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -10,9 +9,7 @@ import beans.Propiedad;
 import tds.driver.FactoriaServicioPersistencia;
 import tds.driver.ServicioPersistencia;
 import um.tds.controlador.Controlador;
-import um.tds.dominio.Etiqueta;
 import um.tds.dominio.ListaVideos;
-import um.tds.dominio.Usuario;
 import um.tds.dominio.Video;
 
 public class AdaptadorListas implements IAdaptadorListaVideosDAO {
