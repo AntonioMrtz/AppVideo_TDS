@@ -1,10 +1,20 @@
 package um.tds.controlador;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.EventObject;
 import java.util.LinkedList;
 import java.util.List;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import um.tds.Lanzador;
 import um.tds.componente.CargadorVideos;
@@ -474,6 +484,49 @@ public class Controlador implements VideoListener{
 		adaptadorVideo.modificarVideo(v);
 		
 	}
+	
+	
+	public void generarPdf() throws DocumentException, IOException {
+		
+		 if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
+			   
+			   
+			 Document doc = new Document();
+			
+			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("AppVideo-pdf.pdf"));
+			
+			   
+			  doc.open();
+			  
+			  
+			  Image logo = Image.getInstance("src/main/java/recursos/AppVideo (1).png");
+			  
+			  doc.add(logo);
+			  
+			  for(ListaVideos l:usuarioActual.getListas()) {
+				  
+				  
+				  doc.add(new Paragraph(l.getNombre().toUpperCase()));
+				  doc.add(new Paragraph(" "));
+				  
+				  for(Video v:l.getVideos()) {
+					  
+					  
+					  doc.add(new Paragraph("    "+v.getTitulo()));
+					  
+				  }
+				  
+				  
+				  
+				  doc.add(new Paragraph(" "));
+			  }
+			  
+			  doc.close();
+			  
+		 }
+	
+	}
+	
 	
 	
 }

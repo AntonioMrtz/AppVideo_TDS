@@ -10,7 +10,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.EventObject;
+import java.util.ResourceBundle.Control;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -22,6 +26,10 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.MatteBorder;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import pulsador.IEncendidoListener;
 import pulsador.Luz;
 import tds.video.VideoWeb;
@@ -30,6 +38,8 @@ import um.tds.componente.CargadorVideos;
 import um.tds.controlador.Controlador;
 import um.tds.dominio.Usuario;
 import um.tds.persistencia.AdaptadorVideo;
+import java.awt.Insets;
+import java.awt.FlowLayout;
 
 public class VentanaPrincipal implements IEncendidoListener {
 
@@ -63,42 +73,7 @@ public class VentanaPrincipal implements IEncendidoListener {
 
 		   return 0;
 }
-	
-	/*
-public static int hideLoginName() {
-		
-		
-		user = Controlador.getUnicaInstancia().getUsuarioActual();
-		   if(user==null) {
-			   panel_login_name.setVisible(false);
-		   }else {
-			   lblTest.setText(user.getUsuario());
-			   panel_login_name.setVisible(true);
-		   }
 
-		  return 0;
-}*/
-	
-
-	/**
-	 * Launch the application.
-	 */
-	/*
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaPrincipal window = new VentanaPrincipal();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-				}
-			}
-		});
-	}*/
-
-	/**
-	 * Create the application.
-	 */
 	public VentanaPrincipal() {
 		initialize();
 	}
@@ -221,12 +196,6 @@ public static int hideLoginName() {
 		panel_2.setBackground(Color.LIGHT_GRAY);
 		panel_2.setForeground(Color.LIGHT_GRAY);
 		panel_1.add(panel_2, BorderLayout.NORTH);
-		GridBagLayout gbl_panel_2 = new GridBagLayout();
-		gbl_panel_2.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-		gbl_panel_2.rowHeights = new int[]{0, 0};
-		gbl_panel_2.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_2.setLayout(gbl_panel_2);
 		
 		Button button_4 = new Button("Explorar");
 		button_4.setForeground(Color.WHITE);
@@ -235,35 +204,28 @@ public static int hideLoginName() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		GridBagConstraints gbc_button_4 = new GridBagConstraints();
-		gbc_button_4.gridheight = 0;
-		gbc_button_4.gridx = 0;
-		gbc_button_4.gridy = 0;
-		panel_2.add(button_4, gbc_button_4);
+		panel_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		panel_2.add(button_4);
 		
 		Button button_5 = new Button("Mis Listas");
 		button_5.setBackground(Color.LIGHT_GRAY);
 		button_5.setForeground(Color.WHITE);
-		GridBagConstraints gbc_button_5 = new GridBagConstraints();
-		gbc_button_5.gridx = 1;
-		gbc_button_5.gridy = 0;
-		panel_2.add(button_5, gbc_button_5);
+		panel_2.add(button_5);
 		
-		Button button_6 = new Button("Recientes");
+		Button button_6 = new Button("Otras Listas");
 		button_6.setForeground(Color.WHITE);
 		button_6.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_button_6 = new GridBagConstraints();
-		gbc_button_6.gridx = 2;
-		gbc_button_6.gridy = 0;
-		panel_2.add(button_6, gbc_button_6);
+		panel_2.add(button_6);
 		
 		Button button_7 = new Button("Nueva Lista");
 		button_7.setBackground(Color.LIGHT_GRAY);
 		button_7.setForeground(Color.WHITE);
-		GridBagConstraints gbc_button_7 = new GridBagConstraints();
-		gbc_button_7.gridx = 3;
-		gbc_button_7.gridy = 0;
-		panel_2.add(button_7, gbc_button_7);
+		panel_2.add(button_7);
+		
+		Button button_7_1 = new Button("Generar PDF");
+		button_7_1.setForeground(Color.WHITE);
+		button_7_1.setBackground(Color.LIGHT_GRAY);
+		panel_2.add(button_7_1);
 		
 		
 		
@@ -428,7 +390,34 @@ public static int hideLoginName() {
 			   
 	    });
 		
+	    button_7_1.addActionListener(new ActionListener() {   // BOTON GENERAR PDF
+			
+			   public void actionPerformed(ActionEvent e) {
+				
+				  
+					  
+					  try {
+						Controlador.getUnicaInstancia().generarPdf();
+						
+						JOptionPane.showMessageDialog(null, "Documento pdf generado en la carpeta del proyecto");
+					} catch (FileNotFoundException | DocumentException e1) {
+						
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					  
+					  
+					  
+					   
+				   }
+				   
+			   
+			   
+	    });
 	}
+	
 	
 	
 

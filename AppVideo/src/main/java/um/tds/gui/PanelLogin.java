@@ -257,7 +257,7 @@ public class PanelLogin extends JPanel{
 		add(horizontalStrut_9, gbc_horizontalStrut_9);
 		
 		Button button = new Button("Aceptar");
-		button.setForeground(Color.BLACK);
+		button.setForeground(Color.WHITE);
 		GridBagConstraints gbc_button = new GridBagConstraints();
 		gbc_button.insets = new Insets(0, 0, 5, 5);
 		gbc_button.gridx = 12;
@@ -279,7 +279,7 @@ public class PanelLogin extends JPanel{
 		add(horizontalStrut_14, gbc_horizontalStrut_14);
 		
 		Button button_1 = new Button("Cancelar");
-		button_1.setForeground(Color.BLACK);
+		button_1.setForeground(Color.WHITE);
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
