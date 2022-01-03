@@ -250,6 +250,26 @@ public class AdaptadorUsuario implements IAdaptadorUsuarioDAO{
 		
 		//TODO BORRAR LISTAS 
 		
+		
+		
+		
+		try {
+			IAdaptadorListaVideosDAO adaptadorlistas = FactoriaDAO.getInstancia().getListasDAO();
+			
+			for(ListaVideos l:us.getListas()) {
+				
+				adaptadorlistas.borrarListaVideo(l);
+			}
+			
+		} catch (DAOException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		
+		
+		
+		
 		return servPersistencia.borrarEntidad(e);
 		
 		
