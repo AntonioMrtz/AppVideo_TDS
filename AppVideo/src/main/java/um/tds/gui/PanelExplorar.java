@@ -260,7 +260,7 @@ public class PanelExplorar extends JPanel implements IWindow{
 		
 				
 		
-		List<String> etiquetas = new ArrayList() ;
+		List<String> etiquetas = new ArrayList<String>() ;
 		
 		
 		

@@ -38,5 +38,6 @@
 	<classpathentry kind="lib" path="lib/javafx-swing-11.jar"/>
 	<classpathentry kind="lib" path="lib/javafx-web-11.jar"/>
 	<classpathentry kind="lib" path="lib/itext-5.0.6.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

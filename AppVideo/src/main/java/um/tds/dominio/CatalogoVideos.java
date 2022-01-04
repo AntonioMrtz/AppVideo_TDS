@@ -163,7 +163,7 @@ public class CatalogoVideos {
 	
 	public Collection<Video> filterTitle(String s){
 		
-		HashSet<Video> set = new HashSet();
+		HashSet<Video> set = new HashSet<Video>();
 		
 		for(Video v:videos.values()) {
 			
