@@ -9,13 +9,17 @@ public class FiltroAdultFilter extends Filtro {
 	@Override
 	public boolean isVideoOk(Video v) {
 
-		for (Etiqueta e : v.getEtiquetas()) {
+		/*for (Etiqueta e : v.getEtiquetas()) {
 
 			if (e.getNombre().equals("Adulto"))
 				return false;
 		}
 
-		return true;
+		return true;*/
+		
+		return v.getEtiquetas().stream()
+				.anyMatch(e->e.getNombre().equals("Adulto"));
+		
 	}
 
 	@Override
