@@ -40,35 +40,33 @@ import um.tds.persistencia.IAdaptadorVideoDAO;
 public class Controlador implements VideoListener{
 	
 	
-	//singleton
+	//Patron singleton para tener un solo controlador
 	private static Controlador unicaInstancia;
 	
-	
+	// Adaptadores correspondientes para acceder a las diferentes entidades del servidor
 
 	private IAdaptadorUsuarioDAO adaptadorUsuario;
 	private IAdaptadorVideoDAO adaptadorVideo;
 	private IAdaptadorEtiquetasDAO adaptadorEtiqueta;
 	private  IAdaptadorListaVideosDAO adaptadorListaVideo;
-	//TODO LISTAS?
+
+	// Catálogos locales
 	
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
 	private CatalogoEtiquetas catalogoEtiquetas;
-	//TODO LISTAS?
+
 	
 	private Usuario usuarioActual;
 	
+	
+	
 	private CargadorVideos cargadorVideos;
-	//private 
+
 	
 	
-	private Controlador()  {
-		
-		/*try {
-			FactoriaDAO factoria = FactoriaDAO.getInstancia();
-		} catch (DAOException e) {
-			e.printStackTrace();
-		}*/
+	private Controlador()  { // Cargamos datos del servidor e inicializamos adaptadores
+	
 		
 
 		usuarioActual=null;
@@ -91,9 +89,10 @@ public class Controlador implements VideoListener{
 	}
 	
 	
+	/* REPRODUCTOR VIDEO */
 	
 	
-	public void playVideo(Video v) {
+	public void playVideo(Video v) { // Unificacion para reproducir video y contar reproducciones
 		
 		Lanzador.videoWeb.playVideo(v.getUrl());
 		v.incrementarRepro();
@@ -106,7 +105,7 @@ public class Controlador implements VideoListener{
 		
 	}
 	
-	public void playVideo(String s) {
+	public void playVideo(String s) { // Igual que el anterior pero solo con url
 		
 		Video v = findVideo(s);
 		v.incrementarRepro();
@@ -180,7 +179,7 @@ public class Controlador implements VideoListener{
 		
 		catalogoUsuarios.addUsuario(u);
 		
-		usuarioActual=u;		// NADA MAS REGISTRAR YA SE INICIE SESION
+		usuarioActual=u;		// NADA MAS REGISTRAR YA SE INICIA SESION
 		
 		return true;
 	}
@@ -199,7 +198,7 @@ public class Controlador implements VideoListener{
 		
 	}
 
-	public void registrarListaVideos(String nombre,List<Video> videos) {
+	public void registrarListaVideos(String nombre,List<Video> videos) {  // Realiza tambien la funcion de actualizar la lista
 		
 		
 		if(usuarioActual.addLista(nombre,videos)) {
@@ -223,12 +222,6 @@ public class Controlador implements VideoListener{
 		
 	}
 	
-	
-	public void modifyLista(ListaVideos l) {
-		
-		
-		
-	}
 	
 	
 	/* FIND */
@@ -264,6 +257,9 @@ public class Controlador implements VideoListener{
 		}
 		return null;
 	}
+	
+	
+	
 	
 	/* INICIALIZAR */
 	
@@ -357,7 +353,6 @@ public class Controlador implements VideoListener{
 	
 	
 	
-	//TODO get top 10 SOLO premium
 	
 	public List<Video> getTop10(){
 		
@@ -367,7 +362,7 @@ public class Controlador implements VideoListener{
 	
 	
 	
-	public List<ListaVideos> getListas(){
+	public List<ListaVideos> getListas(){ // Obtenemos todas las listas para el usuario
 		
 		if(usuarioActual!=null) {
 			
@@ -395,7 +390,7 @@ public class Controlador implements VideoListener{
 	}
 	
 	
-	public List<Video> getRecientes(){
+	public List<Video> getRecientes(){ // Devuelve historial
 		
 		if(usuarioActual!=null) {
 			
@@ -406,9 +401,17 @@ public class Controlador implements VideoListener{
 		return null;
 		
 	}
+	
+	public void modifyUser(Usuario us) {
+		
+		adaptadorUsuario.modificarUsuario(us);
+	}
 
 	
 	/*				CARGADOR VIDEOS			*/
+	
+	//Cargamos los videos en el servidor y catalogo local
+	
 	@Override
 	public void enteradoCambios(EventObject e) {
 		

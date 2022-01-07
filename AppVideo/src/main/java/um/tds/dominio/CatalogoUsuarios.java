@@ -55,7 +55,7 @@ public class CatalogoUsuarios {
 	public Usuario getUsuario(String us) {
 
 		for (Usuario u:usuarios.values()) {
-			//if (u.getUsuario()==us) return u;
+			
 			if (u.getUsuario().equals(us)) return u;
 		}
 		return null;

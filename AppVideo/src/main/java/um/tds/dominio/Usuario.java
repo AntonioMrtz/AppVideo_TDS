@@ -36,12 +36,7 @@ public class Usuario {
 	
 	private static IAdaptadorListaVideosDAO adaptadorListaVideosDAO=null;
 	
-	
-	
-	//TODO listas de reproduccion de videos
-	//TODO lista de videos recientes
-	//TODO lista top 10 ! solo PREMIUM
-	//TODO Filtro ! solo PREMIUM
+
 
 	public Usuario(String nombre,String apellidos, String email,boolean premium,String user,String contraseña,LocalDate fecha) {  // se crean los usuarios como no premium , cambiar si necesario
 
@@ -179,13 +174,15 @@ public class Usuario {
 		listas.add(l);
 		
 		try {
-			FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l);
+			FactoriaDAO.getInstancia().getListasDAO().registrarListaVideos(l); // guardamos en servidor
 		} catch (DAOException e) {
 			
 			e.printStackTrace();
 		}
 		
-		AdaptadorUsuario.getUnicaInstancia().modificarUsuario(Controlador.getUnicaInstancia().getUsuarioActual());
+		//AdaptadorUsuario.getUnicaInstancia().modificarUsuario(Controlador.getUnicaInstancia().getUsuarioActual());
+		
+		Controlador.getUnicaInstancia().modifyUser(Controlador.getUnicaInstancia().getUsuarioActual());
 		
 		return true;
 		

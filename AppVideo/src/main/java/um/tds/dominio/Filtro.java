@@ -2,7 +2,7 @@ package um.tds.dominio;
 
 public abstract class Filtro {
 	
-	//obligatorios -> sin filtro,mis listas,adultos
+	// Clase abstracta filtro que obliga a definir una funcion para aceptar videos
 
 	abstract public boolean isVideoOk(Video v);
 	

@@ -12,6 +12,8 @@ public class Etiqueta {
 	}
 	
 	
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -32,6 +34,10 @@ public class Etiqueta {
 	}
 
 
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return getNombre()+" "+getId();

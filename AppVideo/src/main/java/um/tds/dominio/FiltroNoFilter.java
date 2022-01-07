@@ -2,6 +2,9 @@ package um.tds.dominio;
 
 public class FiltroNoFilter extends Filtro{
 
+	// SIEMPRE DEVUELVE VERDADERO
+	
+	
 	public static final String FILTRO="um.tds.dominio.FiltroNoFilter" ;
 	
 	@Override

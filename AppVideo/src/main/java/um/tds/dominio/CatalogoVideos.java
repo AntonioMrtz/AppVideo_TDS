@@ -87,18 +87,6 @@ public class CatalogoVideos {
 		videos.remove(v.getUrl());
 	}
 	
-	Comparator<Video> compareByNumRepro = new Comparator<Video>() {
-		@Override
-		public int compare(Video o1, Video o2) {
-			
-			Integer v1 = o1.getNumRepro();
-			Integer v2 = o2.getNumRepro();
-			
-			return v1.compareTo(v2);
-			
-		}
-
-	};
 	
 	
 	
@@ -119,7 +107,7 @@ public class CatalogoVideos {
 		
 		for(Video v :aux) {
 			
-			if(cont==10) break;
+			if(cont==NUM_VIDEOS_TOP) break;
 			
 			top10.add(v);
 			
@@ -130,6 +118,21 @@ public class CatalogoVideos {
 		
 	}
 	
+	Comparator<Video> compareByNumRepro = new Comparator<Video>() { // COMPARADOR PARA ORDENADOR VIDEOS segun repros
+		@Override
+		public int compare(Video o1, Video o2) {
+			
+			Integer v1 = o1.getNumRepro();
+			Integer v2 = o2.getNumRepro();
+			
+			return v1.compareTo(v2);
+			
+		}
+		
+	};
+	
+	
+	/* FILTROS */
 	
 	public Collection<Video> filterVideo(Filtro f,String titulo,List<String> e ){
 		
@@ -213,6 +216,11 @@ public class CatalogoVideos {
 		return set;
 		
 	}
+	
+	
+	
+	
+	
 	
 	
 	public void modifyVideo(Video v) {
