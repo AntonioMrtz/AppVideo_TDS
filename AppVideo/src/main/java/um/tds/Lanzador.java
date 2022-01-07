@@ -8,7 +8,7 @@ import tds.video.VideoWeb;
 import um.tds.gui.VentanaPrincipal;
 
 public class Lanzador {
-	
+
 	public static VideoWeb videoWeb;
 
 	public static void main(final String[] args) {
@@ -16,15 +16,14 @@ public class Lanzador {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-	
+
 					VentanaPrincipal ventana = new VentanaPrincipal();
 					ventana.mostrarVentana();
-					videoWeb= new VideoWeb();
-					
-					ServicioPersistencia servPersistencia = FactoriaServicioPersistencia.getInstance().getServicioPersistencia();
+					videoWeb = new VideoWeb();
 
-					
-					
+					ServicioPersistencia servPersistencia = FactoriaServicioPersistencia.getInstance()
+							.getServicioPersistencia();
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

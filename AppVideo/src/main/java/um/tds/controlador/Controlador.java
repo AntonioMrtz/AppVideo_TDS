@@ -34,499 +34,417 @@ import um.tds.persistencia.IAdaptadorListaVideosDAO;
 import um.tds.persistencia.IAdaptadorUsuarioDAO;
 import um.tds.persistencia.IAdaptadorVideoDAO;
 
+public class Controlador implements VideoListener {
 
-
-
-public class Controlador implements VideoListener{
-	
-	
-	//Patron singleton para tener un solo controlador
+	// Patron singleton para tener un solo controlador
 	private static Controlador unicaInstancia;
-	
-	// Adaptadores correspondientes para acceder a las diferentes entidades del servidor
+
+	// Adaptadores correspondientes para acceder a las diferentes entidades del
+	// servidor
 
 	private IAdaptadorUsuarioDAO adaptadorUsuario;
 	private IAdaptadorVideoDAO adaptadorVideo;
 	private IAdaptadorEtiquetasDAO adaptadorEtiqueta;
-	private  IAdaptadorListaVideosDAO adaptadorListaVideo;
+	private IAdaptadorListaVideosDAO adaptadorListaVideo;
 
 	// Catálogos locales
-	
+
 	private CatalogoUsuarios catalogoUsuarios;
 	private CatalogoVideos catalogoVideos;
 	private CatalogoEtiquetas catalogoEtiquetas;
 
-	
 	private Usuario usuarioActual;
-	
-	
-	
+
 	private CargadorVideos cargadorVideos;
 
-	
-	
-	private Controlador()  { // Cargamos datos del servidor e inicializamos adaptadores
-	
-		
+	private Controlador() { // Cargamos datos del servidor e inicializamos adaptadores
 
-		usuarioActual=null;
-		
+		usuarioActual = null;
+
 		inicialiarAdaptadores();
 		inicializarCatálogos();
-		
+
 		cargadorVideos = CargadorVideos.getUnicaInstancia();
 		cargadorVideos.attach(this); // añadimos el controlador como unico listener
-		
+
 	}
-	
-	public static Controlador getUnicaInstancia(){
-		
-		
-		if(unicaInstancia==null)
-			unicaInstancia=new Controlador();
-		
+
+	public static Controlador getUnicaInstancia() {
+
+		if (unicaInstancia == null)
+			unicaInstancia = new Controlador();
+
 		return unicaInstancia;
 	}
-	
-	
+
 	/* REPRODUCTOR VIDEO */
-	
-	
+
 	public void playVideo(Video v) { // Unificacion para reproducir video y contar reproducciones
-		
+
 		Lanzador.videoWeb.playVideo(v.getUrl());
 		v.incrementarRepro();
 		adaptadorVideo.modificarVideo(v);
-		
+
 		usuarioActual.addVideoHistorial(v);
 		adaptadorUsuario.modificarUsuario(usuarioActual);
-		
-		
-		
+
 	}
-	
+
 	public void playVideo(String s) { // Igual que el anterior pero solo con url
-		
+
 		Video v = findVideo(s);
 		v.incrementarRepro();
-		
+
 		Lanzador.videoWeb.playVideo(v.getUrl());
 		adaptadorVideo.modificarVideo(v);
-		
+
 		usuarioActual.addVideoHistorial(v);
 		adaptadorUsuario.modificarUsuario(usuarioActual);
-		
-		
+
 	}
-	
+
 	public void stopVideo() {
-		
+
 		Lanzador.videoWeb.cancel();
 	}
-	
-	
-	
+
 	/* LOGIN */
-	
+
 	public Usuario getUsuarioActual() {
-		
+
 		return usuarioActual;
 	}
-	
-	
-	public boolean loginUsuario(String nombre,String password) {
-		
-		Usuario us=CatalogoUsuarios.getUnicaInstancia().getUsuario(nombre);
-		
-		
-		if(us!=null && us.checkLogin(password)){
-			usuarioActual=us;
+
+	public boolean loginUsuario(String nombre, String password) {
+
+		Usuario us = CatalogoUsuarios.getUnicaInstancia().getUsuario(nombre);
+
+		if (us != null && us.checkLogin(password)) {
+			usuarioActual = us;
 			return true;
-			
+
 		}
-		
+
 		return false;
-		
+
 	}
-	
-	
+
 	public void logoutUsuario() {
-		
-		usuarioActual=null;
-		
+
+		usuarioActual = null;
+
 	}
-	
-	
-	
-	
+
 	/* REGISTER */
 
-	
-	public boolean registrarUsuario(String n,String apellidos,String email,boolean prem,String contra,String usu,LocalDate fecha) {
-		
-		
-		
-		Usuario u = new Usuario(n, apellidos, email, prem, usu,contra, fecha);
-		
-	
-		if(catalogoUsuarios.getUsuario(usu)!=null) {
+	public boolean registrarUsuario(String n, String apellidos, String email, boolean prem, String contra, String usu,
+			LocalDate fecha) {
+
+		Usuario u = new Usuario(n, apellidos, email, prem, usu, contra, fecha);
+
+		if (catalogoUsuarios.getUsuario(usu) != null) {
 
 			return false;
 		}
-	
-		if(!adaptadorUsuario.addUsuario(u))return false;
-		
-		
+
+		if (!adaptadorUsuario.addUsuario(u))
+			return false;
+
 		catalogoUsuarios.addUsuario(u);
-		
-		usuarioActual=u;		// NADA MAS REGISTRAR YA SE INICIA SESION
-		
+
+		usuarioActual = u; // NADA MAS REGISTRAR YA SE INICIA SESION
+
 		return true;
 	}
-	
-	
-	public Video registrarVideo(String url,String titulo) {
-		
+
+	public Video registrarVideo(String url, String titulo) {
+
 		Video v = new Video(url, titulo);
 
-		//si hay etiquetas default ponerlas aqui
-		
+		// si hay etiquetas default ponerlas aqui
+
 		adaptadorVideo.addVideo(v);
 		catalogoVideos.addVideo(v);
-		
+
 		return v;
-		
+
 	}
 
-	public void registrarListaVideos(String nombre,List<Video> videos) {  // Realiza tambien la funcion de actualizar la lista
-		
-		
-		if(usuarioActual.addLista(nombre,videos)) {
-			
+	public void registrarListaVideos(String nombre, List<Video> videos) { // Realiza tambien la funcion de actualizar la
+																			// lista
+
+		if (usuarioActual.addLista(nombre, videos)) {
+
 			adaptadorUsuario.modificarUsuario(usuarioActual);
-			
+
 		}
-		
-		
+
 	}
-	
+
 	public Etiqueta registrarEtiqueta(String e) {
-		
-		Etiqueta et=new Etiqueta(e);
-		
+
+		Etiqueta et = new Etiqueta(e);
+
 		adaptadorEtiqueta.registrarEtiqueta(et);
 		catalogoEtiquetas.addEtiqueta(et);
-		
+
 		return et;
-		
-		
+
 	}
-	
-	
-	
+
 	/* FIND */
-	
+
 	public Video findVideo(Video v) {
-		
+
 		return catalogoVideos.getVideo(v.getUrl());
 	}
-	
+
 	public Video findVideo(String url) {
-		
+
 		return catalogoVideos.getVideo(url);
-		
+
 	}
-	
+
 	public Usuario findUser(Usuario us) {
-		
+
 		return catalogoUsuarios.getUsuario(us.getUsuario());
-		
+
 	}
-	
+
 	public Etiqueta findEtiqueta(Etiqueta e) {
-		
+
 		return catalogoEtiquetas.getEtiqueta(e.getNombre());
 	}
-	
+
 	public ListaVideos findLista(String s) {
-		
-		
-		for(ListaVideos l:usuarioActual.getListas()) {
-			
-			if (l.getNombre().equals(s)) return l;
+
+		for (ListaVideos l : usuarioActual.getListas()) {
+
+			if (l.getNombre().equals(s))
+				return l;
 		}
 		return null;
 	}
-	
-	
-	
-	
+
 	/* INICIALIZAR */
-	
+
 	private void inicialiarAdaptadores() {
-		
+
 		FactoriaDAO factoria = null;
 		try {
 			factoria = FactoriaDAO.getInstancia(FactoriaDAO.DAO_TDS);
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
-		adaptadorUsuario= factoria.getUsuarioDAO();
+		adaptadorUsuario = factoria.getUsuarioDAO();
 		adaptadorVideo = factoria.getVideoDAO();
 		adaptadorEtiqueta = factoria.getEtiquetaDAO();
-		
-		
-	}
-	
 
-	
-	private void inicializarCatálogos() {
-		
-		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
-		catalogoEtiquetas =CatalogoEtiquetas.getUnicaInstancia();
-		catalogoVideos= CatalogoVideos.getUnicaInstancia();
-		
-		
 	}
-	
-	
-	
+
+	private void inicializarCatálogos() {
+
+		catalogoUsuarios = CatalogoUsuarios.getUnicaInstancia();
+		catalogoEtiquetas = CatalogoEtiquetas.getUnicaInstancia();
+		catalogoVideos = CatalogoVideos.getUnicaInstancia();
+
+	}
+
 	/* REMOVE */
-	
+
 	public void removeUsuario(Usuario u) {
-		
+
 		adaptadorUsuario.removeUsuario(u);
 		catalogoUsuarios.removeUsuario(u);
-		
+
 	}
-	
-	
+
 	public void removeVideo(Video v) {
-		
+
 		adaptadorVideo.removeVideo(v);
 		catalogoVideos.removeVideo(v);
-		
+
 	}
-	
-	
+
 	public void removeEtiqueta(Etiqueta e) {
-		
+
 		adaptadorEtiqueta.borrarEtiqueta(e);
 		catalogoEtiquetas.removeEtiqueta(e);
 	}
-	
-	
-	
 
 	public boolean removeLista(ListaVideos l) {
-		
-		if(usuarioActual.removeLista(l)) {
-			
+
+		if (usuarioActual.removeLista(l)) {
+
 			adaptadorUsuario.modificarUsuario(usuarioActual);
-			
+
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-
-	
-	
 
 	/* GET */
-	
-	
+
 	public List<Usuario> getUsuarios() {
-		
+
 		return catalogoUsuarios.getUsuarios();
 	}
+
 	public List<Video> getVideos() {
 
 		return catalogoVideos.getVideos();
 	}
-	
+
 	public List<Etiqueta> getEtiquetas() {
 
 		return catalogoEtiquetas.getEtiquetas();
 	}
-	
-	
-	
-	
-	public List<Video> getTop10(){
-		
-		
+
+	public List<Video> getTop10() {
+
 		return catalogoVideos.getTop10Videos();
 	}
-	
-	
-	
-	public List<ListaVideos> getListas(){ // Obtenemos todas las listas para el usuario
-		
-		if(usuarioActual!=null) {
-			
+
+	public List<ListaVideos> getListas() { // Obtenemos todas las listas para el usuario
+
+		if (usuarioActual != null) {
+
 			return usuarioActual.getListas();
-			
+
 		}
-		
+
 		return null;
-		
+
 	}
-	
-	public List<Video> getLista(String s){
-		
-		for(ListaVideos l : usuarioActual.getListas()) {
-			
+
+	public List<Video> getLista(String s) {
+
+		for (ListaVideos l : usuarioActual.getListas()) {
+
 			if (l.getNombre().equals(s)) {
-				
+
 				return l.getVideos();
 			}
-			
+
 		}
-		
+
 		return null;
-		
+
 	}
-	
-	
-	public List<Video> getRecientes(){ // Devuelve historial
-		
-		if(usuarioActual!=null) {
-			
+
+	public List<Video> getRecientes() { // Devuelve historial
+
+		if (usuarioActual != null) {
+
 			return usuarioActual.getRecientes();
-			
+
 		}
-		
+
 		return null;
-		
+
 	}
-	
+
 	public void modifyUser(Usuario us) {
-		
+
 		adaptadorUsuario.modificarUsuario(us);
 	}
 
-	
-	/*				CARGADOR VIDEOS			*/
-	
-	//Cargamos los videos en el servidor y catalogo local
-	
+	/* CARGADOR VIDEOS */
+
+	// Cargamos los videos en el servidor y catalogo local
+
 	@Override
 	public void enteradoCambios(EventObject e) {
-		
 
 		if (e instanceof VideosEvent) {
-			
+
 			try {
 				AdaptadorVideo adaptadorVideo = (AdaptadorVideo) FactoriaDAO.getInstancia().getVideoDAO();
 			} catch (DAOException e1) {
-				
+
 				e1.printStackTrace();
-			} ///CUIDADIN ? casteo
-		
-			
-			
+			} /// CUIDADIN ? casteo
+
 			for (Video v : getVideosFromXml(((VideosEvent) e).getVideos())) {
-				
+
 				adaptadorVideo.addVideo(v);
 				catalogoVideos.addVideo(v);
-				
 
-				
 			}
 		}
-		
+
 	}
-	
-	
-	public static List<Video> getVideosFromXml(Videos videos){
-		
+
+	public static List<Video> getVideosFromXml(Videos videos) {
+
 		List<Video> l = new LinkedList<>();
 		for (um.tds.componente.Video v : videos.getVideo()) {
-			
-			
-			Video vid = new Video(v.getURL(),v.getTitulo() );
+
+			Video vid = new Video(v.getURL(), v.getTitulo());
 			vid.addEtiquetasString(v.getEtiqueta());
 			l.add(vid);
-			
+
 		}
-		
+
 		return l;
-		
+
 	}
-	
-	
+
 	public boolean getVideosFromXml(String xml) {
-		
+
 		return cargadorVideos.setFileVideo(xml);
 	}
-	
-	
-	
-	public Collection<Video> filterVideo(String titulo,List<String> e) {
-		
-		return CatalogoVideos.getUnicaInstancia().filterVideo(usuarioActual.getFiltroActual(),titulo,e);
-		
-		
+
+	public Collection<Video> filterVideo(String titulo, List<String> e) {
+
+		return CatalogoVideos.getUnicaInstancia().filterVideo(usuarioActual.getFiltroActual(), titulo, e);
+
 	}
-	
-	public void addEtiquetaVideo(Video v,String et) {
-		
-		
+
+	public void addEtiquetaVideo(Video v, String et) {
+
 		registrarEtiqueta(et);
-		
 
 		v.addEtiqueta(findEtiqueta(new Etiqueta(et)));
-		
-		
+
 		catalogoVideos.modifyVideo(v);
 		adaptadorVideo.modificarVideo(v);
-		
+
 	}
-	
-	
+
 	public void generarPdf() throws DocumentException, IOException {
-		
-		 if(Controlador.getUnicaInstancia().getUsuarioActual()!=null) {
-			   
-			   
-			 Document doc = new Document();
-			
+
+		if (Controlador.getUnicaInstancia().getUsuarioActual() != null) {
+
+			Document doc = new Document();
+
 			PdfWriter writer = PdfWriter.getInstance(doc, new FileOutputStream("AppVideo-pdf.pdf"));
-			
-			   
-			  doc.open();
-			  
-			  
-			  Image logo = Image.getInstance("src/main/java/recursos/AppVideo (1).png");
-			  
-			  doc.add(logo);
-			  
-			  for(ListaVideos l:usuarioActual.getListas()) {
-				  
-				  
-				  doc.add(new Paragraph(l.getNombre().toUpperCase()));
-				  doc.add(new Paragraph(" "));
-				  
-				  for(Video v:l.getVideos()) {
-					  
-					  
-					  doc.add(new Paragraph("    "+v.getTitulo()));
-					  
-				  }
-				  
-				  
-				  
-				  doc.add(new Paragraph(" "));
-			  }
-			  
-			  doc.close();
-			  
-		 }
-	
+
+			doc.open();
+
+			Image logo = Image.getInstance("src/main/java/recursos/AppVideo (1).png");
+
+			doc.add(logo);
+
+			for (ListaVideos l : usuarioActual.getListas()) {
+
+				doc.add(new Paragraph(l.getNombre().toUpperCase()));
+				doc.add(new Paragraph(" "));
+
+				for (Video v : l.getVideos()) {
+
+					doc.add(new Paragraph("    " + v.getTitulo()));
+
+				}
+
+				doc.add(new Paragraph(" "));
+			}
+
+			doc.close();
+
+		}
+
 	}
-	
-	
-	
+
 }

@@ -4,31 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaVideos {
-	
+
 	private int id;
-	
+
 	private Usuario user;
 	private String nombre;
 	private List<Video> videos;
-	
-	
-	public ListaVideos(Usuario us,String nom,List<Video> list) {
-		
-		user=us;
-		nombre=nom;
-		videos=list;
-		
-		id=0;
-	}
-	
-	public ListaVideos(Usuario us,String nom) {
-		
-		this(us,nom,new ArrayList<>());
+
+	public ListaVideos(Usuario us, String nom, List<Video> list) {
+
+		user = us;
+		nombre = nom;
+		videos = list;
+
+		id = 0;
 	}
 
-	
-	
-	
+	public ListaVideos(Usuario us, String nom) {
+
+		this(us, nom, new ArrayList<>());
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -60,28 +56,21 @@ public class ListaVideos {
 	public List<Video> getVideos() {
 		return videos;
 	}
-	
-	
 
-	
-	
 	public boolean addVideo(Video v) {
-		
+
 		return videos.add(v);
 	}
-	
-	
+
 	public boolean delVideo(Video v) {
-		
+
 		return videos.remove(v);
-		
-		
+
 	}
-	
 
 	@Override
 	public String toString() {
-		return "nombre "+getNombre()+" videos = "+getVideos();
+		return "nombre " + getNombre() + " videos = " + getVideos();
 	}
-	
+
 }
