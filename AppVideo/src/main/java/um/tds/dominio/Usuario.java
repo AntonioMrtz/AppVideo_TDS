@@ -48,6 +48,8 @@ public class Usuario {
 		listas = new ArrayList<ListaVideos>();
 		filtroActual = new FiltroNoFilter(); // establecemos filtro default
 
+		
+		
 		if (adaptadorListaVideosDAO == null) {
 
 			try {

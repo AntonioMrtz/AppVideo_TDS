@@ -284,6 +284,7 @@ public class PanelNuevaLista extends JPanel implements IWindow {
 
 				}
 
+				lista=null;
 				cleanAll();
 			}
 

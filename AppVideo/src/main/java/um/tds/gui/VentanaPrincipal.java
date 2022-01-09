@@ -401,7 +401,7 @@ public class VentanaPrincipal implements IEncendidoListener {
 
 			recientes.exit();
 		} else if (activeCard instanceof PanelMisListas) {
-
+			
 			mislistas.exit();
 		}
 

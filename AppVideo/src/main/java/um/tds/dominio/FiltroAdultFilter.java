@@ -18,7 +18,7 @@ public class FiltroAdultFilter extends Filtro {
 		return true;*/
 		
 		return v.getEtiquetas().stream()
-				.anyMatch(e->e.getNombre().equals("Adulto"));
+				.noneMatch(e->e.getNombre().equals("Adulto"));
 		
 	}
 

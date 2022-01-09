@@ -219,7 +219,14 @@ public class PanelMisListas extends JPanel implements IWindow {
 
 	@Override
 	public void exit() {
-
+		
+		int size = comboBox.getItemCount()-1;
+		for (int i = size; i > 0; i--) {
+		  
+			comboBox.removeItemAt(i);;
+		  
+		}
+		
 		cleanPanel();
 
 	}
