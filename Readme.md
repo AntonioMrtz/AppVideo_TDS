@@ -1,5 +1,5 @@
 # AppVideo
-Reproductor de Video para la asignatura TDS 
+Reproductor de Video para la asignatura TDS </br>
 <img src="AppVideo/src/main/java/recursos/logo_tama%C3%B1o_app.jpg"
      style="float: left; margin-right: 10px;" />
 ## Ejecución
