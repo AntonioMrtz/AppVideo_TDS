@@ -1,6 +1,7 @@
 # AppVideo
-Reproductor de Video para la asignatura TDS
-![Logo](AppVideo/src/main/java/recursos/App_invertido.jpg)
+Reproductor de Video para la asignatura TDS <img src="AppVideo/src/main/java/recursos/App_invertido.jpg.png"
+     alt="Markdown Monster icon"
+     style="float: left; margin-right: 10px;" />
 ## Ejecución
 
 ```
