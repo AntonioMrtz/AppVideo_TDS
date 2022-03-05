@@ -1,6 +1,6 @@
 # AppVideo
 Reproductor de Video para la asignatura TDS
-![](image.png)
+![](main/AppVideo/src/main/java/recursos/App_invertido.jpg)
 ## Ejecución
 
 ```
