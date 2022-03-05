@@ -1,6 +1,6 @@
 # AppVideo
 Reproductor de Video para la asignatura TDS 
-<img src="AppVideo/src/main/java/recursos/App_invertido.jpg"
+<img src="AppVideo/src/main/java/recursos/logo_tama%C3%B1o_app.jpg"
      style="float: left; margin-right: 10px;" />
 ## Ejecución
 
